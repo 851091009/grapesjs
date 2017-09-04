@@ -4,9 +4,9 @@ module.exports = Backbone.View.extend({
 
   initialize() {
     this.model.view = this;
-    this.pn = this.model.get('Panels');
-    this.conf = this.model.config;
-    this.className = this.conf.stylePrefix + 'editor';
+    this.pn         = this.model.get('Panels');
+    this.conf       = this.model.config;
+    this.className  = this.conf.stylePrefix + 'editor';
     this.model.on('loaded', () => {
       this.pn.active();
       this.model.runDefault();
@@ -28,12 +28,13 @@ module.exports = Backbone.View.extend({
       model.loadOnStart();
       um.clear();
       // This will init loaded components
+      // 这将初始化加载的组件。
       dComps.onLoad();
     }
 
     var conf = this.conf;
     var contEl = $(conf.el || ('body ' + conf.container));
-    this.$el.empty();
+    this.$el.empty(); // jquery 函数
 
     if(conf.width)
       contEl.css('width', conf.width);
@@ -45,6 +46,7 @@ module.exports = Backbone.View.extend({
     this.$el.append(model.get('Canvas').render());
 
     // Panels
+    // 面板
     this.$el.append(this.pn.render());
     this.$el.attr('class', this.className);
     contEl.addClass(conf.stylePrefix + 'editor-cont');

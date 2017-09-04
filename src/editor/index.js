@@ -84,9 +84,9 @@
 
 module.exports = config => {
   var c = config || {},
-  defaults = require('./config/config'),
+  defaults    = require('./config/config'),
   EditorModel = require('./model/Editor'),
-  EditorView = require('./view/EditorView');
+  EditorView  = require('./view/EditorView');
 
   for (var name in defaults) {
     if (!(name in c))

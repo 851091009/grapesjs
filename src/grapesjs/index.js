@@ -1,17 +1,17 @@
  module.exports = (config => {
   var c = config || {},
-  defaults = require('./config/config'),
-  Editor = require('editor'),
+  defaults      = require('./config/config'),
+  Editor        = require('editor'),
   PluginManager = require('plugin_manager');
 
-  var plugins = new PluginManager();
+  var plugins = new PluginManager(); // 实例化插件
   var editors = [];
 
   return {
 
-    editors,
+    editors, // 编辑器
 
-    plugins,
+    plugins, // 插件
 
     /**
      * Initializes an editor based on passed options
