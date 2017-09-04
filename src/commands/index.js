@@ -88,22 +88,22 @@ module.exports = () => {
       defaultCommands['select-comp'] = require('./view/SelectComponent');
       defaultCommands['create-comp'] = require('./view/CreateComponent');
       defaultCommands['delete-comp'] = require('./view/DeleteComponent');
-      defaultCommands['image-comp'] = require('./view/ImageComponent');
-      defaultCommands['move-comp'] = require('./view/MoveComponent');
-      defaultCommands['text-comp'] = require('./view/TextComponent');
-      defaultCommands['insert-custom'] = require('./view/InsertCustom');
+      defaultCommands['image-comp']  = require('./view/ImageComponent');
+      defaultCommands['move-comp']   = require('./view/MoveComponent');
+      defaultCommands['text-comp']   = require('./view/TextComponent');
+      defaultCommands['insert-custom']   = require('./view/InsertCustom');
       defaultCommands['export-template'] = require('./view/ExportTemplate');
-      defaultCommands['sw-visibility'] = require('./view/SwitchVisibility');
-      defaultCommands['open-layers'] = require('./view/OpenLayers');
-      defaultCommands['open-sm'] = require('./view/OpenStyleManager');
-      defaultCommands['open-tm'] = require('./view/OpenTraitManager');
-      defaultCommands['open-blocks'] = require('./view/OpenBlocks');
-      defaultCommands['open-assets'] = require('./view/OpenAssets');
-      defaultCommands['show-offset'] = require('./view/ShowOffset');
+      defaultCommands['sw-visibility']   = require('./view/SwitchVisibility');
+      defaultCommands['open-layers']     = require('./view/OpenLayers');
+      defaultCommands['open-sm']         = require('./view/OpenStyleManager');
+      defaultCommands['open-tm']         = require('./view/OpenTraitManager');
+      defaultCommands['open-blocks']     = require('./view/OpenBlocks');
+      defaultCommands['open-assets']     = require('./view/OpenAssets');
+      defaultCommands['show-offset']     = require('./view/ShowOffset');
       defaultCommands.fullscreen = require('./view/Fullscreen');
-      defaultCommands.preview = require('./view/Preview');
-      defaultCommands.resize = require('./view/Resize');
-      defaultCommands.drag = require('./view/Drag');
+      defaultCommands.preview    = require('./view/Preview');
+      defaultCommands.resize     = require('./view/Resize');
+      defaultCommands.drag       = require('./view/Drag');
 
       defaultCommands['tlb-delete'] = {
         run(ed) {
@@ -210,6 +210,7 @@ module.exports = () => {
 
     /**
      * Add new command to the collection
+     * 向集合中添加新命令
      * @param	{string} id Command's ID
      * @param	{Object} command Object representing you command. Methods `run` and `stop` are required
      * @return {this}
@@ -226,6 +227,7 @@ module.exports = () => {
 
     /**
      * Get command by ID
+     * 按ID获取命令
      * @param	{string}	id Command's ID
      * @return {Object} Object representing the command
      * @example
@@ -245,6 +247,7 @@ module.exports = () => {
 
     /**
      * Check if command exists
+     * 检查命令是否存在
      * @param	{string}	id Command's ID
      * @return {Boolean}
      * */
@@ -254,6 +257,7 @@ module.exports = () => {
 
     /**
      * Load default commands
+     * 加载默认的命令
      * @return {this}
      * @private
      * */

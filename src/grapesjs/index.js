@@ -1,11 +1,11 @@
  module.exports = (config => {
   var c = config || {},
-  defaults      = require('./config/config'),
-  Editor        = require('editor'),
-  PluginManager = require('plugin_manager');
+  defaults      = require('./config/config'), // 配置文件
+  Editor        = require('editor'), // 编辑器
+  PluginManager = require('plugin_manager'); // 插件控制器
 
   var plugins = new PluginManager(); // 实例化插件
-  var editors = [];
+  var editors = []; // 定义一个控制器数组
 
   return {
 
