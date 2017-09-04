@@ -16,8 +16,8 @@
  */
 module.exports = () => {
   var c = {},
-  defaults = require('./config/config'),
-  ModalM = require('./model/Modal'),
+  defaults  = require('./config/config'),
+  ModalM    = require('./model/Modal'),
   ModalView	= require('./view/ModalView');
   var model, modal;
 

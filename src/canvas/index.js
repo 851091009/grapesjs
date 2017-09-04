@@ -1,7 +1,7 @@
 module.exports = () => {
   var c = {},
-  defaults = require('./config/config'),
-  Canvas = require('./model/Canvas'),
+  defaults   = require('./config/config'),
+  Canvas     = require('./model/Canvas'),
   CanvasView = require('./view/CanvasView');
   var canvas;
   var frameRect;

@@ -54,9 +54,9 @@
  */
 module.exports = config => {
   var c = config || {},
-  defaults = require('./config/config'),
-  Selector = require('./model/Selector'),
-  Selectors = require('./model/Selectors'),
+  defaults      = require('./config/config'),
+  Selector      = require('./model/Selector'),
+  Selectors     = require('./model/Selectors'),
   ClassTagsView = require('./view/ClassTagsView');
   var selectors, selectorTags;
 

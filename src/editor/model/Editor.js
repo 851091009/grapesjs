@@ -18,13 +18,13 @@ require('block_manager'),
 require('trait_manager'),
 ];
 
-var Backbone = require('backbone');
-var UndoManager = require('backbone-undo');
-var key = require('keymaster');
+var Backbone    = require('backbone');
+var UndoManager = require('backbone-undo'); // 撤销管理器
+var key         = require('keymaster'); // 键盘管理器
 var timedInterval;
 
 module.exports = Backbone.Model.extend({
-
+  // 设置默认值
   defaults: {
     clipboard: null,
     designerMode: false,
@@ -37,7 +37,7 @@ module.exports = Backbone.Model.extend({
     opened: {},
     device: '',
   },
-
+  // 构造函数
   initialize(c) {
     this.config = c;
     this.set('Config', c);
@@ -47,11 +47,13 @@ module.exports = Backbone.Model.extend({
       this.config.components = c.el.innerHTML;
 
     // Load modules
+    // 加载模块
     deps.forEach(function(name){
       this.loadModule(name);
     }, this);
 
     // Call modules with onLoad callback
+    // 调用onLoad回调模块
     this.get('toLoad').forEach(M => {
       M.onLoad();
     });
@@ -65,6 +67,7 @@ module.exports = Backbone.Model.extend({
 
   /**
    * Load on start if it was requested
+   * 如果需要，在开始时加载
    * @private
    */
   loadOnStart() {
@@ -76,8 +79,8 @@ module.exports = Backbone.Model.extend({
   },
 
   /**
-   * Set the alert before unload in case it's requested
-   * and there are unsaved changes
+   * Set the alert before unload in case it's requested 卸载前设置警报，以防请求。
+   * and there are unsaved changes 有未保存的更改
    * @private
    */
   updateBeforeUnload() {
@@ -92,6 +95,7 @@ module.exports = Backbone.Model.extend({
 
   /**
    * Load generic module
+   * 负载通用模块
    * @param {String} moduleName Module name
    * @return {this}
    * @private
@@ -127,6 +131,7 @@ module.exports = Backbone.Model.extend({
 
   /**
    * Initialize editor model and set editor instance
+   * 初始化编辑器模型和集合编辑器实例
    * @param {Editor} editor Editor instance
    * @return {this}
    * @private
@@ -137,6 +142,7 @@ module.exports = Backbone.Model.extend({
 
   /**
    * Listen for new rules
+   * 倾听新规则
    * @param {Object} collection
    * @private
    */
@@ -150,6 +156,7 @@ module.exports = Backbone.Model.extend({
 
   /**
    * Listen for rule changes
+   * 监听规则更改
    * @param {Object} model
    * @private
    */
@@ -160,6 +167,7 @@ module.exports = Backbone.Model.extend({
 
   /**
    * Triggered when something in components is changed
+   * 当组件中的某事物发生更改时触发。
    * @param  {Object}  model
    * @param  {Mixed}    val  Value
    * @param  {Object}  opt  Options
@@ -168,7 +176,8 @@ module.exports = Backbone.Model.extend({
   componentsUpdated(model, val, opt) {
     var temp = opt ? opt.temporary : 0;
     if (temp) {
-      //component has been added temporarily - do not update storage or record changes
+      // component has been added temporarily - do not update storage or record changes
+      // 组件已临时添加-不更新存储或记录更改
       return;
     }
 
@@ -191,6 +200,7 @@ module.exports = Backbone.Model.extend({
 
   /**
    * Initialize Undo manager
+   * 初始化撤消管理
    * @private
    * */
   initUndoManager() {
@@ -236,11 +246,13 @@ module.exports = Backbone.Model.extend({
         undo: function (model, bf, af, opt) {
           model.set(bf);
           // Update also inputs inside Style Manager
+          // 更新样式管理器中的输入
           that.trigger('change:selectedComponent');
         },
         redo: function (model, bf, af, opt) {
           model.set(af);
           // Update also inputs inside Style Manager
+          // 更新样式管理器中的输入
           that.trigger('change:selectedComponent');
         }
       };
@@ -252,6 +264,7 @@ module.exports = Backbone.Model.extend({
 
   /**
    * Callback on component selection
+   * 组件选择回调
    * @param   {Object}   Model
    * @param   {Mixed}   New value
    * @param   {Object}   Options
@@ -266,6 +279,7 @@ module.exports = Backbone.Model.extend({
 
   /**
    * Triggered when components are updated
+   * 组件更新时触发
    * @param  {Object}  model
    * @param  {Mixed}    val  Value
    * @param  {Object}  opt  Options
@@ -277,10 +291,12 @@ module.exports = Backbone.Model.extend({
         avSt  = opt ? opt.avoidStore : 0;
 
     // Observe component with Undo Manager
+    // 使用撤销管理器观察组件
     if(this.um)
       this.um.register(comps);
 
     // Call stopListening for not creating nested listeners
+    // 电话监听不创建嵌套的听众
     this.stopListening(comps, 'add', this.updateComponents);
     this.stopListening(comps, 'remove', this.rmComponents);
     this.listenTo(comps, 'add', this.updateComponents);
@@ -299,6 +315,7 @@ module.exports = Backbone.Model.extend({
 
   /**
    * Init stuff like storage for already existing elements
+   * init之类的东西，比如已经存在的元素的存储
    * @param {Object}  model
    * @private
    */
@@ -314,6 +331,7 @@ module.exports = Backbone.Model.extend({
 
   /**
    * Triggered when some component is removed updated
+   * 当某些组件被移除更新时触发。
    * @param  {Object}  model
    * @param  {Mixed}    val  Value
    * @param  {Object}  opt  Options
@@ -328,6 +346,7 @@ module.exports = Backbone.Model.extend({
 
   /**
    * Returns model of the selected component
+   * 返回所选组件的模型
    * @return {Component|null}
    * @private
    */
@@ -337,6 +356,7 @@ module.exports = Backbone.Model.extend({
 
   /**
    * Select a component
+   * 选择一个组件
    * @param  {Component|HTMLElement} el Component to select
    * @param  {Object} opts Options, optional
    * @private
@@ -353,6 +373,7 @@ module.exports = Backbone.Model.extend({
 
   /**
    * Set components inside editor's canvas. This method overrides actual components
+   * 在编辑器的画布中设置组件。此方法覆盖实际组件。
    * @param {Object|string} components HTML string or components model
    * @return {this}
    * @private
@@ -363,6 +384,7 @@ module.exports = Backbone.Model.extend({
 
   /**
    * Returns components model from the editor's canvas
+   * 从编辑器的画布返回组件模型
    * @return {Components}
    * @private
    */
@@ -379,6 +401,7 @@ module.exports = Backbone.Model.extend({
 
   /**
    * Set style inside editor's canvas. This method overrides actual style
+   * 在编辑器的画布中设置样式。此方法重写实际样式。
    * @param {Object|string} style CSS string or style model
    * @return {this}
    * @private
@@ -393,6 +416,7 @@ module.exports = Backbone.Model.extend({
 
   /**
    * Returns rules/style model from the editor's canvas
+   * 从编辑器的画布返回规则/样式模型
    * @return {Rules}
    * @private
    */
@@ -402,6 +426,7 @@ module.exports = Backbone.Model.extend({
 
   /**
    * Returns HTML built inside canvas
+   * 返回内置在画布中的HTML
    * @return {string} HTML string
    * @private
    */
@@ -420,6 +445,7 @@ module.exports = Backbone.Model.extend({
 
   /**
    * Returns CSS built inside canvas
+   * 返回CSS内置在画布
    * @return {string} CSS string
    * @private
    */
@@ -437,6 +463,7 @@ module.exports = Backbone.Model.extend({
 
   /**
    * Returns JS of all components
+   * 返回所有组件的js
    * @return {string} JS string
    * @private
    */
@@ -447,6 +474,7 @@ module.exports = Backbone.Model.extend({
 
   /**
    * Store data to the current storage
+   * 保存当前数据
    * @param {Function} clb Callback function
    * @return {Object} Stored data
    * @private
@@ -475,6 +503,7 @@ module.exports = Backbone.Model.extend({
 
   /**
    * Load data from the current storage
+   * 从当前存储中加载数据
    * @param {Function} clb Callback function
    * @return {Object} Loaded data
    * @private
@@ -489,6 +518,7 @@ module.exports = Backbone.Model.extend({
 
   /**
    * Returns cached load
+   * 返回缓存负载
    * @param {Boolean} force Force to reload
    * @param {Function} clb Callback function
    * @return {Object}
@@ -522,6 +552,7 @@ module.exports = Backbone.Model.extend({
 
   /**
    * Returns device model by name
+   * 按名称返回设备模型
    * @return {Device|null}
    * @private
    */
@@ -532,6 +563,7 @@ module.exports = Backbone.Model.extend({
 
   /**
    * Run default command if setted
+   * 如果设置运行默认的命令
    * @private
    */
   runDefault() {
@@ -545,6 +577,7 @@ module.exports = Backbone.Model.extend({
 
   /**
    * Stop default command
+   * 停止默认命令
    * @private
    */
   stopDefault() {
@@ -557,6 +590,7 @@ module.exports = Backbone.Model.extend({
 
   /**
    * Update canvas dimensions and refresh data useful for tools positioning
+   * 更新画布尺寸并刷新用于工具定位的数据
    * @private
    */
   refreshCanvas() {
@@ -564,8 +598,8 @@ module.exports = Backbone.Model.extend({
   },
 
   /**
-   * Clear all selected stuf inside the window, sometimes is useful to call before
-   * doing some dragging opearation
+   * Clear all selected stuf inside the window, sometimes is useful to call before 清除所有选择的东西里面的窗口，有时是电话之前有用
+   * doing some dragging opearation 拖动的操作
    * @param {Window} win If not passed the current one will be used
    * @private
    */

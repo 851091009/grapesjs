@@ -24,9 +24,9 @@
 
 module.exports = () => {
   var c = {},
-  defaults = require('./config/config'),
-  CssRule = require('./model/CssRule'),
-  CssRules = require('./model/CssRules'),
+  defaults  = require('./config/config'),
+  CssRule   = require('./model/CssRule'),
+  CssRules  = require('./model/CssRules'),
   Selectors = require('./model/Selectors'),
   CssRulesView = require('./view/CssRulesView');
 

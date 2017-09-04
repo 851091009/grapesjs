@@ -1,7 +1,7 @@
 var Backbone = require('backbone');
 
 module.exports = Backbone.View.extend({
-
+  // 初始化参数
   initialize() {
     this.model.view = this;
     this.pn         = this.model.get('Panels');
@@ -13,10 +13,10 @@ module.exports = Backbone.View.extend({
       setTimeout(() => this.model.trigger('load'), 0);
     });
   },
-
+  // 渲染
   render() {
-    var model = this.model;
-    var um = model.get('UndoManager');
+    var model  = this.model;
+    var um     = model.get('UndoManager');
     var dComps = model.get('DomComponents');
     var config = model.get('Config');
 

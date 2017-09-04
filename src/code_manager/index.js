@@ -21,11 +21,11 @@ module.exports = () => {
 
   var c = {},
   defaults = require('./config/config'),
-  gHtml = require('./model/HtmlGenerator'),
-  gCss = require('./model/CssGenerator'),
-  gJson = require('./model/JsonGenerator'),
-  gJs = require('./model/JsGenerator'),
-  eCM = require('./model/CodeMirrorEditor'),
+  gHtml    = require('./model/HtmlGenerator'),
+  gCss     = require('./model/CssGenerator'),
+  gJson    = require('./model/JsonGenerator'),
+  gJs      = require('./model/JsGenerator'),
+  eCM      = require('./model/CodeMirrorEditor'),
   editorView = require('./view/EditorView');
 
   var generators = {},

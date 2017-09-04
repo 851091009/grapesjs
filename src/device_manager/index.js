@@ -13,8 +13,8 @@
  */
 module.exports = () => {
   var c = {},
-  defaults = require('./config/config'),
-  Devices = require('./model/Devices'),
+  defaults    = require('./config/config'),
+  Devices     = require('./model/Devices'),
   DevicesView = require('./view/DevicesView');
   var devices, view;
 

@@ -46,10 +46,10 @@
  */
 module.exports = () => {
   var c = {},
-  defaults = require('./config/config'),
-  Panel = require('./model/Panel'),
-  Panels = require('./model/Panels'),
-  PanelView = require('./view/PanelView'),
+  defaults   = require('./config/config'),
+  Panel      = require('./model/Panel'),
+  Panels     = require('./model/Panels'),
+  PanelView  = require('./view/PanelView'),
   PanelsView = require('./view/PanelsView');
   var panels, PanelsViewObj;
 

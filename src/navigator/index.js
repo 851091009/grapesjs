@@ -1,8 +1,8 @@
 module.exports = () => {
   let itemsView;
   let config = {};
-  const defaults = require('./config/config');
-  const ItemView = require('./view/ItemView');
+  const defaults  = require('./config/config');
+  const ItemView  = require('./view/ItemView');
   const ItemsView = require('./view/ItemsView');
 
   return {
