@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        module.exprots = Backbone.Model.extend({
+            // 设置默认值
+            defaults:{
+                clipboard: null,
+                designerMode: false,
+                selectedComponent: null,
+                proviousModel: null,
+                changesCount: 0,
+                storables: [],
+                toLoad: [],
+                opened: {},
+                device: ''
+            },
+
+            initialize(c){
+                this.config = c;
+                this.set('Config',c);
+                this.set('modules',[]);
+
+                if(c.el && c.fromElement){
+                    this.config.components = c.el.innerHTML;
+                }
+
+                deps.forEach(function(name){
+                    this.loadModule(name);
+                },this);
+
+                this.get('toLoad').forEach(M => {M.onLoad();});
+
+
+
+            },
+
+             
+            initUndoManager(){
+                if(this.um) return;
+
+                var cmp = this.get('DomComponents'); // DOM组件
+
+                if(cmp && this.config.undoManager){
+                    var that = this;
+                    this.um = new undoManager({
+                        register:[cmp.getCon];
+                    });
+                }
+            }
+        });
+    </script>
+</body>
+</html>

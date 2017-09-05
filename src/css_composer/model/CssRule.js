@@ -1,24 +1,29 @@
 import Styleable from 'domain_abstract/model/Styleable';
 
-var Backbone = require('backbone');
+var Backbone  = require('backbone');
 var Selectors = require('./Selectors');
 
 module.exports = Backbone.Model.extend(Styleable).extend({
 
 	defaults: {
     // Css selectors
+    // CSS选择器
     selectors: {},
 
     // Additional string css selectors
+    // 附加字符串CSS选择器
     selectorsAdd: '',
 
     // Css properties style
+    // CSS属性的风格
     style: {},
 
     // On which device width this rule should be rendered, eg. @media (max-width: 1000px)
+    // 在哪个设备宽度上应该显示这个规则 如. @media (max-width: 1000px)
     mediaText: '',
 
     // State of the rule, eg: hover | pressed | focused
+    // 属性的规则，如：悬停|压|聚焦
     state: '',
 
     // Indicates if the rule is stylable
@@ -45,6 +50,7 @@ module.exports = Backbone.Model.extend(Styleable).extend({
 
   /**
    * Compare the actual model with parameters
+   * 实际模型与参数比较
    * @param   {Object} selectors Collection of selectors
    * @param   {String} state Css rule state
    * @param   {String} width For which device this style is oriented

@@ -1,7 +1,7 @@
 {
   "name": "grapesjs",
   "description": "Free and Open Source Web Builder Framework",
-  "version": "0.9.33",
+  "version": "0.9.35",
   "author": "Artur Arseniev",
   "license": "BSD-3-Clause",
   "homepage": "http://grapesjs.com",
@@ -38,7 +38,7 @@
     "node-sass": "^3.4.2",
     "sinon": "^1.17.6",
     "webpack": "^2.6.1",
-    "webpack-dev-server": "^2.4.5"
+    "webpack-dev-server": "^2.7.1"
   },
   "keywords": [
     "wte",

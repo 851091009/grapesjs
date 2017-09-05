@@ -4,6 +4,7 @@ module.exports = config => {
   defaults = require('./config/config');
 
   // Set default options
+  // 设置默认选项
   for (var name in defaults) {
     if (!(name in c))
       c[name] = defaults[name];
@@ -15,6 +16,7 @@ module.exports = config => {
 
     /**
      * Add new plugin. Plugins could not be overwritten
+     * 添加新插件。插件不能被覆盖。
      * @param {string} id Plugin ID
      * @param {Function} plugin Function which contains all plugin logic
      * @return {Function} The plugin function
@@ -50,6 +52,7 @@ module.exports = config => {
 
     /**
      * Returns object with all plugins
+     * 返回所有的插件
      * @return {Object}
      */
     getAll() {

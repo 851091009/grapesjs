@@ -87,6 +87,7 @@ module.exports = () => {
 
     /**
      * Returns the collection of panels
+     * 返回面板的集合。
      * @return {Collection} Collection of panel
      */
     getPanels() {
@@ -95,6 +96,7 @@ module.exports = () => {
 
     /**
      * Returns panels element
+     * 返回面板文本
      * @return {HTMLElement}
      */
     getPanelsEl() {
@@ -103,8 +105,9 @@ module.exports = () => {
 
     /**
      * Add new panel to the collection
-     * @param {Object|Panel} panel Object with right properties or an instance of Panel
-     * @return {Panel} Added panel. Useful in case passed argument was an Object
+     * 向集合中添加新面板
+     * @param {Object|Panel} panel Object with right properties or an instance of Panel 具有正确属性或面板实例的
+     * @return {Panel} Added panel. Useful in case passed argument was an Object 添加面板。在传递的参数中有用是一个对象
      * @example
      * var newPanel = panelManager.addPanel({
      *   id: 'myNewPanel',
@@ -117,7 +120,8 @@ module.exports = () => {
     },
 
     /**
-     * Get panel by ID
+     * Get panel by ID 
+     * 按ID获取面板
      * @param  {string} id Id string
      * @return {Panel|null}
      * @example
@@ -130,9 +134,10 @@ module.exports = () => {
 
     /**
      * Add button to the panel
+     * 向面板添加按钮
      * @param {string} panelId Panel's ID
-     * @param {Object|Button} button Button object or instance of Button
-     * @return {Button|null} Added button. Useful in case passed button was an Object
+     * @param {Object|Button} button Button object or instance of Button 按钮对象或按钮实例
+     * @return {Button|null} Added button. Useful in case passed button was an Object 添加的按钮。用例按钮是一个有用的对象
      * @example
      * var newButton = panelManager.addButton('myNewPanel',{
      *   id: 'myNewButton',
@@ -153,6 +158,7 @@ module.exports = () => {
      *   }
      * },
      * // Or simply like a function which will be evaluated as a single .run command
+     * // 或者简单地像一个函数，它将作为一个单独的运行命令进行评估。
      * ...
      * command: function(editor) {
      *   ...
@@ -165,6 +171,7 @@ module.exports = () => {
 
     /**
      * Get button from the panel
+     * 从面板获取按钮
      * @param {string} panelId Panel's ID
      * @param {string} id Button's ID
      * @return {Button|null}
@@ -182,6 +189,7 @@ module.exports = () => {
 
     /**
      * Render panels and buttons
+     * 渲染面板和按钮
      * @return {HTMLElement}
      */
     render() {
@@ -190,6 +198,7 @@ module.exports = () => {
 
     /**
      * Active activable buttons
+     * 主动激活的按钮
      * @private
      */
     active() {

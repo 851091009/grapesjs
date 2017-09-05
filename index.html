@@ -928,8 +928,6 @@
   <script type="text/javascript">
     var blkStyle = '.blk-row::after{ content: ""; clear: both; display: block;} .blk-row{padding: 10px;}';
     var editor = grapesjs.init(
-
-
       {
         allowScripts: 1,
         showOffsets: 1,
@@ -946,6 +944,7 @@
           storeStyles: 1,
         },
 
+        // 顶部按钮
         commands: {
           defaults: [{
             id: 'open-github',
@@ -974,8 +973,9 @@
               }
             }
           }],
-        },
-
+        }, // 顶部按钮 END
+        
+        // 图片控制器
         assetManager: {
           upload: 'https://test.page',
           params: {
@@ -994,7 +994,7 @@
             { type: 'image', src: './img/bg-gr-v.png', date: '2015-02-01', height: 1, width: 1728 },
           ]
         },
-
+        // 块方法
         blockManager: {
           blocks: [{
             id: 'b1',
@@ -1086,7 +1086,7 @@
             attributes: { class: 'gjs-fonts gjs-f-3ba' }
           }, {
             id: 'text',
-            label: 'Text',
+            label: '文本',
             attributes: { class: 'gjs-fonts gjs-f-text' },
             category: 'Basic',
             content: {
@@ -1097,7 +1097,7 @@
             },
           }, {
             id: 'image',
-            label: 'Image',
+            label: '图片',
             category: 'Basic',
             attributes: { class: 'gjs-fonts gjs-f-image' },
             content: {
@@ -1113,7 +1113,7 @@
             attributes: { class: 'fa fa-quote-right' }
           }, {
             id: 'link',
-            label: 'Link',
+            label: '链接',
             category: 'Basic',
             attributes: { class: 'fa fa-link' },
             content: {
@@ -1123,7 +1123,7 @@
             },
           }, {
             id: 'map',
-            label: 'Map',
+            label: '地图',
             category: 'Extra',
             attributes: { class: 'fa fa-map-o' },
             content: {
@@ -1132,7 +1132,7 @@
             },
           }, {
             id: 'video',
-            label: 'Video',
+            label: '视频',
             category: 'Basic',
             attributes: { class: 'fa fa-youtube-play' },
             content: {
@@ -1145,7 +1145,7 @@
             },
           }],
         },
-
+        // 样式控制面板
         styleManager: {
           sectors: [{
             name: 'General',
@@ -1346,7 +1346,7 @@
 
           ],
 
-        },
+        }, // 样式控制面板 END
 
 
       });
@@ -1406,10 +1406,10 @@
       },
     });*/
 
-    var domc = editor.DomComponents;
-    var defaultType = domc.getType('default');
+    var domc         = editor.DomComponents;
+    var defaultType  = domc.getType('default');
     var defaultModel = defaultType.model;
-    var defaultView = defaultType.view;
+    var defaultView  = defaultType.view;
 
     /*
     domc.addType('default', {
@@ -1426,6 +1426,7 @@
     */
 
     // Store and load events
+    // 存储和加载事件
     editor.on('storage:load', function (e) {
       console.log('LOAD ', e);
     })
@@ -1435,9 +1436,9 @@
 
     editor.on('styleManager:change:text-shadow', function (view) {
       var model = view.model;
-      let targetValue = view.getTargetValue({ ignoreDefault: 1 });
+      let targetValue   = view.getTargetValue({ ignoreDefault: 1 });
       let computedValue = view.getComputedValue();
-      let defaultValue = view.getDefaultValue();
+      let defaultValue  = view.getDefaultValue();
       //console.log('Style of ', model.get('property'), 'Target: ', targetValue, 'Computed:', computedValue, 'Default:', defaultValue);
     });
 

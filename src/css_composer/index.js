@@ -6,7 +6,9 @@
  * * [store](#store)
  *
  * This module contains and manage CSS rules for the template inside the canvas
+ * 此模块包含和管理CSS模板内的CSS规则。
  * Before using the methods you should get first the module from the editor instance, in this way:
+ * 在使用这些方法之前，您应该首先从编辑器实例中获取模块，以这种方式：
  *
  * ```js
  * var cssComposer = editor.CssComposer;
@@ -24,10 +26,10 @@
 
 module.exports = () => {
   var c = {},
-  defaults  = require('./config/config'),
-  CssRule   = require('./model/CssRule'),
-  CssRules  = require('./model/CssRules'),
-  Selectors = require('./model/Selectors'),
+  defaults     = require('./config/config'),
+  CssRule      = require('./model/CssRule'),
+  CssRules     = require('./model/CssRules'),
+  Selectors    = require('./model/Selectors'),
   CssRulesView = require('./view/CssRulesView');
 
   var rules, rulesView;
@@ -38,6 +40,7 @@ module.exports = () => {
 
       /**
        * Name of the module
+       * 模块名称
        * @type {String}
        * @private
        */
@@ -45,6 +48,7 @@ module.exports = () => {
 
       /**
        * Mandatory for the storage manager
+       * 存储管理器的强制性
        * @type {String}
        * @private
        */
@@ -60,6 +64,7 @@ module.exports = () => {
 
       /**
        * Initializes module. Automatically called with a new instance of the editor
+       * 初始化模块。使用编辑器的新实例自动调用
        * @param {Object} config Configurations
        * @private
        */
@@ -99,9 +104,12 @@ module.exports = () => {
 
       /**
        * Load data from the passed object, if the object is empty will try to fetch them
+       * 从已传递对象加载数据，如果对象为空，将尝试获取它们。
        * autonomously from the storage manager.
+       * 从存储管理器自主地。
        * The fetched data will be added to the collection
-       * @param {Object} data Object of data to load
+       * 获取的数据将被添加到集合中。
+       * @param {Object} data Object of data to load 加载数据对象
        * @return {Object} Loaded rules
        */
       load(data) {
@@ -124,6 +132,7 @@ module.exports = () => {
 
       /**
        * Store data to the selected storage
+       * 将数据存储到选定的存储区
        * @param {Boolean} noStore If true, won't store
        * @return {Object} Data to store
        */
@@ -143,6 +152,7 @@ module.exports = () => {
 
       /**
        * Add new rule to the collection, if not yet exists with the same selectors
+       * 如果集合中没有相同的选择器，则向集合中添加新规则
        * @param {Array<Selector>} selectors Array of selectors
        * @param {String} state Css rule state
        * @param {String} width For which device this style is oriented
@@ -178,6 +188,7 @@ module.exports = () => {
 
       /**
        * Get the rule
+       * 得到的规则
        * @param {Array<Selector>} selectors Array of selectors
        * @param {String} state Css rule state
        * @param {String} width For which device this style is oriented
@@ -207,6 +218,7 @@ module.exports = () => {
 
       /**
        * Get the collection of rules
+       * 获得规则的集合
        * @return {Collection}
        * */
       getAll() {
@@ -215,7 +227,9 @@ module.exports = () => {
 
       /**
        * Add a raw collection of rule objects
+       * 添加规则对象的原始集合
        * This method overrides styles, in case, of already defined rule
+       * 此方法重写样式，以防已经定义的规则。
        * @param {Array<Object>} data Array of rule objects, eg . [{selectors: ['class1'], style: {....}}, ..]
        * @param {Object} opts Options
        * @return {Array<Model>}
@@ -260,6 +274,7 @@ module.exports = () => {
 
       /**
        * Render the block of CSS rules
+       * 渲染CSS规则的块
        * @return {HTMLElement}
        * @private
        */

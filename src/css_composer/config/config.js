@@ -1,12 +1,13 @@
 module.exports = {
 
-  // Style prefix
+  // CSS 前缀
   stylePrefix: 'css-',
 
   // Custom CSS string to render on top
+  // 自定义CSS字符串在顶部渲染
   'staticRules': '',
 
-  // Default CSS style
+  //默认的CSS样式
   rules: [],
 
 };

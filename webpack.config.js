@@ -28,6 +28,7 @@ module.exports = {
       libraryTarget: 'umd',
   },
   externals: {jquery: 'jQuery'},
+  devtool: 'inline-source-map', // 开发模式
   plugins: plugins,
   module: {
     loaders: [{

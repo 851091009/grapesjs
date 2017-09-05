@@ -1,41 +1,41 @@
 var deps = [
-require('utils'),
-require('storage_manager'),
-require('device_manager'),
-require('parser'),
-require('selector_manager'),
-require('modal_dialog'),
-require('code_manager'),
-require('panels'),
-require('rich_text_editor'),
-require('style_manager'),
-require('asset_manager'),
-require('css_composer'),
-require('dom_components'),
-require('canvas'),
-require('commands'),
-require('block_manager'),
-require('trait_manager'),
+    require('utils'), // 实用工具
+    require('storage_manager'),  // 存储管理器
+    require('device_manager'),   // 设备管理器
+    require('parser'),           // 分析器
+    require('selector_manager'), // selector ：选择器
+    require('modal_dialog'),     // 模态对话框
+    require('code_manager'),     // 代码管理器
+    require('panels'),           // 面板
+    require('rich_text_editor'), // 富文本编辑器 ？ 这是不是很确定
+    require('style_manager'),    // 样式管理器
+    require('asset_manager'),    // 资产管理器
+    require('css_composer'),     // CSS 组成
+    require('dom_components'),   // DOM组件
+    require('canvas'),
+    require('commands'),        // 命令
+    require('block_manager'),   // 块管理器
+    require('trait_manager'),
 ];
 
 var Backbone    = require('backbone');
 var UndoManager = require('backbone-undo'); // 撤销管理器
-var key         = require('keymaster'); // 键盘管理器
+var key         = require('keymaster');     // 键盘管理器
 var timedInterval;
 
 module.exports = Backbone.Model.extend({
   // 设置默认值
   defaults: {
     clipboard: null,
-    designerMode: false,
-    selectedComponent: null,
-    previousModel: null,
-    changesCount:  0,
-    storables: [],
+    designerMode: false, // 设计模式
+    selectedComponent: null, // 选定的组件
+    previousModel: null, // 以前的模型
+    changesCount:  0, // 改变数
+    storables: [], // 可储存
     modules: [],
     toLoad: [],
     opened: {},
-    device: '',
+    device: '', // 方法
   },
   // 构造函数
   initialize(c) {
@@ -58,9 +58,9 @@ module.exports = Backbone.Model.extend({
       M.onLoad();
     });
 
-    this.loadOnStart();
-    this.initUndoManager();
-
+    this.loadOnStart(); // 加载默认的
+    this.initUndoManager(); // 初始化键盘 ctrl + z 管理
+    // backbone 绑定事件
     this.on('change:selectedComponent', this.componentSelected, this);
     this.on('change:changesCount', this.updateBeforeUnload, this);
   },
@@ -108,6 +108,7 @@ module.exports = Backbone.Model.extend({
     cfg.pStylePrefix = c.pStylePrefix || '';
 
     // Check if module is storable
+    // 检查模块存储
     var sm = this.get('StorageManager');
     if(M.storageKey && M.store && M.load && sm){
       cfg.stm = sm;
@@ -119,6 +120,7 @@ module.exports = Backbone.Model.extend({
     M.init(Object.create(cfg));
 
     // Bind the module to the editor model if public
+    // 如果公共的话，将模块绑定到编辑器模型。
     if(!M.private)
       this.set(M.name, M);
 
@@ -137,6 +139,7 @@ module.exports = Backbone.Model.extend({
    * @private
    */
   init(editor) {
+    console.log(editor);
     this.set('Editor', editor);
   },
 
@@ -206,7 +209,7 @@ module.exports = Backbone.Model.extend({
   initUndoManager() {
     if(this.um)
       return;
-    var cmp = this.get('DomComponents');
+    var cmp = this.get('DomComponents'); // DOM 组件
     if(cmp && this.config.undoManager){
       var that = this;
       this.um = new UndoManager({
@@ -390,7 +393,7 @@ module.exports = Backbone.Model.extend({
    */
   getComponents() {
     var cmp = this.get('DomComponents');
-    var cm = this.get('CodeManager');
+    var cm  = this.get('CodeManager');
 
     if(!cmp || !cm)
       return;

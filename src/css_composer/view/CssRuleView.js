@@ -3,7 +3,7 @@ var Backbone = require('backbone');
 module.exports = Backbone.View.extend({
 
   tagName: 'style',
-
+  // 初始化
   initialize(o) {
     this.config = o.config || {};
     this.listenTo(this.model, 'change:style', this.render);
@@ -15,8 +15,10 @@ module.exports = Backbone.View.extend({
 
   /**
    * Triggered when some selector is changed
+   * 当某个选择器被更改时触发
    * @private
    */
+  // 自我改变
   selChanged() {
     this.selStr = this.renderSelectors();
     this.render();
@@ -24,9 +26,11 @@ module.exports = Backbone.View.extend({
 
   /**
    * Returns string of selectors
+   * 返回选择器字符串
    * @return {String}
    * @private
    */
+  // 渲染选择器
   renderSelectors() {
     var sel = [];
     var model = this.model;
@@ -40,9 +44,11 @@ module.exports = Backbone.View.extend({
 
   /**
    * Returns string of properties
+   * 返回属性字符串
    * @return {String}
    * @private
    */
+  // 渲染性能
   renderProperties() {
     var sel = [],
       props = this.model.get('style');
@@ -51,7 +57,7 @@ module.exports = Backbone.View.extend({
     }
     return sel.join('');
   },
-
+  // 输出内容
   render() {
     var block = '',
       selStr = '',

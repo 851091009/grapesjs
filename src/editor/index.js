@@ -87,12 +87,13 @@ module.exports = config => {
   defaults    = require('./config/config'),
   EditorModel = require('./model/Editor'),
   EditorView  = require('./view/EditorView');
-
+  // 配置默认属性
   for (var name in defaults) {
     if (!(name in c))
       c[name] = defaults[name];
   }
 
+  // style 的前缀
   c.pStylePrefix = c.stylePrefix;
   var em = new EditorModel(c);
   var editorView = new EditorView({
@@ -105,6 +106,7 @@ module.exports = config => {
     /**
      * @property {EditorModel}
      * @private
+     * em 是编辑的模型，里面有编辑器的方法
      */
     editor: em,
 
@@ -217,16 +219,18 @@ module.exports = config => {
 
     /**
      * Initialize editor model
+     * 初始化编辑模型
      * @return {this}
      * @private
      */
     init() {
-      em.init(this);
+      em.init(this); // 调用 editor model 的init 方法
       return this;
     },
 
     /**
      * Returns configuration object
+     * 返回配置对象
      * @return {Object}
      */
     getConfig() {
@@ -235,6 +239,7 @@ module.exports = config => {
 
     /**
      * Returns HTML built inside canvas
+     * 返回内置在画布中的HTML
      * @return {string} HTML string
      */
     getHtml() {
@@ -243,6 +248,7 @@ module.exports = config => {
 
     /**
      * Returns CSS built inside canvas
+     * 返回CSS内置在画布
      * @return {string} CSS string
      */
     getCss() {
@@ -251,6 +257,7 @@ module.exports = config => {
 
     /**
      * Returns JS of all components
+     * 返回所有组件的js
      * @return {string} JS string
      */
     getJs() {
@@ -259,6 +266,7 @@ module.exports = config => {
 
     /**
      * Returns components in JSON format object
+     * 返回JSON格式对象中的组件
      * @return {Object}
      */
     getComponents() {
@@ -267,6 +275,7 @@ module.exports = config => {
 
     /**
      * Set components inside editor's canvas. This method overrides actual components
+     * 在编辑器的画布中设置组件。此方法覆盖实际组件。
      * @param {Array<Object>|Object|string} components HTML string or components model
      * @return {this}
      * @example
@@ -285,6 +294,7 @@ module.exports = config => {
 
     /**
      * Add components
+     * 添加组件
      * @param {Array<Object>|Object|string} components HTML string or components model
      * @param {Object} opts Options
      * @param {Boolean} [opts.avoidUpdateStyle=false] If the HTML string contains styles,
@@ -306,6 +316,7 @@ module.exports = config => {
 
     /**
      * Returns style in JSON format object
+     * 以JSON格式对象返回样式
      * @return {Object}
      */
     getStyle() {
@@ -314,6 +325,7 @@ module.exports = config => {
 
     /**
      * Set style inside editor's canvas. This method overrides actual style
+     * 在编辑器的画布中设置样式。此方法重写实际样式。
      * @param {Array<Object>|Object|string} style CSS string or style model
      * @return {this}
      * @example
@@ -331,6 +343,7 @@ module.exports = config => {
 
     /**
      * Returns selected component, if there is one
+     * 返回选定的组件，如果有
      * @return {Model}
      */
     getSelected() {
@@ -338,11 +351,11 @@ module.exports = config => {
     },
 
     /**
-     * Get a stylable entity from the selected component.
-     * If you select a component without classes the entity is the Component
-     * itself and all changes will go inside its 'style' attribute. Otherwise,
-     * if the selected component has one or more classes, the function will
-     * return the corresponding CSS Rule
+     * Get a stylable entity from the selected component. 从选定的元件可设置样式的实体。
+     * If you select a component without classes the entity is the Component 如果您选择一个没有类的组件，那么实体就是组件
+     * itself and all changes will go inside its 'style' attribute. Otherwise, 本身和所有的变化将进入它的“样式”属性。否则，
+     * if the selected component has one or more classes, the function will 如果所选组件有一个或多个类，则函数将
+     * return the corresponding CSS Rule 返回相应的CSS规则
      * @return {Model}
      */
     getSelectedToStyle() {
@@ -355,6 +368,7 @@ module.exports = config => {
 
     /**
      * Select a component
+     * 选择一个组件
      * @param  {Component|HTMLElement} el Component to select
      * @return {this}
      * @example
@@ -369,8 +383,8 @@ module.exports = config => {
     },
 
     /**
-     * Set device to the editor. If the device exists it will
-     * change the canvas to the proper width
+     * Set device to the editor. If the device exists it will 将设备设置为编辑器。如果设备存在，它将
+     * change the canvas to the proper width 将画布改为适当的宽度
      * @param {string} name Name of the device
      * @return {this}
      * @example
@@ -383,6 +397,7 @@ module.exports = config => {
 
     /**
      * Return the actual active device
+     * 返回实际活动设备
      * @return {string} Device name
      * @example
      * var device = editor.getDevice();
@@ -395,6 +410,7 @@ module.exports = config => {
 
     /**
      * Execute command
+     * 执行命令
      * @param {string} id Command ID
      * @param {Object} options Custom options
      * @return {*} The return is defined by the command
@@ -414,6 +430,7 @@ module.exports = config => {
 
     /**
      * Stop the command if stop method was provided
+     * 如果提供停止方法，停止命令
      * @param {string} id Command ID
      * @param {Object} options Custom options
      * @return {*} The return is defined by the command
@@ -433,6 +450,7 @@ module.exports = config => {
 
     /**
      * Store data to the current storage
+     * 将数据存储到当前存储
      * @param {Function} clb Callback function
      * @return {Object} Stored data
      */
@@ -442,6 +460,7 @@ module.exports = config => {
 
     /**
      * Load data from the current storage
+     * 从当前存储中加载数据
      * @param {Function} clb Callback function
      * @return {Object} Stored data
      */
@@ -451,6 +470,7 @@ module.exports = config => {
 
     /**
      * Returns container element. The one which was indicated as 'container'
+     * 返回容器元素。那个被指明为“容器”的
      * on init method
      * @return {HTMLElement}
      */
@@ -459,12 +479,12 @@ module.exports = config => {
     },
 
     /**
-     * Update editor dimensions and refresh data useful for positioning of tools
+     * Update editor dimensions and refresh data useful for positioning of tools 更新编辑器的维度和刷新数据，用于工具的定位
      *
-     * This method could be useful when you update, for example, some position
-     * of the editor element (eg. canvas, panels, etc.) with CSS, where without
-     * refresh you'll get misleading position of tools (eg. rich text editor,
-     * component highlighter, etc.)
+     * This method could be useful when you update, for example, some position 当您更新某个位置时，此方法可能非常有用。
+     * of the editor element (eg. canvas, panels, etc.) with CSS, where without 编辑器元素（如画布、面板等）与CSS，在没有
+     * refresh you'll get misleading position of tools (eg. rich text editor, 刷新您将得到工具的误导位置（例如富文本编辑器），
+     * component highlighter, etc.) 成分的荧光笔，等等）
      *
      * @private
      */
@@ -473,7 +493,7 @@ module.exports = config => {
     },
 
     /**
-     * Replace the built-in Rich Text Editor with a custom one.
+     * Replace the built-in Rich Text Editor with a custom one. 用自定义的编辑器替换内置的富文本编辑器。
      * @param {Object} obj Custom RTE Interface
      * @example
      * editor.setCustomRte({
@@ -507,6 +527,7 @@ module.exports = config => {
 
     /**
      * Attach event
+     * 附加事件
      * @param  {string} event Event name
      * @param  {Function} callback Callback function
      * @return {this}
@@ -517,6 +538,7 @@ module.exports = config => {
 
     /**
      * Detach event
+     * 分离事件
      * @param  {string} event Event name
      * @param  {Function} callback Callback function
      * @return {this}
@@ -527,7 +549,8 @@ module.exports = config => {
 
     /**
      * Trigger event
-     * @param  {string} event Event to trigger
+     * 触发事件.
+     * @param  {string} event Event to trigger 事件触发
      * @return {this}
      */
     trigger(event) {
@@ -536,6 +559,7 @@ module.exports = config => {
 
     /**
      * Returns editor element
+     * 返回编辑元素
      * @return {HTMLElement}
      * @private
      */
@@ -545,6 +569,7 @@ module.exports = config => {
 
     /**
      * Returns editor model
+     * 返回编辑模式
      * @return {Model}
      * @private
      */
@@ -554,11 +579,14 @@ module.exports = config => {
 
     /**
      * Render editor
+     * 渲染编辑器
      * @return {HTMLElement}
      */
     render() {
       // Do post render stuff after the iframe is loaded otherwise it'll
+      // 做渲染后的东西后，iframe加载否则会
       // be empty during tests
+      // 测试期间空
       em.on('loaded', () => {
         em.get('modules').forEach((module) => {
           module.postRender && module.postRender(editorView);
