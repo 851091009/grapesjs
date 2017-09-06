@@ -1,6 +1,6 @@
 module.exports = () => {
 
-  const Sorter = require('./Sorter');
+  const Sorter  = require('./Sorter');
   const Resizer = require('./Resizer');
   const Dragger = require('./Dragger');
 

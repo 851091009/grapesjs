@@ -1,9 +1,13 @@
+/**
+ * 拖拽功能
+ */
+
 var getBoundingRect = (el, win) => {
   var w = win || window;
   var rect = el.getBoundingClientRect();
   return {
     left: rect.left + w.pageXOffset,
-    top: rect.top + w.pageYOffset,
+    top:  rect.top + w.pageYOffset,
     width: rect.width,
     height: rect.height
   };

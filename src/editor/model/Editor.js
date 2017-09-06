@@ -1,5 +1,7 @@
+// * 题外话：
+// * 如果package.json文件没有main字段，或者根本就没有package.json文件，则默认找目录下的 index.js 文件作为模块：
 var deps = [
-    require('utils'), // 实用工具
+    require('utils'),            // 实用工具
     require('storage_manager'),  // 存储管理器
     require('device_manager'),   // 设备管理器
     require('parser'),           // 分析器
@@ -26,25 +28,28 @@ var timedInterval;
 module.exports = Backbone.Model.extend({
   // 设置默认值
   defaults: {
-    clipboard: null,
-    designerMode: false, // 设计模式
+    clipboard: null,         // 剪贴板
+    designerMode: false,     // 设计模式
     selectedComponent: null, // 选定的组件
-    previousModel: null, // 以前的模型
-    changesCount:  0, // 改变数
-    storables: [], // 可储存
+    previousModel: null,     // 以前的模型
+    changesCount:  0,        // 改变数
+    storables: [],           // 可储存
     modules: [],
     toLoad: [],
     opened: {},
     device: '', // 方法
   },
   // 构造函数
+  // grapesjs config.js 和 editor config.js 合在一起 就是参数 c 
   initialize(c) {
+    console.log(c);
     this.config = c;
     this.set('Config', c);
     this.set('modules', []);
-
+    // c.fromElement: 如果为true，将从选定容器中获取HTML和CSS。 现在值为 true
+    // c.el DOM元素 现在值为 #gjs
     if(c.el && c.fromElement)
-      this.config.components = c.el.innerHTML;
+      this.config.components = c.el.innerHTML; // 把 #gjs 里面的内容存储到 this.config.components 里面
 
     // Load modules
     // 加载模块
@@ -99,17 +104,21 @@ module.exports = Backbone.Model.extend({
    * @param {String} moduleName Module name
    * @return {this}
    * @private
+   * 
+
    */
   loadModule(moduleName) {
+    
     var c = this.config;
     var M = new moduleName();
-    var name = M.name.charAt(0).toLowerCase() + M.name.slice(1);
+    var name = M.name.charAt(0).toLowerCase() + M.name.slice(1); // 先把首字母小写 然后拼接字符串
+    console.log(name);
     var cfg = c[name] || c[M.name] || {};
     cfg.pStylePrefix = c.pStylePrefix || '';
 
     // Check if module is storable
     // 检查模块存储
-    var sm = this.get('StorageManager');
+    var sm = this.get('StorageManager'); // StorageManager: 存储管理器的配置
     if(M.storageKey && M.store && M.load && sm){
       cfg.stm = sm;
       var storables = this.get('storables');
@@ -117,13 +126,13 @@ module.exports = Backbone.Model.extend({
       this.set('storables', storables);
     }
     cfg.em = this;
-    M.init(Object.create(cfg));
+    M.init(Object.create(cfg)); // M : 是当前的方法
 
     // Bind the module to the editor model if public
     // 如果公共的话，将模块绑定到编辑器模型。
     if(!M.private)
       this.set(M.name, M);
-
+    // 相当于回调函数
     if(M.onLoad)
       this.get('toLoad').push(M);
 
@@ -139,7 +148,7 @@ module.exports = Backbone.Model.extend({
    * @private
    */
   init(editor) {
-    console.log(editor);
+    // console.log(editor);
     this.set('Editor', editor);
   },
 

@@ -37,24 +37,27 @@
       var els = c.container; // 定义编辑器的 ID
 
       // Make a missing $ more verbose
+      // 使一个缺少$更详细
       if (typeof $ == 'undefined') {
         throw 'jQuery not found';
       }
 
       // Set default options
       // 设置默认选项 defaults 里面放的是默认属性
+      // defaults 是配置文件里面参数
       for (var name in defaults) {
         if (!(name in c))
           c[name] = defaults[name];
       }
-
+      console.log(defaults);
       if(!els)
         throw new Error("'container' is required");
 
       c.el = document.querySelector(els);
-      var editor = new Editor(c).init(); // 调用的编辑的的方法
+      var editor = new Editor(c).init(); // 调用的编辑的的方法 
 
       // Execute plugins
+      // 执行插件
       var plugs = plugins.getAll();
 
       c.plugins.forEach((pluginId) => {

@@ -21,12 +21,15 @@ module.exports = {
 
   // ---
   // Enable/Disable the possibility to copy(ctrl + c) & paste(ctrl + v) components
+  // 启用/禁用复制（ctrl + c）和粘贴（ctrl + v）组件的可能性
   copyPaste: true,
 
   // Enable/Disable undo manager
+  // 启用/禁用撤销管理器
   undoManager: true,
 
   // Storage Manager
+  // 存储管理器
   storageManager: {},
 
   // Array of plugins to init

@@ -3,7 +3,8 @@ module.exports = {
   // CSS 风格的前缀
   stylePrefix: 'gjs-',
 
-  //TEMP
+  // TEMP
+  // 暂时理解为临时文件
   components: '',
 
   // Enable/Disable possibility to copy(ctrl + c) & paste(ctrl + v) components
