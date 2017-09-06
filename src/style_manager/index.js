@@ -10,8 +10,11 @@
  * * [render](#render)
  *
  * With Style Manager you basically build categories (called sectors) of CSS properties which could
+ * 使用样式管理器，基本上可以构建CSS属性的类（称为扇区）
  * be used to custom components and classes.
+ * 用于自定义组件和类。
  * You can init the editor with all sectors and properties via configuration
+ * 可以通过配置初始化所有扇区和属性的编辑器。
  *
  * ```js
  * var editor = grapesjs.init({
@@ -22,6 +25,7 @@
  * ```
  *
  * Before using methods you should get first the module from the editor instance, in this way:
+ * 在使用方法之前，您应该首先从编辑器实例中获取模块，以这种方式：
  *
  * ```js
  * var styleManager = editor.StyleManager;
@@ -59,6 +63,7 @@ module.exports = () => {
 
     /**
      * Name of the module
+     * 模块名称
      * @type {String}
      * @private
      */
@@ -66,6 +71,7 @@ module.exports = () => {
 
     /**
      * Get configuration object
+     * 获取配置对象
      * @return {Object}
      * @private
      */
@@ -75,6 +81,7 @@ module.exports = () => {
 
     /**
      * Initialize module. Automatically called with a new instance of the editor
+     * 初始化模块。使用编辑器的新实例自动调用
      * @param {Object} config Configurations
      */
     init(config) {
@@ -99,7 +106,9 @@ module.exports = () => {
 
     /**
      * Add new sector to the collection. If the sector with the same id already exists,
+     * add to the New部门收藏。如果已经存在的部门ID with the same，
      * that one will be returned
+     * 那个会被退回
      * @param {string} id Sector id
      * @param  {Object} sector  Object representing sector
      * @param  {string} [sector.name='']  Sector's label
@@ -124,6 +133,7 @@ module.exports = () => {
 
     /**
      * Get sector by id
+     * 按id获取扇区
      * @param {string} id  Sector id
      * @return {Sector|null}
      * @example
@@ -136,6 +146,7 @@ module.exports = () => {
 
     /**
      * Get all sectors
+     * 让所有的部门
      * @return {Sectors} Collection of sectors
      * */
     getSectors() {
@@ -189,6 +200,7 @@ module.exports = () => {
 
     /**
      * Get property by its CSS name and sector id
+     * 通过CSS名称和扇区id获取属性
      * @param  {string} sectorId Sector id
      * @param  {string} name CSS property name, eg. 'min-height'
      * @return {Property|null}
@@ -209,6 +221,7 @@ module.exports = () => {
 
     /**
      * Get properties of the sector
+     * 获取扇区的属性
      * @param  {string} sectorId Sector id
      * @return {Properties} Collection of properties
      * @example
@@ -225,10 +238,10 @@ module.exports = () => {
     },
 
     /**
-     * Get what to style inside Style Manager. If you select the component
-     * without classes the entity is the Component itself and all changes will
-     * go inside its 'style' property. Otherwise, if the selected component has
-     * one or more classes, the function will return the corresponding CSS Rule
+     * Get what to style inside Style Manager. If you select the component      在风格管理器中获得什么风格。如果您选择组件
+     * without classes the entity is the Component itself and all changes will  如果没有类，实体就是组件本身，所有的变化都将是
+     * go inside its 'style' property. Otherwise, if the selected component has 走在它的风格”的性质。否则，如果已经选定的组件
+     * one or more classes, the function will return the corresponding CSS Rule 一个或多个类，函数将返回相应的CSS规则。
      * @param  {Model} model
      * @return {Model}
      */
@@ -254,6 +267,7 @@ module.exports = () => {
 
     /**
      * Render sectors and properties
+     * 渲染扇区和属性
      * @return  {HTMLElement}
      * */
     render() {

@@ -12,6 +12,7 @@ module.exports = TraitView.extend({
 
   /**
    * Returns input element
+   * 返回输入元件
    * @return {HTMLElement}
    * @private
    */

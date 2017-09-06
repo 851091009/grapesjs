@@ -27,6 +27,7 @@ module.exports = Backbone.View.extend({
 
   /**
    * If all properties are hidden this will hide the sector
+   * 如果所有属性都隐藏，这将隐藏扇区。
    */
   updateVisibility() {
     var show;
@@ -40,6 +41,7 @@ module.exports = Backbone.View.extend({
 
   /**
    * Update visibility
+   * 更新的能见度
    */
   updateOpen() {
     if(this.model.get('open'))
@@ -59,6 +61,7 @@ module.exports = Backbone.View.extend({
 
   /**
    * Hide the content of the sector
+   * 隐藏扇区的内容
    * */
   hide() {
     this.$el.removeClass(this.pfx + "open");
@@ -68,12 +71,13 @@ module.exports = Backbone.View.extend({
 
   /**
    * Toggle visibility
+   * Toggle可见性
    * */
   toggle() {
     var v = this.model.get('open') ? 0 : 1;
     this.model.set('open', v);
   },
-
+  // 使用模板
   render() {
     this.$el.html(this.template({
       pfx: this.pfx,

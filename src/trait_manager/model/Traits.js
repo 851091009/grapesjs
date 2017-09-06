@@ -1,5 +1,5 @@
-var Backbone = require('backbone');
-var Trait = require('./Trait');
+var Backbone     = require('backbone');
+var Trait        = require('./Trait');
 var TraitFactory = require('./TraitFactory');
 
 module.exports = Backbone.Collection.extend({

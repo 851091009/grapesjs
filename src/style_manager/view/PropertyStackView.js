@@ -1,7 +1,7 @@
-var Backbone = require('backbone');
+var Backbone              = require('backbone');
 var PropertyCompositeView = require('./PropertyCompositeView');
-var Layers = require('./../model/Layers');
-var LayersView = require('./LayersView');
+var Layers                = require('./../model/Layers');
+var LayersView            = require('./LayersView');
 
 module.exports = PropertyCompositeView.extend({
 
@@ -24,8 +24,11 @@ module.exports = PropertyCompositeView.extend({
 
   /**
    * Fired when the target is updated.
+   * 当目标更新时触发。
    * With detached mode the component will be always empty as its value
+   * 使用分离模式，组件将始终为空。
    * so we gonna check all props and fine if there is some differences.
+   * 所以我们要检查所有的道具，如果有什么区别的话就好。
    * */
   targetUpdated(...args) {
     if (!this.model.get('detached')) {
@@ -39,6 +42,7 @@ module.exports = PropertyCompositeView.extend({
 
   /**
    * Returns the collection of layers
+   * 返回图层集合。
    * @return {Collection}
    */
   getLayers() {
@@ -47,8 +51,11 @@ module.exports = PropertyCompositeView.extend({
 
   /**
    * Triggered when another layer has been selected.
+   * 当另一层被选中时触发。
    * This allow to move all rendered properties to a new
+   * 这允许将所有呈现的属性移动到一个新的
    * selected layer
+   * 选层
    * @param {Event}
    *
    * @return {Object}
@@ -64,6 +71,7 @@ module.exports = PropertyCompositeView.extend({
 
   /**
    * Get array of values from layers
+   * 从层获取值数组
    * @return Array
    * */
   getStackValues() {
@@ -99,6 +107,7 @@ module.exports = PropertyCompositeView.extend({
 
   /**
    * Extract string from the composite value of the target
+   * 从目标的复合值中提取字符串。
    * @param {integer} index Property index
    * @param {View} propView Property view
    * @return string
@@ -109,6 +118,7 @@ module.exports = PropertyCompositeView.extend({
     var layerIndex = this.model.get('stackIndex');
 
     // If detached the value in this case is stacked, eg. substack-prop: 1px, 2px, 3px...
+    // 如果分离的话，这种情况下的值是叠加的，例如。 substack-prop: 1px, 2px, 3px...
     if (this.model.get('detached')) {
       var targetValue = propView.getTargetValue({ignoreCustomValue: 1});
       var valist = (targetValue + '').split(',');
@@ -131,6 +141,7 @@ module.exports = PropertyCompositeView.extend({
 
   /**
    * Build composite value
+   * 建立复合价值
    * @private
    * */
   build(...args) {
@@ -143,7 +154,9 @@ module.exports = PropertyCompositeView.extend({
       return;
 
     // Store properties values inside layer, in this way it's more reliable
+    // 在图层中存储属性值，这样就更可靠了。
     //  to fetch them later
+    // 稍后去取
     var valObj = {};
     this.model.get('properties').each(prop => {
       var v    = prop.getValue(),
@@ -160,6 +173,7 @@ module.exports = PropertyCompositeView.extend({
 
   /**
    * Add layer
+   * 加层
    * @param Event
    *
    * @return Object
@@ -172,10 +186,13 @@ module.exports = PropertyCompositeView.extend({
       layer.set('value', this.getDefaultValue());
 
       // In detached mode valueUpdated will add new 'layer value'
+      // 在独立模式valueupdated将添加新的层值”
       // to all subprops
+      // 所有subprops
       this.valueUpdated();
 
       // This will set subprops with a new default values
+      // 这将设置一个新的默认值subprops
       this.model.set('stackIndex', index);
       return layer;
     }
@@ -183,6 +200,7 @@ module.exports = PropertyCompositeView.extend({
 
   /**
    * Fired when the input value is updated
+   * 当输入值被更新时触发
    */
   valueUpdated() {
     var model = this.model;
@@ -198,6 +216,7 @@ module.exports = PropertyCompositeView.extend({
 
   /**
    * Create value by layers
+   * 逐层创造价值
    * @return string
    * */
   createValue() {
@@ -206,6 +225,7 @@ module.exports = PropertyCompositeView.extend({
 
   /**
    * Render layers
+   * 渲染层
    * @return self
    * */
   renderLayers() {
@@ -233,7 +253,9 @@ module.exports = PropertyCompositeView.extend({
 
   /**
    * Returns array suitale for layers from target style
+   * 返回数组适于目标样式层
    * Only for detached stacks
+   * 仅用于分离堆栈
    * @return {Array<string>}
    */
   getLayersFromTarget() {
@@ -267,6 +289,7 @@ module.exports = PropertyCompositeView.extend({
 
   /**
    * Refresh layers
+   * 刷新层
    * */
   refreshLayers() {
     var n = [];
@@ -284,6 +307,7 @@ module.exports = PropertyCompositeView.extend({
       v = v == vDef ? '' : v;
       if (v) {
         // Remove spaces inside functions:
+        // 删除函数内部的空格：
         // eg:
         // From: 1px 1px rgba(2px, 2px, 2px), 2px 2px rgba(3px, 3px, 3px)
         // To: 1px 1px rgba(2px,2px,2px), 2px 2px rgba(3px,3px,3px)
@@ -307,6 +331,7 @@ module.exports = PropertyCompositeView.extend({
     layers.add(n);
 
     // Avoid updating with detached as it will cause issues on next change
+    // 避免使用分离更新，因为它会导致下一个更改的问题。
     if (!detached) {
       this.valueUpdated();
     }

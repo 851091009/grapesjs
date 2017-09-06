@@ -3,6 +3,7 @@ var Backbone = require('backbone');
 module.exports = () => ({
   /**
    * Build props object by their name
+   * 他们的名字对象生成的道具。
    * @param  {Array<string>|string} props Array of properties name
    * @return {Array<Object>}
    */

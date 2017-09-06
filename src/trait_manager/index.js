@@ -1,7 +1,7 @@
 module.exports = () => {
   var c = {},
-  defaults = require('./config/config'),
-  Traits = require('./model/Traits'),
+  defaults   = require('./config/config'),
+  Traits     = require('./model/Traits'),
   TraitsView = require('./view/TraitsView');
   var TraitsViewer;
 
@@ -27,6 +27,7 @@ module.exports = () => {
 
     /**
      * Initialize module. Automatically called with a new instance of the editor
+     * 初始化模块。使用编辑器的新实例自动调用
      * @param {Object} config Configurations
      */
     init(config) {
@@ -48,8 +49,8 @@ module.exports = () => {
     },
 
     /**
-     *
      * Get Traits viewer
+     * 获得性状查看器
      * @private
      */
     getTraitsViewer() {
@@ -58,6 +59,7 @@ module.exports = () => {
 
     /**
      * Add new trait type
+     * 添加新的特性类型
      * @param {string} name Type name
      * @param {Object} methods Object representing the trait
      */
@@ -68,6 +70,7 @@ module.exports = () => {
 
     /**
      * Get trait type
+     * 获得性状类型
      * @param {string} name Type name
      * @return {Object}
      */

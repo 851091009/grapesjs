@@ -100,10 +100,10 @@ module.exports = Backbone.View.extend({
    * @private
    * */
   addAsset(model, fragmentEl = null) {
-    const fragment = fragmentEl;
+    const fragment   = fragmentEl;
     const collection = this.collection;
-    const config = this.config;
-    const rendered = new model.typeView({
+    const config     = this.config;
+    const rendered   = new model.typeView({
       model,
       collection,
       config,
@@ -134,7 +134,7 @@ module.exports = Backbone.View.extend({
     const pfx = this.pfx;
     const ppfx = this.ppfx;
     const fuRendered = this.options.fu.render().el;
-    const fragment = document.createDocumentFragment();
+    const fragment   = document.createDocumentFragment();
     this.$el.empty();
 
     this.collection.each((model) => {

@@ -18,6 +18,7 @@ module.exports = PropertyView.extend({
 
   /**
    * Fired when the input value is updated
+   * 当输入值被更新时触发
    */
   valueUpdated(...args) {
     if(!this.model.get('detached'))
@@ -26,6 +27,7 @@ module.exports = PropertyView.extend({
 
   /**
    * Renders input
+   * 使输入
    * */
   renderInput() {
     var model = this.model;
@@ -60,6 +62,7 @@ module.exports = PropertyView.extend({
 
   /**
    * Returns configurations that should be past to properties
+   * 返回应该返回属性的配置。
    * @param {Object} opts
    * @return {Object}
    */
@@ -72,18 +75,22 @@ module.exports = PropertyView.extend({
       target: this.target,
       propTarget: this.propTarget,
       // On any change made to children I need to update composite value
+      // 在对孩子的任何更改时，我需要更新组合值
       onChange(el, view, opts) {
         var result = that.build();
         that.model.set('value', result, opts);
       },
       // Each child property will receive a full composite string, eg. '0px 0px 10px 0px'
+      // 每个子属性都将收到一个完整的复合字符串。eg. '0px 0px 10px 0px'
       // I need to extract from that string the corresponding one to that property.
+      // 我需要从字符串中提取对应于该属性的字符串。
       customValue(property, mIndex) {
         return that.valueOnIndex(mIndex, property);
       },
     };
 
     // If detached let follow its standard flow
+    // 如果分离，遵循它的标准流程
     if(this.model.get('detached'))
       delete result.onChange;
 
@@ -92,6 +99,7 @@ module.exports = PropertyView.extend({
 
   /**
    * Get default value of the property
+   * 获取属性的默认值。
    * @return {string}
    * */
   getDefaultValue() {
@@ -104,6 +112,7 @@ module.exports = PropertyView.extend({
 
   /**
    * Extract string from composite value
+   * 从复合值中提取字符串
    * @param {number} index Index
    * @param {Object} view Property view
    * @return {string}
@@ -124,6 +133,7 @@ module.exports = PropertyView.extend({
 
   /**
    * Build composite value
+   * 建立复合价值
    * @param {Object} selectedEl Selected element
    * @param {Object} propertyView Property view
    * @param {Object} opts Options

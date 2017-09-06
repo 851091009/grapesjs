@@ -4,6 +4,7 @@ var InputColor = require('domain_abstract/ui/InputColor');
 module.exports = TraitView.extend({
   /**
    * Returns input element
+   * 返回输入元件
    * @return {HTMLElement}
    * @private
    */
@@ -25,6 +26,7 @@ module.exports = TraitView.extend({
 
   /**
    * Renders input
+   * 使输入
    * @private
    * */
   renderField() {

@@ -20,6 +20,7 @@ module.exports = Backbone.View.extend({
 
   /**
    * Add to collection
+   * 加入收藏
    * @param {Object} model Model
    * @return {Object}
    * @private
@@ -30,6 +31,7 @@ module.exports = Backbone.View.extend({
 
   /**
    * Fired when target is updated
+   * 当目标更新时触发
    * @private
    */
   targetUpdated() {
@@ -69,13 +71,16 @@ module.exports = Backbone.View.extend({
 
       if (!iContainer) {
         // In this case it's just a Component without any valid selector
+        // 在这种情况下，它只是一个没有任何有效选择器的组件。
         pt.model = el;
         pt.trigger('update');
         return;
       }
 
       // If the state is not empty, there should be a helper rule in play
+      // 如果状态不是空的，应该有一个助手规则在玩。
       // The helper rule will get the same style of the iContainer
+      // 辅助规则将得到的IContainer接口相同的风格
       if (state) {
         var clm = em.get('SelectorManager');
         var helperClass = clm.add('hc-state');
@@ -84,6 +89,7 @@ module.exports = Backbone.View.extend({
           helperRule = cssC.add([helperClass]);
         else{
           // I will make it last again, otherwise it could be overridden
+          // 我会使它再次出现，否则它可能被重写。
           cssC.getAll().remove(helperRule);
           cssC.getAll().add(helperRule);
         }
@@ -103,6 +109,7 @@ module.exports = Backbone.View.extend({
 
   /**
    * Add new object to collection
+   * 向集合中添加新对象
    * @param {Object} model Model
    * @param  {Object} fragmentEl collection
    * @return {Object} Object created

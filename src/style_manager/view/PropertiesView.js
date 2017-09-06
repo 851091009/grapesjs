@@ -1,12 +1,12 @@
-var Backbone = require('backbone');
-var PropertyView = require('./PropertyView');
-var PropertyIntegerView = require('./PropertyIntegerView');
-var PropertyRadioView = require('./PropertyRadioView');
-var PropertySelectView = require('./PropertySelectView');
-var PropertyColorView = require('./PropertyColorView');
-var PropertyFileView = require('./PropertyFileView');
+var Backbone              = require('backbone');
+var PropertyView          = require('./PropertyView');
+var PropertyIntegerView   = require('./PropertyIntegerView');
+var PropertyRadioView     = require('./PropertyRadioView');
+var PropertySelectView    = require('./PropertySelectView');
+var PropertyColorView     = require('./PropertyColorView');
+var PropertyFileView      = require('./PropertyFileView');
 var PropertyCompositeView = require('./PropertyCompositeView');
-var PropertyStackView = require('./PropertyStackView');
+var PropertyStackView     = require('./PropertyStackView');
 
 module.exports = Backbone.View.extend({
 

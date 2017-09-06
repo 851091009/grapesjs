@@ -5,7 +5,7 @@ module.exports = Backbone.View.extend({
   events:{
     'click': 'updateIndex',
   },
-
+  // _ 是使用模板方法
   template: _.template(`
   <div id="<%= pfx %>move">
     <i class="fa fa-arrows"></i>
@@ -36,6 +36,7 @@ module.exports = Backbone.View.extend({
     }
 
     // For the sorter
+    // 对于分类器
     model.view = this;
     model.set({droppable: 0, draggable: 1});
     this.$el.data('model', model);
@@ -44,6 +45,7 @@ module.exports = Backbone.View.extend({
 
   /**
    * Delegate sorting
+   * 代表排序
    * @param  {Event} e
    * */
   initSorter(e) {
@@ -53,6 +55,7 @@ module.exports = Backbone.View.extend({
 
   /**
    * Returns properties
+   * 返回属性
    * @return {Collection|null}
    */
   getProps() {
@@ -64,6 +67,7 @@ module.exports = Backbone.View.extend({
 
   /**
    * Emitted when the value is changed
+   * 当值更改时发出
    */
   valueChanged() {
     var preview = this.model.get('preview');
@@ -119,6 +123,7 @@ module.exports = Backbone.View.extend({
 
   /**
    * Show inputs on this layer
+   * 在这层上显示输入
    * */
   showProps() {
     this.$props = this.model.get('props');
@@ -165,6 +170,7 @@ module.exports = Backbone.View.extend({
 
   /**
    * Fetch model index
+   * 取模型指标
    * @return {number} Index
    */
   getIndex() {

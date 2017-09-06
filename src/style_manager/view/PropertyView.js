@@ -18,7 +18,7 @@ module.exports = Backbone.View.extend({
   events: {
     'change': 'valueUpdated'
   },
-
+  // 构造函数
   initialize(o) {
     this.config = o.config || {};
     this.em = this.config.em;

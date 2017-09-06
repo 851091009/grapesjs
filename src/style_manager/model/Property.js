@@ -48,6 +48,7 @@ module.exports = Backbone.Model.extend({
 
   /**
    * Return value
+   * 返回值
    * @return {string} Value
    * @private
    */

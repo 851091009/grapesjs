@@ -3,6 +3,7 @@ var Backbone = require('backbone');
 module.exports = (() => ({
   /**
    * Build props object by their name
+   * 他们的名字对象生成的道具。
    * @param  {Array<string>|string} props Array of properties name
    * @return {Array<Object>}
    */
@@ -18,6 +19,7 @@ module.exports = (() => ({
       obj.name = prop;
 
       // Define type
+      // 定义类型
       switch (prop) {
         case 'target':
           obj.type = 'select';
@@ -25,6 +27,7 @@ module.exports = (() => ({
       }
 
       // Define placeholder
+      // 定义占位符
       switch (prop) {
         case 'title': case 'alt': case 'id':
           obj.placeholder = 'eg. Text here';
@@ -36,6 +39,7 @@ module.exports = (() => ({
 
 
       // Define options
+      // 定义选项
       switch (prop) {
         case 'target':
           obj.options = [

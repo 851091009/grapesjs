@@ -30,6 +30,7 @@ module.exports = Backbone.Model.extend({
 
   /**
    * Extend properties
+   * 扩展性能
    * @param {Array<Object>} props Start properties
    * @param {Array<Object>} moProps Model props
    * @param {Boolean} ex Returns the same amount of passed model props
@@ -72,6 +73,7 @@ module.exports = Backbone.Model.extend({
 
   /**
    * Build properties
+   * 建设性质
    * @param {Array<string>} propr Array of props as sting
    * @return {Array<Object>}
    * @private

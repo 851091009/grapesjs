@@ -10,6 +10,7 @@ module.exports = TraitView.extend({
 
   /**
    * Fires when the input is changed
+   * 当输入更改时触发
    * @private
    */
   onChange() {
@@ -18,6 +19,7 @@ module.exports = TraitView.extend({
 
   /**
    * Returns input element
+   * 返回输入元件
    * @return {HTMLElement}
    * @private
    */

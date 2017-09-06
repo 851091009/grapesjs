@@ -2,6 +2,7 @@ var Backbone = require('backbone');
 
 module.exports = Backbone.View.extend({
   // 初始化参数
+  // 先看这个方法
   initialize() {
     this.model.view = this;
     this.pn         = this.model.get('Panels');

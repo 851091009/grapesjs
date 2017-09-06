@@ -1,7 +1,7 @@
 var Backbone = require('backbone');
 
 module.exports = Backbone.Model.extend({
-
+  // 默认值
   defaults: {
     index: '',
     value: '',
@@ -9,7 +9,7 @@ module.exports = Backbone.Model.extend({
     active: true,
     preview: false,
   },
-
+  // 构造函数
   initialize() {
     var value = this.get('value');
 

@@ -41,8 +41,8 @@
 
 module.exports = () => {
   let c = {};
-  const defaults = require('./config/config');
-  const Assets = require('./model/Assets');
+  const defaults   = require('./config/config');
+  const Assets     = require('./model/Assets');
   const AssetsView = require('./view/AssetsView');
   const FileUpload = require('./view/FileUploader');
   let assets, am, fu;
@@ -51,6 +51,7 @@ module.exports = () => {
 
     /**
      * Name of the module
+     * 模块名称
      * @type {String}
      * @private
      */
@@ -58,6 +59,7 @@ module.exports = () => {
 
     /**
      * Mandatory for the storage manager
+     * 存储管理器的强制性
      * @type {String}
      * @private
      */
@@ -65,6 +67,7 @@ module.exports = () => {
 
     /**
      * Initialize module
+     * 初始化模块
      * @param {Object} config Configurations
      * @private
      */
@@ -84,9 +87,11 @@ module.exports = () => {
       }
 
       // Global assets collection
+      // 全球资产配置
       assets = new Assets(c.assets);
       const obj = {
         // Collection visible in asset manager
+        // 资产管理器中可见的集合
         collection: new Assets([]),
         globalCollection: assets,
         config: c,
@@ -96,6 +101,7 @@ module.exports = () => {
       am = new AssetsView(obj);
 
       // Setup the sync between the global and public collections
+      // 设置全局和公共集合之间的同步
       assets.listenTo(assets, 'add', (model) => {
         this.getAllVisible().add(model);
         em && em.trigger('asset:add', model);
@@ -111,6 +117,7 @@ module.exports = () => {
 
     /**
      * Add new asset/s to the collection. URLs are supposed to be unique
+     * 向集合中添加新的资产/ s。URL应该是唯一的。
      * @param {string|Object|Array<string>|Array<Object>} asset URL strings or an objects representing the resource.
      * @return {Model}
      * @example
@@ -137,6 +144,7 @@ module.exports = () => {
 
     /**
      * Returns the asset by URL
+     * 通过URL返回该资产
      * @param  {string} src URL of the asset
      * @return {Object} Object representing the asset
      * @example
@@ -148,6 +156,7 @@ module.exports = () => {
 
     /**
      * Return global collection
+     * 返回全局集合
      * @return {Collection}
      */
     getAll() {
@@ -156,6 +165,7 @@ module.exports = () => {
 
     /**
      * Return visible collection
+     * 、Return可见集合
      * @return {Collection}
      */
     getAllVisible() {
@@ -164,6 +174,7 @@ module.exports = () => {
 
     /**
      * Remove the asset by its URL
+     * 通过URL删除该资产
      * @param  {string} src URL of the asset
      * @return {this}
      * @example
@@ -177,6 +188,7 @@ module.exports = () => {
 
     /**
      * Store assets data to the selected storage
+     * 将资产数据存储到选定的存储区
      * @param {Boolean} noStore If true, won't store
      * @return {Object} Data to store
      * @example
@@ -193,8 +205,11 @@ module.exports = () => {
 
     /**
      * Load data from the passed object, if the object is empty will try to fetch them
+     * 从已传递对象加载数据，如果对象为空，将尝试获取它们。
      * autonomously from the storage manager.
+     * 从存储管理器自主地。
      * The fetched data will be added to the collection
+     * 获取的数据将被添加到集合中。
      * @param {Object} data Object of data to load
      * @return {Object} Loaded assets
      * @example
@@ -228,6 +243,7 @@ module.exports = () => {
 
     /**
      * Return the Asset Manager Container
+     * 返回资产管理器容器
      * @return {HTMLElement}
      */
     getContainer() {
@@ -244,6 +260,7 @@ module.exports = () => {
 
     /**
      * Render assets
+     * 使资产
      * @param  {Boolean} f Force to render, otherwise cached version will be returned
      * @return {HTMLElement}
      * @private
@@ -260,6 +277,7 @@ module.exports = () => {
 
     /**
      * Add new type
+     * 添加新的类型
      * @param {string} id Type ID
      * @param {Object} definition Definition of the type. Each definition contains
      *                            `model` (business logic), `view` (presentation logic)
@@ -277,6 +295,7 @@ module.exports = () => {
 
     /**
      * Get type
+     * 获取类型
      * @param {string} id Type ID
      * @return {Object} Type definition
      */
@@ -286,6 +305,7 @@ module.exports = () => {
 
     /**
      * Get types
+     * 获取全部类型
      * @return {Array}
      */
     getTypes() {
@@ -296,6 +316,7 @@ module.exports = () => {
 
     /**
      * Set new target
+     * 设定新的目标
      * @param	{Object}	m Model
      * @private
      * */
@@ -305,6 +326,7 @@ module.exports = () => {
 
     /**
      * Set callback after asset was selected
+     * 选择资产后设置回调
      * @param	{Object}	f Callback function
      * @private
      * */
@@ -314,6 +336,7 @@ module.exports = () => {
 
     /**
      * Set callback to fire when the asset is clicked
+     * 在单击资产时设置回调为火
      * @param {function} func
      */
     onClick(func) {
@@ -322,6 +345,7 @@ module.exports = () => {
 
     /**
      * Set callback to fire when the asset is double clicked
+     * 当双击资产时设置回调为火
      * @param {function} func
      */
     onDblClick(func) {

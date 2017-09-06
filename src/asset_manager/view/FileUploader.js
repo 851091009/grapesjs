@@ -14,11 +14,11 @@ module.exports = Backbone.View.extend({
 
   initialize(opts = {}) {
     this.options = opts;
-    const c = opts.config || {};
-    this.config = c;
-    this.pfx = c.stylePrefix || '';
-    this.ppfx = c.pStylePrefix || '';
-    this.target = this.options.globalCollection || {};
+    const c      = opts.config || {};
+    this.config  = c;
+    this.pfx     = c.stylePrefix || '';
+    this.ppfx    = c.pStylePrefix || '';
+    this.target  = this.options.globalCollection || {};
     this.uploadId = this.pfx + 'uploadFile';
     this.disabled = !c.upload;
     this.events['change #' + this.uploadId]  = 'uploadFile';
