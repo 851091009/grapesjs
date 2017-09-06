@@ -53,6 +53,7 @@ module.exports = Component.extend({
 
   /**
    * Returns url of the map
+   * 归来的URL映射
    * @return {string}
    * @private
    */
@@ -72,6 +73,7 @@ module.exports = Component.extend({
 
   /**
    * Set attributes by src string
+   * 用SRC字符串设置属性
    * @private
    */
   parseFromSrc() {
@@ -91,6 +93,10 @@ module.exports = Component.extend({
    * Detect if the passed element is a valid component.
    * In case the element is valid an object abstracted
    * from the element will be returned
+   *
+   *  检测传入的元素是否是有效的组件。
+   * 如果元素是有效的，对象将被抽象。
+   * 将从元素返回
    * @param {HTMLElement}
    * @return {Object}
    * @private

@@ -10,6 +10,7 @@
  *
  *
  * Before using methods you should get first the module from the editor instance, in this way:
+ * 在使用方法之前，您应该首先从编辑器实例中获取模块，以这种方式：
  *
  * ```js
  * var codeManager = editor.CodeManager;
@@ -45,6 +46,7 @@ module.exports = () => {
 
     /**
      * Name of the module
+     * 模块名称
      * @type {String}
      * @private
      */
@@ -52,6 +54,7 @@ module.exports = () => {
 
     /**
      * Initialize module. Automatically called with a new instance of the editor
+     * 初始化模块。使用编辑器的新实例自动调用
      * @param {Object} config Configurations
      */
     init(config) {
@@ -76,6 +79,7 @@ module.exports = () => {
 
     /**
      * Callback on load
+     * 回调负荷
      */
     onLoad() {
       this.loadDefaultGenerators().loadDefaultViewers();
@@ -83,6 +87,7 @@ module.exports = () => {
 
     /**
      * Add new code generator to the collection
+     * 向集合中添加新的代码生成器
      * @param  {string} id Code generator ID
      * @param  {Object} generator Code generator wrapper
      * @param {Function} generator.build Function that builds the code
@@ -101,6 +106,7 @@ module.exports = () => {
 
     /**
      * Get code generator by id
+     * 按ID获取代码生成器
      * @param  {string} id Code generator ID
      * @return {Object|null}
      * @example
@@ -115,6 +121,7 @@ module.exports = () => {
 
     /**
      * Returns all code generators
+     * 返回所有代码生成器
      * @return {Array<Object>}
      * */
     getGenerators() {
@@ -123,6 +130,7 @@ module.exports = () => {
 
     /**
      * Add new code viewer
+     * 添加新代码查看器
      * @param  {string} id Code viewer ID
      * @param  {Object} viewer Code viewer wrapper
      * @param {Function} viewer.init Set element on which viewer will be displayed
@@ -146,6 +154,7 @@ module.exports = () => {
 
     /**
      * Get code viewer by id
+     * 按ID获取代码查看器
      * @param  {string} id Code viewer ID
      * @return {Object|null}
      * @example
@@ -157,6 +166,7 @@ module.exports = () => {
 
     /**
      * Returns all code viewers
+     * 返回所有代码查看器
      * @return {Array<Object>}
      * */
     getViewers() {
@@ -165,6 +175,7 @@ module.exports = () => {
 
     /**
      * Update code viewer content
+     * 更新代码查看器内容
      * @param  {Object} viewer Viewer instance
      * @param  {string} code  Code string
      * @example
@@ -180,6 +191,7 @@ module.exports = () => {
 
     /**
      * Get code from model
+     * 从模型中获取代码
      * @param  {Object} model Any kind of model that will be passed to the build method of generator
      * @param  {string} genId Code generator id
      * @param  {Object} [opt] Options
@@ -194,6 +206,7 @@ module.exports = () => {
 
     /**
      * Load default code generators
+     * 加载默认代码生成器
      * @return {this}
      * @private
      * */
@@ -206,6 +219,7 @@ module.exports = () => {
 
     /**
      * Load default code viewers
+     * 加载默认代码查看器
      * @return {this}
      * @private
      * */

@@ -33,6 +33,7 @@ module.exports = Backbone.View.extend({
 
   /**
    * Triggered before the upload is started
+   * 在上传开始之前触发
    * @private
    */
   onUploadStart() {
@@ -42,6 +43,7 @@ module.exports = Backbone.View.extend({
 
   /**
    * Triggered after the upload is ended
+   * 上传结束后触发
    * @param  {Object|string} res End result
    * @private
    */
@@ -52,6 +54,7 @@ module.exports = Backbone.View.extend({
 
   /**
    * Triggered on upload error
+   * 触发上传错误
    * @param  {Object} err Error
    * @private
    */
@@ -64,6 +67,7 @@ module.exports = Backbone.View.extend({
 
   /**
    * Triggered on upload response
+   * 触发上传响应
    * @param  {string} text Response text
    * @private
    */
@@ -83,6 +87,7 @@ module.exports = Backbone.View.extend({
 
   /**
    * Upload files
+   * 上传文件
    * @param  {Object}  e Event
    * @return {Promise}
    * @private
@@ -128,6 +133,7 @@ module.exports = Backbone.View.extend({
 
   /**
    * Make input file droppable
+   * 使输入文件可以下载
    * @private
    * */
   initDrop() {

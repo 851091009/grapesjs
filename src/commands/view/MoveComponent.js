@@ -22,17 +22,20 @@ module.exports = _.extend({}, SelectPosition, SelectComponent, {
     wp.on('mousedown', this.initSorter);
 
     // Avoid strange moving behavior
+    // 避免奇怪的移动行为
     wp.addClass(this.noSelClass);
   },
 
   /**
    * Overwrite for doing nothing
+   * 因为什么都不做而改写
    * @private
    */
   toggleClipboard() {},
 
   /**
    * Delegate sorting
+   * 、代表排序
    * @param  {Event} e
    * @private
    * */
@@ -43,6 +46,7 @@ module.exports = _.extend({}, SelectPosition, SelectComponent, {
       return;
 
     // Avoid badge showing on move
+    // 避免移动时显示徽章
     this.cacheEl = null;
     this.startSelectPosition(e.target, this.frameEl.contentDocument);
     this.sorter.draggable = drag;
@@ -54,6 +58,7 @@ module.exports = _.extend({}, SelectPosition, SelectComponent, {
 
   /**
    * Init sorter from model
+   * 从模型初始化分类器
    * @param  {Object} model
    * @private
    */
@@ -62,6 +67,7 @@ module.exports = _.extend({}, SelectPosition, SelectComponent, {
     if(!drag)
       return;
     // Avoid badge showing on move
+    // 避免移动时显示徽章
     this.cacheEl = null;
     var el = model.view.el;
     this.startSelectPosition(el, this.frameEl.contentDocument);
@@ -86,6 +92,7 @@ module.exports = _.extend({}, SelectPosition, SelectComponent, {
 
   /**
    * Callback after sorting
+   * 回调整理后
    * @private
    */
   onEndMove() {
@@ -95,6 +102,7 @@ module.exports = _.extend({}, SelectPosition, SelectComponent, {
 
   /**
    * Say what to do after the component was selected (selectComponent)
+   * 说什么做什么在选择组件（selectcomponent）
    * @param {Event} e
    * @param {Object} Selected element
    * @private
@@ -103,6 +111,7 @@ module.exports = _.extend({}, SelectPosition, SelectComponent, {
 
   /**
    * Used to bring the previous situation before start moving the component
+   * 用于在移动组件之前将以前的情况带来。
    * @param {Event} e
    * @param {Boolean} Indicates if rollback in anycase
    * @private
@@ -118,6 +127,7 @@ module.exports = _.extend({}, SelectPosition, SelectComponent, {
 
   /**
    * Returns badge element
+   * 归来的徽章的元素
    * @return {HTMLElement}
    * @private
    */
@@ -129,6 +139,7 @@ module.exports = _.extend({}, SelectPosition, SelectComponent, {
 
   /**
    * Returns highlighter element
+   * 返回的元素
    * @return {HTMLElement}
    * @private
    */

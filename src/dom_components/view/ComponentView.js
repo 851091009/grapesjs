@@ -41,11 +41,13 @@ module.exports = Backbone.View.extend({
 
   /**
    * Initialize callback
+   * 初始化回调
    */
   init() {},
 
   /**
    * Handle any property change
+   * 改变任何财产的处理
    * @private
    */
   handleChange() {
@@ -62,6 +64,7 @@ module.exports = Backbone.View.extend({
 
   /**
    * Import, if possible, classes inside main container
+   * 如果可能的话，在进出，容器类的手
    * @private
    * */
   importClasses() {
@@ -76,6 +79,7 @@ module.exports = Backbone.View.extend({
 
   /**
    * Fires on state update. If the state is not empty will add a helper class
+   * 国家火灾的更新。if the state is not empty class will add helper在
    * @param  {Event} e
    * @private
    * */
@@ -92,6 +96,7 @@ module.exports = Backbone.View.extend({
 
   /**
    * Update item on status change
+   * 我们更新项目状态的变化
    * @param  {Event} e
    * @private
    * */
@@ -131,6 +136,8 @@ module.exports = Backbone.View.extend({
    * Get classes from attributes.
    * This method is called before initialize
    *
+   * get from属性类。
+   * 这种方法被称为初始化之前。
    * @return  {Array}|null
    * @private
    * */
@@ -145,6 +152,7 @@ module.exports = Backbone.View.extend({
 
   /**
    * Update attributes
+   * 更新属性
    * @private
    * */
   updateAttributes() {
@@ -173,6 +181,7 @@ module.exports = Backbone.View.extend({
 
   /**
    * Update style attribute
+   * 更新样式属性
    * @private
    * */
   updateStyle() {
@@ -181,6 +190,7 @@ module.exports = Backbone.View.extend({
 
   /**
    * Update component content
+   * 组件的更新内容
    * @private
    * */
   updateContent() {
@@ -189,6 +199,7 @@ module.exports = Backbone.View.extend({
 
   /**
    * Return style string
+   * 返回字符串的风格
    * @return  {string}
    * @private
    * */
@@ -205,6 +216,7 @@ module.exports = Backbone.View.extend({
 
   /**
    * Update classe attribute
+   * 类属性更新
    * @private
    * */
   updateClasses() {
@@ -221,11 +233,13 @@ module.exports = Backbone.View.extend({
       this.$el.removeAttr('class');
 
     // Regenerate status class
+    // 重生的状态类
     this.updateStatus();
   },
 
   /**
    * Reply to event call
+   * Reply to call事件
    * @param object Event that generated the request
    * @private
    * */
@@ -235,6 +249,7 @@ module.exports = Backbone.View.extend({
 
   /**
    * Prevent default helper
+   * 防止违约的帮手
    * @param  {Event} e
    * @private
    */
@@ -244,6 +259,7 @@ module.exports = Backbone.View.extend({
 
   /**
    * Render component's script
+   * 渲染组件的脚本
    * @private
    */
   updateScript() {
@@ -260,6 +276,7 @@ module.exports = Backbone.View.extend({
 
   /**
    * Return children container
+   * 集装箱；儿童
    * Differently from a simple component where children container is the
    * component itself
    * <my-comp>
@@ -296,6 +313,7 @@ module.exports = Backbone.View.extend({
 
   /**
    * Render children components
+   * 儿童的渲染组件
    * @private
    */
   renderChildren() {
@@ -317,6 +335,11 @@ module.exports = Backbone.View.extend({
     // (so likely fetched with getChildrenSelector()) is necessary
     // to disable pointer-events for all nested components as they
     // might prevent the component to be selected
+
+    // 如果子容器与组件不同
+    //（很可能用getChildrenSelector（）获取）是必要的
+    // 禁用所有嵌套组件的指针事件
+    // 可能会阻止选择该组件
     if (container !== this.el) {
       var disableNode = el => {
         var children = Array.prototype.slice.call(el.children);

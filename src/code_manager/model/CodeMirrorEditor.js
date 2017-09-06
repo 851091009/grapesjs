@@ -1,7 +1,7 @@
-var Backbone = require('backbone');
+var Backbone   = require('backbone');
 var CodeMirror = require('codemirror/lib/codemirror');
-var htmlMode = require('codemirror/mode/htmlmixed/htmlmixed');
-var cssMode = require('codemirror/mode/css/css');
+var htmlMode   = require('codemirror/mode/htmlmixed/htmlmixed');
+var cssMode    = require('codemirror/mode/css/css');
 var formatting = require('codemirror-formatting');
 
 module.exports = Backbone.Model.extend({
@@ -9,9 +9,9 @@ module.exports = Backbone.Model.extend({
   defaults: {
     input    : '',
     label    : '',
-    codeName   : '',
+    codeName : '',
     theme    : '',
-    readOnly   : true,
+    readOnly : true,
     lineNumbers  : true,
   },
 

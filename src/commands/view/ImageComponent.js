@@ -5,6 +5,7 @@ module.exports = _.extend({}, InsertCustom, {
 
   /**
    * Trigger before insert
+   * 触发前插入
    * @param   {Object}  object
    * @private
    *
@@ -22,6 +23,7 @@ module.exports = _.extend({}, InsertCustom, {
 
   /**
    * Trigger after insert
+   * 触发后插入
    * @param  {Object}  model  Model created after insert
    * @private
    * */

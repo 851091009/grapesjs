@@ -20,6 +20,7 @@ module.exports = Backbone.View.extend({
 
   /**
    * Handled when the view is changed
+   * 视图更改时处理
    */
   handleChange(e) {
     e.stopPropagation();
@@ -28,6 +29,7 @@ module.exports = Backbone.View.extend({
 
   /**
    * Set value to the model
+   * 将值设置为模型
    * @param {string} value
    * @param {Object} opts
    */
@@ -40,6 +42,7 @@ module.exports = Backbone.View.extend({
 
     // Generally I get silent when I need to reflect data to view without
     // reupdating the target
+    //一般来说，当我需要反映数据来查看时，我不会更新目标
     if(opt.silent) {
       this.handleModelChange();
     }
@@ -47,6 +50,7 @@ module.exports = Backbone.View.extend({
 
   /**
    * Updates the view when the model is changed
+   * 更改模型时更新视图
    * */
   handleModelChange() {
     this.getInputEl().value = this.model.get('value');
@@ -54,6 +58,7 @@ module.exports = Backbone.View.extend({
 
   /**
    * Get the input element
+   * 获取输入元素
    * @return {HTMLElement}
    */
   getInputEl() {

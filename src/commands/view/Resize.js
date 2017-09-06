@@ -14,6 +14,7 @@ module.exports = {
     options.mousePosFetcher = canvas.getMouseRelativePos;
 
     // Create the resizer for the canvas if not yet created
+    // 如果尚未创建的画布的大小
     if(!canvasResizer || opt.forceNew) {
       this.canvasResizer = editor.Utils.Resizer.init(options);
       canvasResizer = this.canvasResizer;

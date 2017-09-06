@@ -2,6 +2,7 @@ module.exports = {
 
   /**
    * Start select position event
+   * 开始选择位置事件
    * @param {HTMLElement} trg
    * @private
    * */
@@ -27,6 +28,7 @@ module.exports = {
 
   /**
    * Get frame position
+   * 把帧的位置
    * @return {Object}
    * @private
    */
@@ -40,6 +42,7 @@ module.exports = {
 
   /**
    * Stop select position event
+   * 停止选择位置事件
    * @private
    * */
   stopSelectPosition() {
@@ -60,6 +63,7 @@ module.exports = {
 
   /**
    * Enabel select position
+   * enabel选择位置
    * @private
    */
   enable() {
@@ -68,6 +72,7 @@ module.exports = {
 
   /**
    * Check if the pointer is near to the float component
+   * 检查指针是否靠近浮点分量
    * @param {number} index
    * @param {string} method
    * @param {Array<Array>} dims

@@ -9,6 +9,7 @@ module.exports = Backbone.Collection.extend({
     this.config = opt && opt.config ? opt.config : null;
 
     // Inject editor
+    // 注入编辑
     if(opt && opt.sm)
       this.editor = opt.sm;
 
@@ -36,6 +37,7 @@ module.exports = Backbone.Collection.extend({
 
       if(!model) {
         // get the last one
+        // 得到最后一个
         model = df[df.length - 1].model;
       }
 

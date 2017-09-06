@@ -44,6 +44,7 @@ module.exports = Backbone.View.extend({
 
   /**
    * Add new asset to the collection via string
+   * 通过字符串将新的资产添加到集合
    * @param {Event} e Event object
    * @return {this}
    * @private
@@ -65,16 +66,18 @@ module.exports = Backbone.View.extend({
 
   /**
    * Returns assets element
+   * 返回资产元素
    * @return {HTMLElement}
    * @private
    */
   getAssetsEl() {
-    //if(!this.assets) // Not able to cache as after the rerender it losses the ref
+    //if(!this.assets) // Not able to cache as after the rerender it losses the ref 不能缓存，因为它后面的损失了ref
     return this.el.querySelector(`.${this.pfx}assets`);
   },
 
   /**
    * Returns input url element
+   * 返回输入url元素
    * @return {HTMLElement}
    * @private
    */
@@ -86,6 +89,7 @@ module.exports = Backbone.View.extend({
 
   /**
    * Add asset to collection
+   * 将资产添加到收藏
    * @private
    * */
   addToAsset(model) {
@@ -94,9 +98,10 @@ module.exports = Backbone.View.extend({
 
   /**
    * Add new asset to collection
+   * 将新资产添加到收藏
    * @param Object Model
-   * @param Object Fragment collection
-   * @return Object Object created
+   * @param Object Fragment collection 片段收集
+   * @return Object Object created  创建对象
    * @private
    * */
   addAsset(model, fragmentEl = null) {
@@ -123,6 +128,7 @@ module.exports = Backbone.View.extend({
 
   /**
    * Deselect all assets
+   * 取消选择所有资产
    * @private
    * */
   deselectAll() {

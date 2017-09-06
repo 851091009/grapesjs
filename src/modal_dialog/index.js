@@ -25,6 +25,7 @@ module.exports = () => {
 
   	/**
      * Name of the module
+     * 模块名称
      * @type {String}
      * @private
      */
@@ -32,6 +33,7 @@ module.exports = () => {
 
     /**
      * Initialize module. Automatically called with a new instance of the editor
+     * 初始化模块 使用编辑器的新实例自动调用
      * @param {Object} config Configurations
      * @private
      */
@@ -62,6 +64,7 @@ module.exports = () => {
 
     /**
      * Open the modal window
+     * 打开模态窗口
      * @return {this}
      */
     open() {
@@ -71,6 +74,7 @@ module.exports = () => {
 
     /**
      * Close the modal window
+     * 关闭模态窗口
      * @return {this}
      */
     close() {
@@ -80,6 +84,7 @@ module.exports = () => {
 
     /**
      * Checks if the modal window is open
+     * 检查模态窗口是否打开
      * @return {Boolean}
      */
     isOpen() {
@@ -88,6 +93,7 @@ module.exports = () => {
 
     /**
      * Set the title to the modal window
+     * 将标题设置为模态窗口
      * @param {string} title Title
      * @return {this}
      * @example
@@ -100,6 +106,7 @@ module.exports = () => {
 
     /**
      * Returns the title of the modal window
+     * 返回模态窗口的标题
      * @return {string}
      */
     getTitle() {
@@ -108,6 +115,7 @@ module.exports = () => {
 
     /**
      * Set the content of the modal window
+     * 设置模态窗口的内容
      * @param {string|HTMLElement} content Content
      * @return {this}
      * @example
@@ -121,6 +129,7 @@ module.exports = () => {
 
     /**
      * Get the content of the modal window
+     * 获取模态窗口的内容
      * @return {string}
      */
     getContent() {
@@ -129,6 +138,7 @@ module.exports = () => {
 
     /**
      * Returns content element
+     * 返回内容元素
      * @return {HTMLElement}
      * @private
      */
@@ -138,6 +148,7 @@ module.exports = () => {
 
     /**
      * Returns modal model
+     * 返回模态模型
      * @return {Model}
      * @private
      */
@@ -147,6 +158,7 @@ module.exports = () => {
 
     /**
      * Render the modal window
+     * 渲染模态窗口
      * @return {HTMLElement}
      * @private
      */

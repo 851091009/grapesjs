@@ -1,4 +1,4 @@
-var Backbone = require('backbone');
+var Backbone      = require('backbone');
 var ComponentView = require('dom_components/view/ComponentView');
 var ItemsView;
 
@@ -65,6 +65,7 @@ module.exports = Backbone.View.extend({
 
   /**
    * Handle the edit of the component name
+   * 处理组件名称的编辑
    */
   handleEdit(e) {
     e.stopPropagation();
@@ -75,6 +76,7 @@ module.exports = Backbone.View.extend({
 
   /**
    * Handle with the end of editing of the component name
+   * 处理组件名称的编辑结束
    */
   handleEditEnd(e) {
     e.stopPropagation();
@@ -85,6 +87,7 @@ module.exports = Backbone.View.extend({
 
   /**
    * Get the input containing the name of the component
+   * 获取包含组件名称的输入
    * @return {HTMLElement}
    */
   getInputName() {
@@ -96,7 +99,7 @@ module.exports = Backbone.View.extend({
 
   /**
    * Update item opening
-   *
+   * 更新项目打开
    * @return void
    * */
   updateOpening() {
@@ -115,6 +118,7 @@ module.exports = Backbone.View.extend({
 
   /**
    * Toggle item opening
+   * 切换项目打开
    * @param {Object}	e
    *
    * @return void
@@ -130,6 +134,7 @@ module.exports = Backbone.View.extend({
 
   /**
    * Handle component selection
+   * 处理组件选择
    */
   handleSelect(e) {
     e.stopPropagation();
@@ -138,12 +143,14 @@ module.exports = Backbone.View.extend({
 
   /**
    * Delegate to sorter
+   * 代表分拣机
    * @param	Event
    * */
   startSort(e) {
     e.stopPropagation();
 
-    //Right or middel click
+    // Right or middel click
+    // 右键或中间点击
     if (e.button !== 0) {
       return;
     }
@@ -153,6 +160,7 @@ module.exports = Backbone.View.extend({
 
   /**
    * Freeze item
+   * 冻结物品
    * @return	void
    * */
   freeze() {
@@ -162,6 +170,7 @@ module.exports = Backbone.View.extend({
 
   /**
    * Unfreeze item
+   * 解冻项目
    * @return	void
    * */
   unfreeze() {
@@ -170,6 +179,7 @@ module.exports = Backbone.View.extend({
 
   /**
    * Update item on status change
+   * 更新状态更改项目
    * @param	Event
    * */
   updateStatus(e) {
@@ -178,6 +188,7 @@ module.exports = Backbone.View.extend({
 
   /**
    * Toggle visibility
+   * 切换可见性
    * @param	Event
    *
    * @return 	void
@@ -202,7 +213,7 @@ module.exports = Backbone.View.extend({
 
   /**
    * Check if component is visible
-   *
+   * 检查组件是否可见
    * @return bool
    * */
   isVisible() {
@@ -215,7 +226,7 @@ module.exports = Backbone.View.extend({
 
   /**
    * Update item aspect after children changes
-   *
+   * 子项更改后更新项目方面
    * @return void
    * */
   checkChildren() {
@@ -236,6 +247,7 @@ module.exports = Backbone.View.extend({
 
   /**
    * Count children inside model
+   * 计数模型中的孩子
    * @param  {Object} model
    * @return {number}
    * @private

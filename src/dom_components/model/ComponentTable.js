@@ -28,6 +28,7 @@ module.exports = Component.extend({
     var columns = this.get('columns');
 
     // Init components if empty
+    // 如果空的init组件
     if(!components.length){
       var rowsToAdd = [];
 
@@ -52,6 +53,7 @@ module.exports = Component.extend({
     }
 
     // Clean table from non rows
+    // 非行清理表
     var rowsColl = [];
     components.each(model => {
       if(model.get('type') != 'row'){
@@ -74,6 +76,10 @@ module.exports = Component.extend({
    * Detect if the passed element is a valid component.
    * In case the element is valid an object abstracted
    * from the element will be returned
+   * 
+   * 检测传入的元素是否是有效的组件。
+   * 如果元素是有效的，对象将被抽象。
+   * 将从元素返回
    * @param {HTMLElement}
    * @return {Object}
    * @private

@@ -1,6 +1,6 @@
 var ToolbarView = require('dom_components/view/ToolbarView');
-var Toolbar = require('dom_components/model/Toolbar');
-var key = require('keymaster');
+var Toolbar     = require('dom_components/model/Toolbar');
+var key         = require('keymaster');
 let showOffsets;
 
 module.exports = {
@@ -26,6 +26,7 @@ module.exports = {
 
   /**
    * Toggle clipboard function
+   * 切换剪贴板功能
    * @param  {Boolean} active
    * @return {this}
    * @private
@@ -43,6 +44,7 @@ module.exports = {
 
   /**
    * Copy component to the clipboard
+   * 将组件复制到剪贴板
    * @private
    */
   copyComp() {
@@ -53,6 +55,7 @@ module.exports = {
 
   /**
    * Paste component from clipboard
+   * 从剪贴板粘贴组件
    * @private
    */
   pasteComp() {
@@ -77,6 +80,7 @@ module.exports = {
 
   /**
    * Start select component event
+   * 开始选择组件事件
    * @private
    * */
   startSelectComponent() {
@@ -85,6 +89,7 @@ module.exports = {
 
   /**
    * Stop select component event
+   * 停止选择组件事件
    * @private
    * */
   stopSelectComponent() {
@@ -93,6 +98,7 @@ module.exports = {
 
   /**
    * Toggle select component event
+   * 选择组件事件
    * @private
    * */
   toggleSelectComponent(enable) {
@@ -110,6 +116,7 @@ module.exports = {
 
   /**
    * On key press event
+   * 论按键事件
    * @private
    * */
   onKeyPress(e) {
@@ -136,6 +143,7 @@ module.exports = {
 
   /**
    * Hover command
+   * 悬停的命令
    * @param {Object}  e
    * @private
    */
@@ -144,6 +152,7 @@ module.exports = {
     var trg = e.target;
 
     // Adjust tools scroll top
+    // 调整工具滚动顶部
     if(!this.adjScroll){
       this.adjScroll = 1;
       this.onFrameScroll(e);
@@ -158,6 +167,7 @@ module.exports = {
 
   /**
    * Out command
+   * 输出命令
    * @param {Object}  e
    * @private
    */
@@ -170,6 +180,7 @@ module.exports = {
 
   /**
    * Show element offset viewer
+   * 显示元素偏移查看器
    * @param {HTMLElement}  el
    * @param {Object} pos
    */
@@ -190,6 +201,7 @@ module.exports = {
 
   /**
    * Hide element offset viewer
+   * 隐藏元素偏移查看器
    * @param {HTMLElement}  el
    * @param {Object} pos
    */
@@ -199,6 +211,7 @@ module.exports = {
 
   /**
    * Show fixed element offset viewer
+   * 显示固定元素偏移查看器
    * @param {HTMLElement}  el
    * @param {Object} pos
    */
@@ -212,6 +225,7 @@ module.exports = {
 
   /**
    * Hide fixed element offset viewer
+   * 隐藏固定元素偏移查看器
    * @param {HTMLElement}  el
    * @param {Object} pos
    */
@@ -222,6 +236,7 @@ module.exports = {
 
   /**
    * Hide Highlighter element
+   * 隐藏的元素
    */
   hideHighlighter() {
     this.canvas.getHighlighter().style.display = 'none';
@@ -229,6 +244,7 @@ module.exports = {
 
   /**
    * Hover command
+   * 悬停的命令
    * @param {Object}  e
    * @private
    */
@@ -244,6 +260,7 @@ module.exports = {
 
   /**
    * Update badge for the component
+   * 更新组件的标记
    * @param {Object} Component
    * @param {Object} pos Position object
    * @private
@@ -275,6 +292,7 @@ module.exports = {
 
   /**
    * Update highlighter element
+   * 更新的元素
    * @param {HTMLElement} el
    * @param {Object} pos Position object
    * @private
@@ -298,6 +316,7 @@ module.exports = {
 
   /**
    * Say what to do after the component was selected
+   * 在选定组件后，说明该做什么
    * @param {Object}  e
    * @param {Object}  el
    * @private
@@ -317,6 +336,7 @@ module.exports = {
 
   /**
    * Init resizer on the element if possible
+   * 初始化缩放的元素如果可能的话
    * @param  {HTMLElement} el
    * @private
    */
@@ -350,6 +370,7 @@ module.exports = {
           showOffsets = 0;
         },
         // Update all positioned elements (eg. component toolbar)
+        // 更新所有已定位的元素（例如组件工具栏）
         onMove() {
           editor.trigger('change:canvasOffset');
         },
@@ -393,12 +414,15 @@ module.exports = {
       editor.runCommand('resize', {el, options});
 
       // On undo/redo the resizer rect is not updating, need somehow to call
+      // 在撤消/重做的缩放矩形不更新，需要设法打电话
       // this.updateRect on undo/redo action
+      // this.updaterect对撤销/重做操作
     }
   },
 
   /**
    * Update toolbar if the component has one
+   * 如果组件有一个，更新工具栏
    * @param {Object} mod
    */
   updateToolbar(mod) {
@@ -438,6 +462,7 @@ module.exports = {
 
   /**
    * Update toolbar positions
+   * 更新工具栏位置
    * @param {HTMLElement} el
    * @param {Object} pos
    */
@@ -456,6 +481,7 @@ module.exports = {
 
   /**
    * Return canvas dimensions and positions
+   * 返回的尺寸和位置帆布
    * @return {Object}
    */
   getCanvasPosition() {
@@ -464,6 +490,7 @@ module.exports = {
 
   /**
    * Removes all highlighting effects on components
+   * 删除组件上的所有突出显示效果。
    * @private
    * */
   clean() {
@@ -473,6 +500,7 @@ module.exports = {
 
   /**
    * Returns badge element
+   * 归来的徽章的元素
    * @return {HTMLElement}
    * @private
    */
@@ -482,6 +510,7 @@ module.exports = {
 
   /**
    * On frame scroll callback
+   * 在帧滚动回调
    * @private
    */
   onFrameScroll(e) {
@@ -499,6 +528,7 @@ module.exports = {
 
   /**
    * Update attached elements, eg. component toolbar
+   * 更新附属元素，例如组件工具栏
    * @return {[type]} [description]
    */
   updateAttached() {
@@ -512,6 +542,7 @@ module.exports = {
 
   /**
    * Returns element's data info
+   * 返回元素的数据信息
    * @param {HTMLElement} el
    * @return {Object}
    * @private
@@ -522,6 +553,7 @@ module.exports = {
 
   /**
    * Hide badge
+   * 隐藏的徽章
    * @private
    * */
   hideBadge() {
@@ -530,6 +562,7 @@ module.exports = {
 
   /**
    * Clean previous model from different states
+   * 从不同的状态清除以前的模型
    * @param {Component} model
    * @private
    */
@@ -543,6 +576,7 @@ module.exports = {
 
   /**
    * Returns content window
+   * 返回内容窗口
    * @private
    */
   getContentWindow() {

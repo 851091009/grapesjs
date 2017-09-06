@@ -57,6 +57,7 @@ module.exports = Backbone.View.extend({
 
   /**
    * Render inside frame's body
+   * 渲染帧内体
    * @private
    */
   renderBody() {
@@ -153,6 +154,7 @@ module.exports = Backbone.View.extend({
 
   /**
    * Get the offset of the element
+   * 获取元素的偏移量。
    * @param  {HTMLElement} el
    * @return {Object}
    */
@@ -169,6 +171,7 @@ module.exports = Backbone.View.extend({
 
   /**
    * Cleare cached offsets
+   * 清除缓存的偏移
    * @private
    */
   clearOff() {
@@ -178,6 +181,7 @@ module.exports = Backbone.View.extend({
 
   /**
    * Return frame offset
+   * 返回帧偏移
    * @return {Object}
    * @private
    */
@@ -189,6 +193,7 @@ module.exports = Backbone.View.extend({
 
   /**
    * Return canvas offset
+   * 返回帆布偏移
    * @return {Object}
    * @private
    */
@@ -200,6 +205,7 @@ module.exports = Backbone.View.extend({
 
   /**
    * Returns element's data info
+   * 返回元素的数据信息
    * @param {HTMLElement} el
    * @return {Object}
    * @private
@@ -225,6 +231,7 @@ module.exports = Backbone.View.extend({
 
   /**
    * Returns position data of the canvas element
+   * 返回画布元素的位置数据
    * @return {Object} obj Position object
    * @private
    */
@@ -240,6 +247,7 @@ module.exports = Backbone.View.extend({
 
   /**
    * Update javascript of a specific component passed by its View
+   * 更新其视图传递的特定组件的JavaScript
    * @param {View} view Component's View
    * @private
    */
@@ -254,7 +262,9 @@ module.exports = Backbone.View.extend({
     view.el.id = id;
     view.scriptContainer.html('');
     // In editor, I make use of setTimeout as during the append process of elements
+    // 在编辑器中，我利用setTimeout的过程中添加元素
     // those will not be available immediatly, therefore 'item' variable
+    // 那些不可直接，因此“项”变
     view.scriptContainer.append(`<script>
         setTimeout(function() {
           var item = document.getElementById('${id}');
@@ -266,6 +276,7 @@ module.exports = Backbone.View.extend({
 
   /**
    * Get javascript container
+   * 获取容器
    * @private
    */
   getJsContainer() {

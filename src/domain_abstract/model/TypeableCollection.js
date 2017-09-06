@@ -27,6 +27,7 @@ export default {
 
   /**
    * Recognize type by any value
+   * 通过任何值识别类型
    * @param  {mixed} value
    * @return {Object} Found type
    */
@@ -48,6 +49,7 @@ export default {
     }
 
     // If, for any reason, the type is not found it'll return the base one
+    // 如果由于任何原因找不到该类型，则返回基本类型
     return {
       type: this.getBaseType(),
       attributes: value,
@@ -56,6 +58,7 @@ export default {
 
   /**
    * Returns the base type (last object in the stack)
+   * 返回基本类型（堆栈中的最后一个对象）
    * @return {Object}
    */
   getBaseType() {
@@ -65,6 +68,7 @@ export default {
 
   /**
    * Get types
+   * 获取类型
    * @return {Array}
    */
   getTypes() {
@@ -73,6 +77,7 @@ export default {
 
   /**
    * Get type
+   * 获取类型
    * @param {string} id Type ID
    * @return {Object} Type definition
    */
@@ -89,6 +94,7 @@ export default {
 
   /**
    * Add new type
+   * 添加新的类型
    * @param {string} id Type ID
    * @param {Object} definition Definition of the type. Each definition contains
    *                            `model` (business logic), `view` (presentation logic)

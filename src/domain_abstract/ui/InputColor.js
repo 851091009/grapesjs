@@ -24,6 +24,7 @@ module.exports = Input.extend({
 
   /**
    * Updates the view when the model is changed
+   * 更改模型时更新视图
    * */
   handleModelChange(...args) {
     Input.prototype.handleModelChange.apply(this, args);
@@ -39,6 +40,7 @@ module.exports = Input.extend({
 
   /**
    * Get the color input element
+   * 获取颜色输入元素
    * @return {HTMLElement}
    */
   getColorEl() {

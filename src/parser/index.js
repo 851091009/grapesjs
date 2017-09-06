@@ -11,6 +11,7 @@ module.exports = () => {
 
     /**
      * Name of the module
+     * 模块名称
      * @type {String}
      * @private
      */
@@ -18,6 +19,7 @@ module.exports = () => {
 
     /**
      * Initialize module. Automatically called with a new instance of the editor
+     * 初始化模块 使用编辑器的新实例自动调用
      * @param {Object} config Configurations
      * @param {Array<Object>} [config.blocks=[]] Default blocks
      * @return {this}
@@ -44,6 +46,7 @@ module.exports = () => {
 
     /**
      * Parse HTML string and return valid model
+     * 解析HTML字符串并返回有效的模型
      * @param  {string} str HTML string
      * @return {Object}
      */

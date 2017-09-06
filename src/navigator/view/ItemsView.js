@@ -43,6 +43,7 @@ module.exports = Backbone.View.extend({
 
   /**
    * Add to collection
+   * 加入收藏
    * @param Object Model
    *
    * @return Object
@@ -54,6 +55,7 @@ module.exports = Backbone.View.extend({
 
   /**
    * Add new object to collection
+   * 将新对象添加到集合
    * @param  Object  Model
    * @param  Object   Fragment collection
    * @param  integer  Index of append
@@ -82,11 +84,14 @@ module.exports = Backbone.View.extend({
         var method  = 'before';
         // If the added model is the last of collection
         // need to change the logic of append
+        // 如果添加的模型是最后一个集合
+        // 需要改变追加的逻辑
         if(this.$el.children().length == index){
           index--;
           method  = 'after';
         }
         // In case the added is new in the collection index will be -1
+        // 如果添加的新的集合索引将为-1
         if(index < 0){
           this.$el.append(rendered);
         }else
@@ -100,6 +105,7 @@ module.exports = Backbone.View.extend({
 
   /**
    * Check if the model could be count by the navigator
+   * 检查模型是否可以由导航器计数
    * @param  {Object}  model
    * @return {Boolean}
    * @private

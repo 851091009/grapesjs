@@ -37,6 +37,7 @@ module.exports = require('./AssetView').extend({
 
   /**
    * Trigger when the asset is clicked
+   * 当资源被点击时触发
    * @private
    * */
   handleClick() {
@@ -54,6 +55,7 @@ module.exports = require('./AssetView').extend({
 
   /**
    * Trigger when the asset is double clicked
+   * 双击资产时触发
    * @private
    * */
   handleDblClick() {
@@ -74,6 +76,7 @@ module.exports = require('./AssetView').extend({
 
   /**
    * Update target if exists
+   * 如果存在更新目标
    * @param  {String}  v   Value
    * @private
    * */
@@ -89,6 +92,7 @@ module.exports = require('./AssetView').extend({
 
   /**
    * Remove asset from collection
+   * 从收集中移除资产
    * @private
    * */
   removeItem(e) {

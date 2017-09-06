@@ -1,6 +1,7 @@
 module.exports = {
   /**
    * Check if fullscreen mode is enabled
+   * 检查是否启用全屏模式
    * @return {Boolean}
    */
   isEnabled() {
@@ -13,6 +14,7 @@ module.exports = {
 
   /**
    * Enable fullscreen mode and return browser prefix
+   * 启用全屏模式返回浏览器前缀
    * @param  {HTMLElement} el
    * @return {string}
    */
@@ -35,6 +37,7 @@ module.exports = {
 
   /**
    * Disable fullscreen mode
+   * 禁用全屏模式
    */
   disable() {
     var d = document;
@@ -50,7 +53,9 @@ module.exports = {
 
   /**
    * Triggered when the state of the fullscreen is changed. Inside detects if
+   * 触发时，全屏状态改变。如果在检测
    * it's enabled
+   * 它的启用
    * @param  {strinf} pfx Browser prefix
    * @param  {Event} e
   */

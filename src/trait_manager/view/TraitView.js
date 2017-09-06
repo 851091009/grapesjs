@@ -35,6 +35,7 @@ module.exports = Backbone.View.extend({
 
   /**
    * On change callback
+   * 改变回调
    * @private
    */
   onValueChange() {
@@ -43,6 +44,7 @@ module.exports = Backbone.View.extend({
     var name = m.get('name');
     var value = this.getValueForTarget();
     // Chabge property if requested otherwise attributes
+    // 更改属性，如果请求其他属性
     if(m.get('changeProp')){
       trg.set(name, value);
     }else{
@@ -54,6 +56,7 @@ module.exports = Backbone.View.extend({
 
   /**
    * Render label
+   * 渲染标签
    * @private
    */
   renderLabel() {
@@ -62,6 +65,7 @@ module.exports = Backbone.View.extend({
 
   /**
    * Returns label for the input
+   * 返回输入的标签
    * @return {string}
    * @private
    */
@@ -73,6 +77,7 @@ module.exports = Backbone.View.extend({
 
   /**
    * Returns input element
+   * 返回输入元素
    * @return {HTMLElement}
    * @private
    */
@@ -118,6 +123,7 @@ module.exports = Backbone.View.extend({
 
   /**
    * Renders input
+   * 渲染输入
    * @private
    * */
   renderField() {

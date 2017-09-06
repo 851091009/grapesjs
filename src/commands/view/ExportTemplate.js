@@ -14,6 +14,7 @@ module.exports = {
 
   /**
    * Build editor
+   * 建立编辑
    * @param  {String}  codeName
    * @param  {String}  theme
    * @param  {String}  label

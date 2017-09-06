@@ -11,6 +11,7 @@ module.exports = () => {
 
     /**
      * Name of the module
+     * 模块名称
      * @type {String}
      * @private
     */
@@ -18,6 +19,7 @@ module.exports = () => {
 
     /**
      * Get configuration object
+     * 获取配置对象
      * @return {Object}
      * @private
      */

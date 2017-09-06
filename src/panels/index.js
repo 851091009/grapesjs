@@ -57,6 +57,7 @@ module.exports = () => {
 
     /**
      * Name of the module
+     * 模块名称
      * @type {String}
      * @private
      */
@@ -64,6 +65,7 @@ module.exports = () => {
 
     /**
      * Initialize module. Automatically called with a new instance of the editor
+     * 初始化模块 使用编辑器的新实例自动调用
      * @param {Object} config Configurations
      */
     init(config) {

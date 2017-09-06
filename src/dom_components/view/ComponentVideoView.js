@@ -15,6 +15,7 @@ module.exports = ComponentView.extend({
 
   /**
    * Rerender on update of the provider
+   * 重画对供应商更新
    * @private
    */
   updateProvider() {
@@ -43,6 +44,7 @@ module.exports = ComponentView.extend({
 
   /**
    * Update video parameters
+   * 视频参数更新
    * @private
    */
   updateVideo() {

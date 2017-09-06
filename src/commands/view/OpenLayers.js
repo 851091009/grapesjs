@@ -16,6 +16,7 @@ module.exports = {
       config.layers.opened = em.editor.get('opened');
 
       // Check if panel exists otherwise crate it
+      // 检查面板是否存在，否则将其框起来。
       if(!panels.getPanel('views-container'))
         this.panel = panels.addPanel({id: 'views-container'});
       else

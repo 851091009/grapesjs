@@ -27,6 +27,7 @@ module.exports = Component.extend({
       var cmdName = 'image-editor';
 
       // Add Image Editor button only if the default command exists
+      // 仅当默认命令存在时，添加“图像编辑器”按钮。
       if (cmd.has(cmdName)) {
         var tb = this.get('toolbar');
         tb.push({
@@ -40,6 +41,7 @@ module.exports = Component.extend({
 
   /**
    * Returns object of attributes for HTML
+   * 返回HTML属性的对象
    * @return {Object}
    * @private
    */
@@ -54,6 +56,7 @@ module.exports = Component.extend({
 
   /**
    * Parse uri
+   * 解析URI
    * @param  {string} uri
    * @return {object}
    * @private
@@ -86,6 +89,9 @@ module.exports = Component.extend({
    * Detect if the passed element is a valid component.
    * In case the element is valid an object abstracted
    * from the element will be returned
+   * 检测传入的元素是否是有效的组件。
+   * 如果元素是有效的，对象将被抽象。
+   * 将从元素返回
    * @param {HTMLElement}
    * @return {Object}
    * @private

@@ -1,9 +1,12 @@
 var defaults = {
   // Function which returns custom X and Y coordinates of the mouse
+  //返回鼠标的自定义X和Y坐标的函数
   mousePosFetcher: null,
   // Indicates custom target updating strategy
+  // 表示自定义目标更新策略
   updateTarget: null,
   // Function which gets HTMLElement as an arg and returns it relative position
+  // 将HTMLElement作为参数的函数返回相对位置
   ratioDefault: 0,
   posFetcher: null,
   onStart: null,
@@ -43,6 +46,7 @@ class Resizer {
 
   /**
    * Init the Resizer with options
+   * 启动具有选项的Resizer
    * @param  {Object} options
    */
   constructor(opts = {}) {
@@ -52,10 +56,12 @@ class Resizer {
 
   /**
    * Setup options
+   * 安装选项
    * @param {Object} options
    */
   setOptions(options = {}) {
     // Setup default options
+    // 设置默认选项
     for (var name in defaults) {
       if (!(name in options))
         options[name] = defaults[name];
@@ -67,6 +73,7 @@ class Resizer {
 
   /**
    * Setup resizer
+   * 设置resizer
    */
   setup() {
     const opts = this.opts;
@@ -75,6 +82,7 @@ class Resizer {
     let container;
 
     // Create container if not yet exist
+    // 创建容器如果不存在
     if (!this.container) {
       container = document.createElement('div');
       container.className = pfx + 'resizer-c';
@@ -88,6 +96,7 @@ class Resizer {
     }
 
     // Create handlers
+    // 创建处理程序
     var handlers = {
       tl: opts.tl ? createHandler('tl', opts) : '',
       tc: opts.tc ? createHandler('tc', opts) : '',
@@ -121,6 +130,7 @@ class Resizer {
 
   /**
    * Detects if the passed element is a resize handler
+   * 检测传递的元素是否是一个调整大小的处理程序
    * @param  {HTMLElement} el
    * @return {Boolean}
    */
@@ -136,6 +146,7 @@ class Resizer {
 
   /**
    * Returns the focused element
+   * 返回focus元素
    * @return {HTMLElement}
    */
   getFocusedEl() {
@@ -144,6 +155,7 @@ class Resizer {
 
   /**
    * Returns documents
+   * 退回文件
    */
   getDocumentEl() {
     if (!this.$doc) {
@@ -154,6 +166,7 @@ class Resizer {
 
   /**
    * Return element position
+   * 返回元素位置
    * @param  {HTMLElement} el
    * @return {Object}
    */
@@ -164,10 +177,12 @@ class Resizer {
 
   /**
    * Focus resizer on the element, attaches handlers to it
+   * 将resizer聚焦在元素上，并附加处理程序
    * @param {HTMLElement} el
    */
   focus(el) {
     // Avoid focusing on already focused element
+    // 避免关注已经聚焦的元素
     if (el && el === this.el) {
       return;
     }
@@ -188,6 +203,7 @@ class Resizer {
 
   /**
    * Blur from element
+   * 元素模糊
    */
   blur() {
     this.container.style.display = 'none';
@@ -200,10 +216,12 @@ class Resizer {
 
   /**
    * Start resizing
+   * 开始调整大小
    * @param  {Event} e
    */
   start(e) {
     //Right or middel click
+    // 右键或中间点击
     if (e.button !== 0) {
       return;
     }
@@ -239,6 +257,7 @@ class Resizer {
     this.move(e);
 
     // Start callback
+    // 开始回调
     if(typeof this.onStart === 'function') {
       this.onStart(e, {docs: doc});
     }
@@ -246,6 +265,7 @@ class Resizer {
 
   /**
    * While resizing
+   * 调整大小时
    * @param  {Event} e
    */
   move(e) {
@@ -271,11 +291,13 @@ class Resizer {
     this.updateRect(0);
 
     // Move callback
+    // 移动回调
     if(typeof this.onMove === 'function') {
       this.onMove(e);
     }
 
     // In case the mouse button was released outside of the window
+    // 万一鼠标按钮被释放到窗外
     if (e.which === 0) {
       this.stop(e);
     }
@@ -283,6 +305,7 @@ class Resizer {
 
   /**
    * Stop resizing
+   * 停止调整大小
    * @param  {Event} e
    */
   stop(e) {
@@ -293,6 +316,7 @@ class Resizer {
     this.updateRect(1);
 
     // Stop callback
+    // 停止回调
     if (typeof this.onEnd === 'function') {
       this.onEnd(e, {docs: doc});
     }
@@ -300,6 +324,7 @@ class Resizer {
 
   /**
    * Update rect
+   * 更新rect
    */
   updateRect(store) {
     var elStyle = this.el.style;
@@ -308,6 +333,7 @@ class Resizer {
     const selectedHandler = this.getSelectedHandler();
 
     // Use custom updating strategy if requested
+    // 如果需要，请使用自定义更新策
     if (typeof this.updateTarget === 'function') {
       this.updateTarget(this.el, rect, {
         store,
@@ -330,6 +356,7 @@ class Resizer {
 
   /**
    * Get selected handler name
+   * 获取所选处理程序名称
    * @return {string}
    */
   getSelectedHandler() {
@@ -346,11 +373,13 @@ class Resizer {
 
   /**
    * Handle ESC key
+   * 处理ESC键
    * @param  {Event} e
    */
   handleKeyDown(e) {
     if (e.keyCode === 27) {
       // Rollback to initial dimensions
+      // 回滚到初始尺寸
       this.rectDim = this.startDim;
       this.stop(e);
     }
@@ -358,6 +387,7 @@ class Resizer {
 
   /**
    * Handle mousedown to check if it's possible to start resizing
+   * 处理mousedown以检查是否可以开始调整大小
    * @param  {Event} e
    */
   handleMouseDown(e) {
@@ -373,6 +403,7 @@ class Resizer {
 
   /**
    * All positioning logic
+   * 所有定位逻辑
    * @return {Object}
    */
   calc(data) {
@@ -403,6 +434,7 @@ class Resizer {
     }
 
     // Enforce aspect ratio (unless shift key is being held)
+    // 强制宽高比（除非shift键正在进行）
     var ratioActive = opts.ratioDefault ? !data.keys.shift : data.keys.shift;
     if (attr.indexOf('c') < 0 && ratioActive) {
       var ratio = startDim.w / startDim.h;

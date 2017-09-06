@@ -3,9 +3,11 @@ var Backbone = require('backbone');
 module.exports = Backbone.View.extend({
 
   // Default view
+  // 默认视图
   itemView: '',
 
   // Defines the View per type
+  // 定义每个类型的视图
   itemsView: '',
 
   itemType: 'type',
@@ -17,6 +19,7 @@ module.exports = Backbone.View.extend({
 
   /**
    * Add new model to the collection
+   * 向集合添加新模型
    * @param {Model} model
    * @private
    * */
@@ -26,6 +29,7 @@ module.exports = Backbone.View.extend({
 
   /**
    * Render new model inside the view
+   * 在视图中渲染新模型
    * @param {Model} model
    * @param {Object} fragment Fragment collection
    * @private

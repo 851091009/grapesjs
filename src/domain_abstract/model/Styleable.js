@@ -3,6 +3,9 @@ export default {
   /**
    * To trigger the style change event on models I have to
    * pass a new object instance
+   * 
+   * 要触发模型上的风格变更事件
+   * 传递一个新的对象实例
    * @param {Object} prop
    * @return {Object}
    */
@@ -12,6 +15,7 @@ export default {
 
   /**
    * Get style object
+   * 获取样式对象
    * @return {Object}
    */
   getStyle() {
@@ -20,6 +24,7 @@ export default {
 
   /**
    * Set new style object
+   * 设置新的样式对象
    * @param {Object} prop
    * @param {Object} opts
    */
@@ -29,6 +34,7 @@ export default {
 
   /**
    * Add style property
+   * 添加样式属性
    * @param {Object|string} prop
    * @param {string} value
    * @example
@@ -50,6 +56,7 @@ export default {
 
   /**
    * Remove style property
+   * 删除样式属性
    * @param {string} prop
    */
   removeStyle(prop) {

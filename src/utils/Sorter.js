@@ -58,6 +58,7 @@ module.exports = Backbone.View.extend({
 
   /**
    * Triggered when the offset of the editro is changed
+   * 当编辑器的偏移改变时触发
    */
   udpateOffset() {
     var offset = this.em.get('canvasOffset');
@@ -67,6 +68,7 @@ module.exports = Backbone.View.extend({
 
   /**
    * Set content to drop
+   * 设置内容下降
    * @param {String|Object} content
    */
   setDropContent(content) {
@@ -75,6 +77,7 @@ module.exports = Backbone.View.extend({
 
   /**
    * Toggle cursor while sorting
+   * 在排序时切换光标
    * @param {Boolean} active
    */
   toggleSortCursor(active) {
@@ -100,6 +103,7 @@ module.exports = Backbone.View.extend({
 
   /**
    * Set drag helper
+   * 设置拖拽助手
    * @param {HTMLElement} el
    * @param {Event} event
    */
@@ -108,6 +112,7 @@ module.exports = Backbone.View.extend({
     var clonedEl = el.cloneNode(1);
 
     // Attach style
+    // 附上风格
     var style = '';
     var o = getComputedStyle(el);
     for(var i = 0; i < o.length; i++) {
@@ -123,6 +128,7 @@ module.exports = Backbone.View.extend({
     }
 
     // Listen mouse move events
+    // 听鼠标移动事件
     if(this.em) {
       $(this.em.get('Canvas').getBody().ownerDocument)
         .off('mousemove', this.moveDragHelper).on('mousemove', this.moveDragHelper);
@@ -133,7 +139,9 @@ module.exports = Backbone.View.extend({
 
   /**
    * //TODO Refactor, use canvas.getMouseRelativePos to get mouse's X and Y
+   * TODO Refactor，使用canvas.getMouseRelativePos获取鼠标的X和Y
    * Update the position of the helper
+   * 更新助手的位置
    * @param  {Event} e
    */
   moveDragHelper(e) {
@@ -160,6 +168,7 @@ module.exports = Backbone.View.extend({
 
   /**
    * Returns true if the element matches with selector
+   * 如果元素与选择器匹配，则返回true
    * @param {Element} el
    * @param {String} selector
    * @return {Boolean}
@@ -176,6 +185,7 @@ module.exports = Backbone.View.extend({
 
   /**
    * Closest parent
+   * 最近的父母
    * @param {Element} el
    * @param {String} selector
    * @return {Element|null}
@@ -194,6 +204,7 @@ module.exports = Backbone.View.extend({
 
   /**
    * Get the offset of the element
+   * 获取元素的偏移量
    * @param  {HTMLElement} el
    * @return {Object}
    */
@@ -207,6 +218,7 @@ module.exports = Backbone.View.extend({
 
   /**
    * Create placeholder
+   * 创建占位符
    * @return {HTMLElement}
    */
   createPlaceholder() {
@@ -223,6 +235,7 @@ module.exports = Backbone.View.extend({
 
   /**
    * Picking component to move
+   * 挑选组件移动
    * @param {HTMLElement} src
    * */
   startSort(src) {
@@ -236,6 +249,7 @@ module.exports = Backbone.View.extend({
     this.eV = src;
 
     // Create placeholder if not exists
+    // 创建占位符（如果不存在）
     if (!this.plh) {
       this.plh = this.createPlaceholder();
       this.getContainerEl().appendChild(this.plh);
@@ -255,6 +269,7 @@ module.exports = Backbone.View.extend({
       this.onStart();
 
     // Avoid strange effects on dragging
+    // 避免对拖动产生奇怪的影响
     if(this.em) {
       this.em.clearSelection();
     }
@@ -264,6 +279,7 @@ module.exports = Backbone.View.extend({
 
   /**
    * Get the model from HTMLElement target
+   * 从HTMLElement目标获取模型
    * @return {Model|null}
    */
   getTargetModel(el) {
@@ -273,6 +289,7 @@ module.exports = Backbone.View.extend({
 
   /**
    * Get the model of the current source element (element to drag)
+   * 获取当前源元素的模型（要拖动的元素）
    * @return {Model}
    */
   getSourceModel() {
@@ -298,6 +315,7 @@ module.exports = Backbone.View.extend({
 
   /**
    * Highlight target
+   * 突出显示目标
    * @param  {Model|null} model
    */
   selectTargetModel(model) {
@@ -318,18 +336,21 @@ module.exports = Backbone.View.extend({
 
   /**
    * During move
+   * 在移动期间
    * @param {Event} e
    * */
   onMove(e) {
     this.moved = 1;
 
     // Turn placeholder visibile
+    // 转动占位符可见
     var plh = this.plh;
     var dsp = plh.style.display;
     if(!dsp || dsp === 'none')
       plh.style.display = 'block';
 
     // Cache all necessary positions
+    // 缓存所有必要的位置
     var eO = this.offset(this.el);
     this.elT = this.wmargin ? Math.abs(eO.top) : eO.top;
     this.elL = this.wmargin ? Math.abs(eO.left): eO.left;
@@ -350,6 +371,7 @@ module.exports = Backbone.View.extend({
     this.lastDims = dims;
     var pos = this.findPosition(dims, rX, rY);
     // If there is a significant changes with the pointer
+    // 如果指针有重大变化
     if( !this.lastPos ||
         (this.lastPos.index != pos.index || this.lastPos.method != pos.method)){
       this.movePlaceholder(this.plh, dims, pos, this.prevTargetDim);
@@ -357,7 +379,9 @@ module.exports = Backbone.View.extend({
         this.$plh = $(this.plh);
 
       // With canvasRelative the offset is calculated automatically for
+      // 使用canvasRelative自动计算偏移量
       // each element
+      // 每个元素
       if (!this.canvasRelative) {
         if(this.offTop)
           this.$plh.css('top', '+=' + this.offTop + 'px');
@@ -374,7 +398,9 @@ module.exports = Backbone.View.extend({
 
   /**
    * Returns true if the elements is in flow, so is not in flow where
+   * 如果元素在流中，则返回true，因此不在流中
    * for example the component is with float:left
+   * 例如组件是float：left
    * @param  {HTMLElement} el
    * @param  {HTMLElement} parent
    * @return {Boolean}
@@ -396,6 +422,7 @@ module.exports = Backbone.View.extend({
 
   /**
    * Check if el has style to be in flow
+   * 检查是否有风格流动
    * @param  {HTMLElement} el
    * @param  {HTMLElement} parent
    * @return {Boolean}
@@ -432,6 +459,7 @@ module.exports = Backbone.View.extend({
 
   /**
    * Check if the target is valid with the actual source
+   * 检查目标是否与实际源有效
    * @param  {HTMLElement} trg
    * @return {Boolean}
    */
@@ -454,6 +482,7 @@ module.exports = Backbone.View.extend({
     }
 
     // Check if the target could accept the source
+    // 检查目标是否可以接受源
     let droppable = trgModel.get('droppable');
     droppable = droppable instanceof Backbone.Collection ? 1 : droppable;
     droppable = droppable instanceof Array ? droppable.join(', ') : droppable;
@@ -462,6 +491,7 @@ module.exports = Backbone.View.extend({
     result.droppable = droppable;
 
     // check if the source is draggable in target
+    // 检查源是否可以在目标中拖动
     let draggable = srcModel.get('draggable');
     draggable = draggable instanceof Array ? draggable.join(', ') : draggable;
     result.dragInfo = draggable;
@@ -477,9 +507,10 @@ module.exports = Backbone.View.extend({
 
   /**
    * Get dimensions of nodes relative to the coordinates
+   * 获取节点相对于坐标的尺寸
    * @param  {HTMLElement} target
-   * @param {number} rX Relative X position
-   * @param {number} rY Relative Y position
+   * @param {number} rX Relative X position 相对X位
+   * @param {number} rY Relative Y position 相对Y位置
    * @return {Array<Array>}
    */
   dimsFromTarget(target, rX, rY) {
@@ -490,11 +521,13 @@ module.exports = Backbone.View.extend({
     }
 
     // Select the first valuable target
+    // 选择第一个有价值的目标
     if (!target.matches(`${this.itemSel}, ${this.containerSel}`)) {
       target = this.closest(target, this.itemSel);
     }
 
     // If draggable is an array the target will be one of those
+    // 如果draggable是数组，则目标将是其中之一
     if (this.draggable instanceof Array) {
       target = this.closest(target, this.draggable.join(','));
     }
@@ -504,15 +537,18 @@ module.exports = Backbone.View.extend({
     }
 
     // Check if the target is different from the previous one
+    // 检查目标是否与上一个不同
     if (this.prevTarget && this.prevTarget != target) {
         this.prevTarget = null;
     }
 
     // New target found
+    // 发现新目标
     if (!this.prevTarget) {
       this.targetP = this.closest(target, this.containerSel);
 
       // Check if the source is valid with the target
+      // 检查源是否与目标有效
       let validResult = this.validTarget(target);
       if (!validResult.valid && this.targetP) {
         return this.dimsFromTarget(this.targetP, rX, rY);
@@ -525,14 +561,18 @@ module.exports = Backbone.View.extend({
     }
 
     // If the target is the previous one will return the cached dims
+    // 如果目标是前一个，将返回缓存的暗点
     if(this.prevTarget == target)
       dims = this.cacheDims;
 
     // Target when I will drop element to sort
+    // 当我将要删除元素进行排序时定位
     this.target = this.prevTarget;
 
     // Generally also on every new target the poiner enters near
+    // 一般也是每个新的目标，先锋中心附近
     // to borders, so have to to check always
+    // 到边界，所以必须总是检查
     if(this.nearBorders(this.prevTargetDim, rX, rY) ||
        (!this.nested && !this.cacheDims.length)) {
         if (!this.validTarget(this.targetP).valid) {
@@ -548,6 +588,7 @@ module.exports = Backbone.View.extend({
 
   /**
    * Returns dimensions and positions about the element
+   * 返回关于元素的尺寸和位置
    * @param {HTMLElement} el
    * @return {Array<number>}
    */
@@ -579,7 +620,8 @@ module.exports = Backbone.View.extend({
   },
 
   /**
-   * Get children dimensions
+   * Get children dimensions  
+   * 获取儿童维度
    * @param {HTMLELement} el Element root
    * @retun {Array}
    * */
@@ -589,6 +631,7 @@ module.exports = Backbone.View.extend({
       return dims;
 
     // Get children based on getChildrenContainer
+    // 获取基于getChildrenContainer的孩子
     var trgModel = this.getTargetModel(trg);
     if (trgModel && trgModel.view && !this.ignoreViewChildren) {
       trg = trgModel.view.getChildrenContainer();
@@ -623,9 +666,10 @@ module.exports = Backbone.View.extend({
 
   /**
    * Check if the coordinates are near to the borders
+   * 检查坐标是否接近边界
    * @param {Array<number>} dim
-   * @param {number} rX Relative X position
-   * @param {number} rY Relative Y position
+   * @param {number} rX Relative X position 相对X位
+   * @param {number} rY Relative Y position 相对Y位置
    * @return {Boolean}
    * */
   nearBorders(dim, rX, rY) {
@@ -646,36 +690,45 @@ module.exports = Backbone.View.extend({
 
   /**
    * Find the position based on passed dimensions and coordinates
-   * @param {Array<Array>} dims Dimensions of nodes to parse
-   * @param {number} posX X coordindate
-   * @param {number} posY Y coordindate
+   * 根据传递的尺寸和坐标找出位置
+   * @param {Array<Array>} dims Dimensions of nodes to parse 要解析的节点尺寸
+   * @param {number} posX X coordindate X坐标
+   * @param {number} posY Y coordindate Y坐标
    * @retun {Object}
    * */
   findPosition(dims, posX, posY) {
     var result = {index: 0, method: 'before'};
     var leftLimit = 0, xLimit = 0, dimRight = 0, yLimit = 0, xCenter = 0, yCenter = 0, dimDown = 0, dim = 0;
     // Each dim is: Top, Left, Height, Width
+    // 每个暗淡的是：上，左，高，宽
     for(var i = 0, len = dims.length; i < len; i++){
       dim = dims[i];
       // Right position of the element. Left + Width
+      // 元素的正确位置 左+宽
       dimRight = dim[1] + dim[3];
       // Bottom position of the element. Top + Height
+      // 元素的底部位置。 顶部+高度
       dimDown = dim[0] + dim[2];
       // X center position of the element. Left + (Width / 2)
+      // X元素的中心位置。 左+（宽/ 2）
       xCenter = dim[1] + (dim[3] / 2);
       // Y center position of the element. Top + (Height / 2)
+      // Y元素的中心位置。 顶部+（身高/ 2）
       yCenter = dim[0] + (dim[2] / 2);
       // Skip if over the limits
+      // 跳过超过极限
       if( (xLimit && dim[1] > xLimit) ||
-          (yLimit && yCenter >= yLimit) || // >= avoid issue with clearfixes
+          (yLimit && yCenter >= yLimit) || // >= avoid issue with clearfixes 避免使用clearfix的问题
           (leftLimit && dimRight < leftLimit) )
           continue;
       result.index = i;
       // If it's not in flow (like 'float' element)
+      // 如果它不是流（像'float'元素）
       if(!dim[4]){
         if(posY < dimDown)
           yLimit = dimDown;
         //If x lefter than center
+        // 如果x比中心更轻
         if(posX < xCenter){
           xLimit = xCenter;
           result.method = "before";
@@ -685,11 +738,12 @@ module.exports = Backbone.View.extend({
         }
       }else{
         // If y upper than center
+        // 如果y高于中心
         if(posY < yCenter){
           result.method = "before";
           break;
         }else
-          result.method = "after"; // After last element
+          result.method = "after"; // After last element 最后一个元素
       }
     }
     return result;
@@ -698,10 +752,11 @@ module.exports = Backbone.View.extend({
 
   /**
    * Updates the position of the placeholder
+   * 更新占位符的位置
    * @param {HTMLElement} phl
    * @param {Array<Array>} dims
-   * @param {Object} pos Position object
-   * @param {Array<number>} trgDim target dimensions
+   * @param {Object} pos Position object 位置对象
+   * @param {Array<number>} trgDim target dimensions 目标尺寸
    * */
   movePlaceholder(plh, dims, pos, trgDim) {
     var marg = 0, t = 0, l = 0, w = 0, h = 0,
@@ -713,6 +768,7 @@ module.exports = Backbone.View.extend({
     plh.style.margin = '-' + brd + 'px 0 0';
     if(elDim){
       // If it's not in flow (like 'float' element)
+      // 如果它不是流（像'float'元素）
       if(!elDim[4]){
         w = 'auto';
         h = elDim[2] - (marg * 2) + un;
@@ -794,9 +850,10 @@ module.exports = Backbone.View.extend({
 
   /**
    * Move component to new position
-   * @param {HTMLElement} dst Destination target
-   * @param {HTMLElement} src Element to move
-   * @param {Object} pos Object with position coordinates
+   * 将组件移动到新位置
+   * @param {HTMLElement} dst Destination target 目标目标
+   * @param {HTMLElement} src Element to move 元素移动
+   * @param {Object} pos Object with position coordinates 具有位置坐标的对象
    * */
   move(dst, src, pos) {
     var em = this.em;
@@ -839,6 +896,7 @@ module.exports = Backbone.View.extend({
       }
 
       // This will cause to recalculate children dimensions
+      // 这将导致重新计算儿童维度
       this.prevTarget = null;
     } else {
       if (!targetCollection) {
@@ -863,8 +921,9 @@ module.exports = Backbone.View.extend({
 
   /**
    * Rollback to previous situation
+  //  * 回滚到以前的情况
    * @param {Event}
-   * @param {Bool} Indicates if rollback in anycase
+   * @param {Bool} Indicates if rollback in anycase 如果在任何情况下回滚
    * */
   rollback(e) {
     $(document).off('keydown', this.rollback);

@@ -25,6 +25,7 @@ module.exports = Backbone.Model.extend({
 
   /**
    * Get the initial value of the trait
+   * 获取特征的初始值
    * @return {string}
    */
   getInitValue() {

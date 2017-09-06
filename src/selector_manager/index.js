@@ -5,7 +5,8 @@
  *
  * Selectors in GrapesJS are used in CSS Composer inside Rules and in Components as classes. To get better this concept let's take
  * a look at this code:
- *
+ * GrapesJS中的选择器在“规则”和“组件”中的CSS Composer中用作类。 要更好的这个概念，我们来吧
+ * 看看这段代码：
  * ```css
  * span > #send-btn.btn{
  *  ...
@@ -18,6 +19,7 @@
  * ```
  *
  * In this scenario we get:
+ * 在这种情况下，我们得到：
  * span     -> selector of type `tag`
  * send-btn -> selector of type `id`
  * btn      -> selector of type `class`
@@ -26,6 +28,9 @@
  *
  * Before using methods you should get first the module from the editor instance, in this way:
  *
+ * 所以，例如，“btn”是同一个类实体，它将更容易重构和跟踪事情。
+ *
+ * 在使用方法之前，您应该首先从编辑器实例中获取模块，方法如下：
  * ```js
  * var selectorManager = editor.SelectorManager;
  * ```
@@ -71,6 +76,7 @@ module.exports = config => {
 
     /**
      * Initialize module. Automatically called with a new instance of the editor
+     * 初始化模块 使用编辑器的新实例自动调用
      * @param {Object} config Configurations
      * @return {this}
      * @private
@@ -105,10 +111,11 @@ module.exports = config => {
 
     /**
      * Add a new selector to collection if it's not already exists. Class type is a default one
+     * 如果尚未存在，则将一个新的选择器添加到集合。 类类型是默认类型
      * @param {String} name Selector name
      * @param {Object} opts Selector options
-     * @param {String} [opts.label=''] Label for the selector, if it's not provided the label will be the same as the name
-     * @param {String} [opts.type='class'] Type of the selector. At the moment, only 'class' is available
+     * @param {String} [opts.label=''] Label for the selector, if it's not provided the label will be the same as the name 标签为选择器，如果没有提供标签将与名称相同
+     * @param {String} [opts.type='class'] Type of the selector. At the moment, only 'class' is available 选择器的类型。 目前只有'班'可用
      * @return {Model}
      * @example
      * var selector = selectorManager.add('selectorName');
@@ -141,6 +148,7 @@ module.exports = config => {
 
     /**
      * Get the selector by its name
+     * 以其名称获取选择器
      * @param {String} name Selector name
      * @return {Model|null}
      * @example
@@ -152,6 +160,7 @@ module.exports = config => {
 
     /**
      * Get all selectors
+     * 获取所有选择器
      * @return {Collection}
      * */
     getAll() {
@@ -160,6 +169,7 @@ module.exports = config => {
 
     /**
      * Render class selectors. If an array of selectors is provided a new instance of the collection will be rendered
+     * 渲染类选择器。 如果提供了一组选择器，则将呈现集合的新实例
      * @param {Array<Object>} selectors
      * @return {HTMLElement}
      * @private

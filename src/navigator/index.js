@@ -11,6 +11,7 @@ module.exports = () => {
       const em = config.em;
 
       // Set default options
+      // 设置默认选项
       for (var name in defaults) {
         if (!(name in config))
           config[name] = defaults[name];
@@ -26,6 +27,7 @@ module.exports = () => {
       }
 
       // Show wrapper if requested
+      // 如果需要，显示包装
       if (config.showWrapper && collection.parent) {
         View = ItemView;
         options.model = collection.parent;
@@ -42,6 +44,7 @@ module.exports = () => {
 
     /**
      * Triggered when the selected component is changed
+     * 所选组件更改时触发
      * @private
      */
     componentChanged(e, md, opts = {}) {

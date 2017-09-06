@@ -12,6 +12,7 @@ module.exports = Backbone.Collection.extend({
 
   add(models, opt) {
     // Use TraitFactory if necessary
+    // 如有必要，使用TraitFactory
     if(typeof models === 'string' || models instanceof Array) {
       if(typeof models === 'string')
         models = [models];

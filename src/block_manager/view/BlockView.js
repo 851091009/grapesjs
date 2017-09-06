@@ -16,6 +16,7 @@ module.exports = Backbone.View.extend({
 
   /**
    * Start block dragging
+   * 启动块拖动
    * @private
    */
   startDrag(e) {

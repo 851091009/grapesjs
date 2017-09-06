@@ -12,6 +12,7 @@ module.exports = _.extend({}, SelectPosition, {
 
   /**
    * Start with enabling to select position and listening to start drawning
+   * 开始能够选择位置和听力开始溺水
    * @private
    * */
   enable(...args) {
@@ -24,6 +25,7 @@ module.exports = _.extend({}, SelectPosition, {
 
   /**
    * Start drawing component
+   * 开始绘制组件
    * @param   {Object} e  Event
    * @private
    * */
@@ -45,6 +47,7 @@ module.exports = _.extend({}, SelectPosition, {
 
   /**
    * Enable/Disable events
+   * 启用/禁用事件
    * @param {Boolean} enable
    */
   toggleEvents(enable) {
@@ -58,6 +61,7 @@ module.exports = _.extend({}, SelectPosition, {
 
   /**
    * While drawing the component
+   * 绘制组件时
    * @param   {Object}  e  Event
    * @private
    * */
@@ -68,6 +72,7 @@ module.exports = _.extend({}, SelectPosition, {
 
   /**
    * End drawing component
+   * 最后绘制组件
    * @param   {Object}  e Event
    * @private
    * */
@@ -89,6 +94,7 @@ module.exports = _.extend({}, SelectPosition, {
 
   /**
    * Create new component inside the target
+   * 在目标内部创建新组件
    * @param  {Object} target Tha target collection
    * @param {Object} component New component to create
    * @param {number} index Index inside the collection, 0 if no children inside
@@ -111,6 +117,7 @@ module.exports = _.extend({}, SelectPosition, {
 
   /**
    * Check and set basic requirements for the component
+   * 检查并设置组件的基本要求
    * @param   {Object}  component  New component to be created
    * @return   {Object}   Component updated
    * @private
@@ -147,6 +154,7 @@ module.exports = _.extend({}, SelectPosition, {
 
   /**
    * Update new component size while drawing
+   * 在绘图时更新新组件大小
    * @param   {Object}   e  Event
    * @private
    * */
@@ -171,6 +179,7 @@ module.exports = _.extend({}, SelectPosition, {
 
   /**
    * Update size
+   * 更新的大小
    * @private
    */
   updateSize(top, left, width, height) {
@@ -185,6 +194,7 @@ module.exports = _.extend({}, SelectPosition, {
 
   /**
    * Used to bring the previous situation before event started
+   * 用于在事件开始之前带来以前的情况
    * @param   {Object}  e    Event
    * @param   {Boolean}   forse  Indicates if rollback in anycase
    * @private
@@ -200,6 +210,7 @@ module.exports = _.extend({}, SelectPosition, {
 
   /**
    * This event is triggered at the beginning of a draw operation
+   * 此事件在绘图操作开始时触发。
    * @param   {Object}  component  Object component before creation
    * @private
    * */
@@ -209,6 +220,7 @@ module.exports = _.extend({}, SelectPosition, {
 
   /**
    * This event is triggered at the end of a draw operation
+   * 此事件在绘制操作结束时触发。
    * @param   {Object}  model  Component model created
    * @private
    * */

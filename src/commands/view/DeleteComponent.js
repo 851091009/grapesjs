@@ -1,4 +1,4 @@
-var Backbone = require('backbone');
+var Backbone        = require('backbone');
 var SelectComponent = require('./SelectComponent');
 
 module.exports = _.extend({},SelectComponent,{
@@ -19,6 +19,7 @@ module.exports = _.extend({},SelectComponent,{
 
   /**
    * Start command
+   * 启动命令
    * @param {Object}  e
    * @private
    */
@@ -27,6 +28,7 @@ module.exports = _.extend({},SelectComponent,{
       var $this   =  $(e.target);
 
       // Show badge if possible
+      // 如果可能的话，显示徽章
       if($this.data('model').get('removable')){
         $this.addClass(this.hoverClass);
         this.attachBadge($this.get(0));
@@ -36,6 +38,7 @@ module.exports = _.extend({},SelectComponent,{
 
   /**
    * Stop command
+   * 停止命令
    * @param {Object}  e
    * @private
    */
@@ -45,12 +48,14 @@ module.exports = _.extend({},SelectComponent,{
       $this.removeClass(this.hoverClass);
 
       // Hide badge if possible
+      // 如果可能的话，隐藏徽章
       if(this.badge)
         this.badge.css({ left: -1000, top:-1000 });
   },
 
   /**
    * Delete command
+   * 删除命令
    * @param {Object}  e
    * @private
    */
@@ -59,6 +64,7 @@ module.exports = _.extend({},SelectComponent,{
     var $this = $(e.target);
 
     // Do nothing in case can't remove
+    // 什么事都不能去掉
     if(!$this.data('model').get('removable'))
       return;
 
@@ -69,6 +75,7 @@ module.exports = _.extend({},SelectComponent,{
 
   /**
    * Updates badge label
+   * 更新的徽章标签
    * @param   {Object}  model
    * @private
    * */

@@ -27,6 +27,7 @@ module.exports = Backbone.View.extend({
 
   /**
    * Get sorter
+   * 得到的分类器
    * @private
    */
   getSorter() {
@@ -57,6 +58,7 @@ module.exports = Backbone.View.extend({
 
   /**
    * Callback when block is on drag
+   * 当块在拖动时回调
    * @private
    */
   onDrag(e) {
@@ -70,6 +72,7 @@ module.exports = Backbone.View.extend({
 
   /**
    * Callback when block is dropped
+   * 当块被删除时回调
    * @private
    */
   onDrop(model) {
@@ -83,6 +86,7 @@ module.exports = Backbone.View.extend({
       }
 
       // Register all its components (eg. for the Undo Manager)
+      // 注册所有组件（如撤消管理器）
       em.initChildrenComp(model);
       em.trigger('block:drag:stop', model);
     }
@@ -90,6 +94,7 @@ module.exports = Backbone.View.extend({
 
   /**
    * Add new model to the collection
+   * 向集合中添加新模型
    * @param {Model} model
    * @private
    * */
@@ -99,6 +104,7 @@ module.exports = Backbone.View.extend({
 
   /**
    * Render new model inside the view
+   * 在视图中呈现新模型
    * @param {Model} model
    * @param {Object} fragment Fragment collection
    * @private

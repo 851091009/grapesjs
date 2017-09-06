@@ -1,4 +1,4 @@
-var Backbone = require('backbone');
+var Backbone      = require('backbone');
 var ComponentView = require('./ComponentView');
 
 module.exports = ComponentView.extend({
@@ -25,6 +25,7 @@ module.exports = ComponentView.extend({
 
   /**
    * Update src attribute
+   * Src属性更新
    * @private
    * */
   updateSrc() {
@@ -38,6 +39,7 @@ module.exports = ComponentView.extend({
 
   /**
    * Open dialog for image changing
+   * 图像更改打开对话框
    * @param  {Object}  e  Event
    * @private
    * */

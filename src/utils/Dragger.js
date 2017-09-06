@@ -12,12 +12,14 @@ var getBoundingRect = (el, win) => {
 module.exports = {
 
   // TODO move to opts
+  // TODO转向选择
   setKey(keys, command) {
     //key(keys, command);
   },
 
   /**
    * Return element position
+   * 返回元素位置
    * @param  {HTMLElement} el
    * @return {Object}
    */
@@ -30,6 +32,7 @@ module.exports = {
 
   /**
    * Init the resizer
+   * 启动resizer
    * @param  {Object} opts
    */
   init(opts) {
@@ -44,6 +47,7 @@ module.exports = {
 
   /**
    * Update options
+   * 更新选项
    * @param {Object} options
    */
   setOptions(opts) {
@@ -52,10 +56,12 @@ module.exports = {
 
   /**
    * Focus dragger on the element
+   * 将元素上的焦点拖放
    * @param {HTMLElement} el
    */
   focus(el) {
     // Avoid focusing on already focused element
+    // 避免关注已经聚焦的元素
     if (el && el === this.el) {
       return;
     }
@@ -72,12 +78,14 @@ module.exports = {
     this.startLeft = elRect.left;
 
     // TODO init snapper
+    // TODO init snapper
 
 		this.getDocumentEl().on('mousedown', this.handleMouseDown);
   },
 
   /**
    * Blur from the focused element
+   * 模糊从聚焦的元素
    */
   blur() {
     this.getDocumentEl().off('mousedown', this.handleMouseDown);
@@ -86,6 +94,7 @@ module.exports = {
 
   /**
    * Start dragging
+   * 开始拖动
    * @param  {Event} e
    */
   start(e) {
@@ -95,6 +104,7 @@ module.exports = {
     docs.on('mouseup', this.stop);
 
     // Start callback
+    // 开始回调
     var onStart = this.opts.onStart;
     if(typeof onStart === 'function') {
       onStart(e, {
@@ -110,6 +120,7 @@ module.exports = {
 
   /**
    * Stop dragging
+   * 停止拖动
    */
   stop(e) {
     var docs = this.getDocumentEl();
@@ -118,6 +129,7 @@ module.exports = {
     this.lockedAxis = null;
 
     // Stop callback
+    // 停止回调
     var onEnd = this.opts.onEnd;
     if(typeof onEnd === 'function') {
       onEnd(e, {
@@ -133,6 +145,7 @@ module.exports = {
 
   /**
    * Handle mousedown to check if it's possible to drag
+   * 处理mousedown以检查是否可以拖动
    * @param  {Event} e
    */
   handleMouseDown(e) {
@@ -144,6 +157,7 @@ module.exports = {
 
   /**
    * Detects if the clicked element is a valid handler
+   * 检测点击的元素是否是有效的处理程序
    * @param  {HTMLElement} el
    * @return {Boolean}
    */
@@ -159,6 +173,7 @@ module.exports = {
 
   /**
    * Handle key press
+   * 手柄按键
    * @param  {Event} e
    * @param  {Object} handler
    */
@@ -181,6 +196,7 @@ module.exports = {
 
   /**
    * Returns documents
+   * 退回文件
    */
   getDocumentEl(el) {
     var el = el || this.el;
@@ -196,6 +212,7 @@ module.exports = {
 
   /**
    * Get mouse coordinates
+   * 获取鼠标坐标
    * @param  {Event} event
    * @return {Object}
    */
@@ -209,6 +226,7 @@ module.exports = {
 
   /**
    * Drag event
+   * 拖动事件
    * @param  {Event} event
    */
   drag(e) {
@@ -219,6 +237,7 @@ module.exports = {
       y: currentPos.y - this.startPos.y
     };
     // Lock one axis
+    // 锁定一个轴
     if (e.shiftKey) {
       if (!lockedAxis) {
         var relX = delta.x;
@@ -227,6 +246,7 @@ module.exports = {
         var absY = Math.abs(relY);
 
         // Vertical or Horizontal lock
+        // 垂直或水平锁
         if (relY >= absX || relY <= -absX) {
           lockedAxis = 'x';
         } else if (relX > absY || relX < -absY) {
@@ -250,6 +270,7 @@ module.exports = {
     this.move(delta.x, delta.y);
 
     // Drag callback
+    // 拖动回调
     const onDrag = this.opts.onDrag;
     if(typeof onDrag === 'function') {
       onDrag(e, {
@@ -263,6 +284,7 @@ module.exports = {
     }
 
     // In case the mouse button was released outside of the window
+    // 万一鼠标按钮被释放到窗外
     if (e.which === 0) {
       this.stop(e);
     }
@@ -270,6 +292,7 @@ module.exports = {
 
   /**
    * Move the element
+   * 移动元素
    * @param  {integer} x
    * @param  {integer} y
    */
@@ -280,6 +303,7 @@ module.exports = {
 
   /**
    * Move in x direction
+   * 沿x方向移动
    * @param  {integer} x
    */
   moveX(x) {
@@ -301,6 +325,7 @@ module.exports = {
 
   /**
    * Move in y direction
+   * 沿y方向移动
    * @param  {integer} y
    */
   moveY(y) {

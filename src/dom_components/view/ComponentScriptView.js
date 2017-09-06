@@ -15,6 +15,7 @@ module.exports = ComponentView.extend({
     var content = '';
 
     // If it's an external script
+    // 如果是外部脚本
     if(src) {
       var onload = model.get('onload');
       var svar = 'script' + scriptCount;

@@ -10,6 +10,7 @@ module.exports = config => {
 
     /**
      * Parse style string to object
+     * 将样式字符串解析为对象
      * @param {string} str
      * @return {Object}
      * @example
@@ -32,6 +33,7 @@ module.exports = config => {
 
     /**
      * Parse class string to array
+     * 将类字符串解析为数组
      * @param {string} str
      * @return {Array<string>}
      * @example
@@ -54,6 +56,7 @@ module.exports = config => {
 
     /**
      * Fetch data from node
+     * 从节点获取数据
      * @param  {HTMLElement} el DOM
      * @return {Array<Object>}
      */
@@ -96,11 +99,13 @@ module.exports = config => {
           model.attributes = {};
 
         // Store attributes
+        // 存储属性
         for (var j = 0; j < attrsLen; j++){
           var nodeName = attrs[j].nodeName;
           var nodeValue = attrs[j].nodeValue;
 
-          //Isolate few attributes
+          // Isolate few attributes
+          // 隔离几个属性
           if(nodeName == 'style')
             model.style = this.parseStyle(nodeValue);
           else if(nodeName == 'class')
@@ -121,8 +126,11 @@ module.exports = config => {
 
         // Check for nested elements and avoid them if an array
         // was already given
+        // 检查嵌套元素，并避免数组
+        // 已经给了
         if(nodeChild && !model.components){
           // Avoid infinite text nodes nesting
+          // 避免无限文本节点嵌套
           var firstChild = node.childNodes[0];
           if(nodeChild === 1 && firstChild.nodeType === 3){
             if(!model.type){
@@ -143,6 +151,7 @@ module.exports = config => {
         }
 
         // Check if it's a text node and if could be moved to the prevous model
+        // 检查它是否是文本节点，如果可以移动到以前的模型
         if(model.type == 'textnode'){
           var prevIsText = prevSib && prevSib.type == 'textnode';
           if(prevIsText){
@@ -150,6 +159,7 @@ module.exports = config => {
             continue;
           }
           // Throw away empty nodes (keep spaces)
+          // 抛出空节点（保留空格）
           var content = node.nodeValue;
           if(content != ' ' && !content.trim()){
             continue;
@@ -158,6 +168,9 @@ module.exports = config => {
 
         // If all children are texts and there is some textnode the parent should
         // be text too otherwise I'm unable to edit texnodes
+
+        // 如果所有的孩子都是文本，并且父母应该有一些textnode
+        // 是文本，否则我无法编辑texnodes
         var comps = model.components;
         if(!model.type && comps){
           var allTxt = 1;
@@ -178,6 +191,7 @@ module.exports = config => {
         }
 
         // If tagName is still empty and is not a textnode, do not push it
+        // 如果tagName仍然为空并且不是文本节点，请勿推送它
         if(!model.tagName && model.type != 'textnode')
           continue;
 
@@ -189,8 +203,9 @@ module.exports = config => {
 
     /**
      * Parse HTML string to a desired model object
+     * 将HTML字符串解析为所需的模型对象
      * @param  {string} str HTML string
-     * @param  {ParserCss} parserCss In case there is style tags inside HTML
+     * @param  {ParserCss} parserCss In case there is style tags inside    HTML 如果HTML中有样式标签
      * @return {Object}
      */
     parse(str, parserCss) {
@@ -202,12 +217,14 @@ module.exports = config => {
       var i = scripts.length;
 
       // Remove all scripts
+      // 删除所有脚本
       if(!config.allowScripts){
         while (i--)
           scripts[i].parentNode.removeChild(scripts[i]);
       }
 
       // Detach style tags and parse them
+      // 分离样式标签并解析它们
       if(parserCss){
         var styleStr = '';
         var styles = el.querySelectorAll('style');

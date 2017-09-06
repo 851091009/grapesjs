@@ -34,6 +34,7 @@ module.exports = Backbone.View.extend({
 
   /**
    * Set value to the model
+   * 将值设置为模型
    * @param {string} value
    * @param {Object} opts
    */
@@ -43,6 +44,7 @@ module.exports = Backbone.View.extend({
     var validObj = {value: valid.value};
 
     // If found some unit value
+    // 如果找到一些单位价值
     if(valid.unit || valid.force) {
       validObj.unit = valid.unit;
     }
@@ -50,7 +52,9 @@ module.exports = Backbone.View.extend({
     this.model.set(validObj, opt);
 
     // Generally I get silent when I need to reflect data to view without
+    // 一般来说，当我需要反映数据时，我会保持沉默
     // reupdating the target
+    // 重新定位目标
     if(opt.silent) {
       this.handleModelChange();
     }
@@ -58,6 +62,7 @@ module.exports = Backbone.View.extend({
 
   /**
    * Handled when the view is changed
+   * 视图更改时处理
    */
   handleChange(e) {
     e.stopPropagation();
@@ -67,6 +72,7 @@ module.exports = Backbone.View.extend({
 
   /**
    * Handled when the view is changed
+   * 视图更改时处理
    */
   handleUnitChange(e) {
     e.stopPropagation();
@@ -77,6 +83,7 @@ module.exports = Backbone.View.extend({
 
   /**
    * Fired when the element of the property is updated
+   * 当属性的元素更新时触发
    */
   elementUpdated() {
     this.model.trigger('el:change');
@@ -84,6 +91,7 @@ module.exports = Backbone.View.extend({
 
   /**
    * Updates the view when the model is changed
+   * 更改模型时更新视图
    * */
   handleModelChange() {
     var m = this.model;
@@ -97,6 +105,7 @@ module.exports = Backbone.View.extend({
 
   /**
    * Get the input element
+   * 获取输入元素
    * @return {HTMLElement}
    */
   getInputEl() {
@@ -112,6 +121,7 @@ module.exports = Backbone.View.extend({
 
   /**
    * Get the unit element
+   * 获取单位元素
    * @return {HTMLElement}
    */
   getUnitEl() {
@@ -133,6 +143,7 @@ module.exports = Backbone.View.extend({
 
   /**
    * Invoked when the up arrow is clicked
+   * 单击向上箭头时调用
    * */
   upArrowClick() {
     var value  = this.model.get('value');
@@ -143,6 +154,7 @@ module.exports = Backbone.View.extend({
 
   /**
    * Invoked when the down arrow is clicked
+   * 单击向下箭头时调用
    * */
   downArrowClick() {
     var value  = this.model.get('value');
@@ -153,6 +165,7 @@ module.exports = Backbone.View.extend({
 
   /**
    * Change easily integer input value with click&drag method
+   * 通过点击和拖动方法更改容易的整数输入值
    * @param Event
    *
    * @return void
@@ -168,6 +181,7 @@ module.exports = Backbone.View.extend({
   },
 
   /** While the increment is clicked, moving the mouse will update input value
+   * 单击增量时，移动鼠标将更新输入值
    * @param Object
    *
    * @return bool
@@ -182,6 +196,7 @@ module.exports = Backbone.View.extend({
 
   /**
    * Stop moveIncrement method
+   * 停止moveIncrement方法
    * @param Object
    *
    * @return void
@@ -200,6 +215,7 @@ module.exports = Backbone.View.extend({
 
   /**
    * Validate input value
+   * 验证输入值
    * @param {String} value Raw value
    * @param {Object} opts Options
    * @return {Object} Validated string
@@ -219,6 +235,7 @@ module.exports = Backbone.View.extend({
 
       if (val) {
         // If the value is one of the fixed values I leave it as it is
+        // 如果值是固定值之一，我保留原样
         var regFixed = new RegExp('^' + fixed.join('|'), 'g');
         if (fixed.length && regFixed.test(val)) {
           val = val.match(regFixed)[0];
@@ -226,7 +243,7 @@ module.exports = Backbone.View.extend({
           force = 1;
         } else {
           var valCopy = val + '';
-          val += ''; // Make it suitable for replace
+          val += ''; // Make it suitable for replace 使其适合更换
           val = parseFloat(val.replace(',', '.'));
           val = !isNaN(val) ? val : model.get('defaults');
           var uN = valCopy.replace(val, '');

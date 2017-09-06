@@ -283,6 +283,13 @@ module.exports = () => {
      *                            `model` (business logic), `view` (presentation logic)
      *                            and `isType` function which recognize the type of the
      *                            passed entity
+     * 
+     *                            类型的定义。 每个定义包含
+     *                            `model`（业务逻辑），`view`（表示逻辑）
+     *                            和`isType`函数识别的类型
+     *                            通过实体               
+     * 
+     * 
      * addType('my-type', {
      *  model: {},
      *  view: {},
@@ -297,7 +304,7 @@ module.exports = () => {
      * Get type
      * 获取类型
      * @param {string} id Type ID
-     * @return {Object} Type definition
+     * @return {Object} Type definition 类型定义
      */
     getType(id) {
       return this.getAll().getType(id);

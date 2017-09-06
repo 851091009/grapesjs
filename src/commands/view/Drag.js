@@ -11,6 +11,7 @@ module.exports = {
     options.posFetcher = canvasView.getElementPos.bind(canvasView);
 
     // Create the resizer for the canvas if not yet created
+    // 如果尚未创建的画布的大小
     if(!dragger) {
       dragger = editor.Utils.Dragger.init(options);
       this.dragger = dragger;

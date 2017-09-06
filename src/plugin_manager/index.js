@@ -40,6 +40,7 @@ module.exports = config => {
 
     /**
      * Returns plugin by ID
+     * 按ID返回插件
      * @param  {string} id Plugin ID
      * @return {Function|undefined} Plugin
      * @example

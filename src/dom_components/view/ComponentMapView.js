@@ -14,6 +14,7 @@ module.exports = ComponentView.extend({
 
   /**
    * Update the map on the canvas
+   * 更新画布上的地图
    * @private
    */
   updateSrc() {

@@ -4,6 +4,7 @@
  * * [getAll](#getall)
  *
  * Before using methods you should get first the module from the editor instance, in this way:
+ * 在使用方法之前，您应该首先从编辑器实例中获取模块，以这种方式：
  *
  * ```js
  * var deviceManager = editor.DeviceManager;
@@ -22,6 +23,7 @@ module.exports = () => {
 
       /**
        * Name of the module
+       * 模块名称
        * @type {String}
        * @private
        */
@@ -59,6 +61,7 @@ module.exports = () => {
 
       /**
        * Add new device to the collection. URLs are supposed to be unique
+       * 向集合中添加新设备。URL应该是唯一的。
        * @param {string} name Device name
        * @param {string} width Width of the device
        * @param {Object} opts Custom options
@@ -75,6 +78,7 @@ module.exports = () => {
 
       /**
        * Return device by name
+       * 按名称返回设备
        * @param  {string} name Name of the device
        * @example
        * var device = deviceManager.get('Tablet');
@@ -87,6 +91,7 @@ module.exports = () => {
 
       /**
        * Return all devices
+       * 将所有设备
        * @return {Collection}
        * @example
        * var devices = deviceManager.getAll();
@@ -99,6 +104,7 @@ module.exports = () => {
 
       /**
        * Render devices
+       * 渲染器
        * @return {string} HTML string
        * @private
        */

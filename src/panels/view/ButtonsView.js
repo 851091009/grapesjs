@@ -15,6 +15,7 @@ module.exports = Backbone.View.extend({
 
   /**
    * Add to collection
+   * 加入收藏
    * @param Object Model
    *
    * @return Object
@@ -25,6 +26,7 @@ module.exports = Backbone.View.extend({
 
   /**
    * Add new object to collection
+   * 将新对象添加到集合
    * @param  Object  Model
    * @param  Object   Fragment collection
    *

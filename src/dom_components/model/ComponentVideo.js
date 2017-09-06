@@ -11,7 +11,7 @@ module.exports = Component.extend({
       tagName: 'video',
       videoId: '',
       void: 0,
-      provider: '', // on change of provider, traits are switched
+      provider: '', // on change of provider, traits are switched 关于提供者的更改，特性被切换
       ytUrl: 'https://www.youtube.com/embed/',
       viUrl: 'https://player.vimeo.com/video/',
       loop: 0,
@@ -47,6 +47,7 @@ module.exports = Component.extend({
 
   /**
    * Set attributes by src string
+   * 用SRC字符串设置属性
    */
   parseFromSrc() {
     var prov = this.get('provider');
@@ -71,6 +72,7 @@ module.exports = Component.extend({
 
   /**
    * Update src on change of video ID
+   * 在更改视频id时更新SRC
    * @private
    */
   updateSrc() {
@@ -87,6 +89,7 @@ module.exports = Component.extend({
 
   /**
    * Returns object of attributes for HTML
+   * 返回HTML属性的对象
    * @return {Object}
    * @private
    */
@@ -109,6 +112,7 @@ module.exports = Component.extend({
 
   /**
    * Update traits by provider
+   * 按提供者更新特性
    * @private
    */
   updateTraits() {
@@ -131,9 +135,11 @@ module.exports = Component.extend({
   },
 
   // Listen provider change and switch traits, in TraitView listen traits change
+  // 倾听供应商的变化和开关特性，在traitview听性状变化
 
   /**
    * Return the provider trait
+   * 返回提供者特性
    * @return {Object}
    * @private
    */
@@ -154,6 +160,7 @@ module.exports = Component.extend({
 
   /**
    * Return traits for the source provider
+   * 返回源提供者的特性
    * @return {Array<Object>}
    * @private
    */
@@ -171,6 +178,7 @@ module.exports = Component.extend({
   },
   /**
    * Return traits for the source provider
+   * 返回源提供者的特性
    * @return {Array<Object>}
    * @private
    */
@@ -190,6 +198,7 @@ module.exports = Component.extend({
 
   /**
    * Return traits for the source provider
+   * 返回源提供者的特性
    * @return {Array<Object>}
    * @private
    */
@@ -213,6 +222,7 @@ module.exports = Component.extend({
 
   /**
    * Return object trait
+   * 返回对象的特点
    * @return {Object}
    * @private
    */
@@ -227,6 +237,7 @@ module.exports = Component.extend({
 
   /**
    * Return object trait
+   * 返回对象的特点
    * @return {Object}
    * @private
    */
@@ -241,6 +252,7 @@ module.exports = Component.extend({
 
   /**
    * Return object trait
+   * 返回对象的特点
    * @return {Object}
    * @private
    */
@@ -256,6 +268,7 @@ module.exports = Component.extend({
 
   /**
    * Returns url to youtube video
+   * 返回到YouTube视频的URL
    * @return {string}
    * @private
    */
@@ -270,6 +283,7 @@ module.exports = Component.extend({
 
   /**
    * Returns url to vimeo video
+   * 返回的URL到Vimeo视频
    * @return {string}
    * @private
    */
@@ -289,6 +303,10 @@ module.exports = Component.extend({
    * Detect if the passed element is a valid component.
    * In case the element is valid an object abstracted
    * from the element will be returned
+   * 
+   * 检测传入的元素是否是有效的组件。
+   * 如果元素是有效的，对象将被抽象。
+   * 将从元素返回
    * @param {HTMLElement}
    * @return {Object}
    * @private

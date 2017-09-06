@@ -11,6 +11,8 @@
  * With this module is possible to manage components inside the canvas.
  * Before using methods you should get first the module from the editor instance, in this way:
  *
+ * 使用这个模块可以管理画布中的组件。
+ * 在使用方法之前，您应该首先从编辑器实例中获取模块，以这种方式：
  * ```js
  * var domComponents = editor.DomComponents;
  * ```
@@ -34,8 +36,8 @@
  */
 module.exports = () => {
   var c = {},
-  defaults = require('./config/config'),
-  Component = require('./model/Component'),
+  defaults      = require('./config/config'),
+  Component     = require('./model/Component'),
   ComponentView = require('./view/ComponentView');
 
   var component, componentView;
@@ -108,6 +110,7 @@ module.exports = () => {
 
     /**
      * Name of the module
+     * 模块名称
      * @type {String}
      * @private
      */
@@ -115,6 +118,7 @@ module.exports = () => {
 
     /**
      * Returns config
+     * 返回配置
      * @return {Object} Config object
      * @private
      */
@@ -124,6 +128,7 @@ module.exports = () => {
 
     /**
      * Mandatory for the storage manager
+     * 存储管理器的强制性
      * @type {String}
      * @private
      */
@@ -140,6 +145,8 @@ module.exports = () => {
     /**
      * Initialize module. Called on a new instance of the editor with configurations passed
      * inside 'domComponents' field
+     * 初始化模块。调用具有配置的编辑器的新实例
+     * 在“domcomponents”字段
      * @param {Object} config Configurations
      * @private
      */
@@ -161,6 +168,7 @@ module.exports = () => {
         c.stylePrefix = ppfx + c.stylePrefix;
 
       // Load dependencies
+      // 加载依赖项
       if (em) {
         c.rte = em.get('rte') || '';
         c.modal = em.get('Modal') || '';
@@ -170,18 +178,21 @@ module.exports = () => {
       }
 
       // Build wrapper
+      // 建立包装
       let components = c.components;
       let wrapper = Object.assign({}, c.wrapper);
       wrapper['custom-name'] = c.wrapperName;
       wrapper.wrapper = 1;
 
       // Components might be a wrapper
+      // 组件可能是包装器。
       if (components && components.constructor === Object && components.wrapper) {
         wrapper = Object.assign({}, components);
         components = components.components || [];
         wrapper.components = [];
 
         // Have to put back the real object of components
+        // 必须把组件的实际对象放回原处
         if (em) {
           em.config.components = components;
         }
@@ -208,6 +219,7 @@ module.exports = () => {
 
     /**
      * On load callback
+     * 在负荷回调
      * @private
      */
     onLoad() {
@@ -221,6 +233,10 @@ module.exports = () => {
      * Load components from the passed object, if the object is empty will try to fetch them
      * autonomously from the selected storage
      * The fetched data will be added to the collection
+     * 
+     * 从已传递对象中加载组件，如果对象为空，将尝试获取它们。
+     * 自主选择存储
+     * 获取的数据将被添加到集合中。
      * @param {Object} data Object of data to load
      * @return {Object} Loaded data
      */
@@ -259,6 +275,7 @@ module.exports = () => {
 
     /**
      * Store components on the selected storage
+     * 将组件存储在选定的存储中
      * @param {Boolean} noStore If true, won't store
      * @return {Object} Data to store
      */
@@ -289,6 +306,7 @@ module.exports = () => {
 
     /**
      * Returns privately the main wrapper
+     * 返回主包装器
      * @return {Object}
      * @private
      */
@@ -299,9 +317,13 @@ module.exports = () => {
     /**
      * Returns root component inside the canvas. Something like <body> inside HTML page
      * The wrapper doesn't differ from the original Component Model
+     * 
+     * 返回画布中的根组件。类似<正文> html页面
+     * 包装器与原始组件模型没有差别。
      * @return {Component} Root Component
      * @example
      * // Change background of the wrapper and set some attribute
+     * // 更改包装器的背景并设置一些属性
      * var wrapper = domComponents.getWrapper();
      * wrapper.set('style', {'background-color': 'red'});
      * wrapper.set('attributes', {'title': 'Hello!'});
@@ -314,6 +336,10 @@ module.exports = () => {
      * Returns wrapper's children collection. Once you have the collection you can
      * add other Components(Models) inside. Each component can have several nested
      * components inside and you can nest them as more as you wish.
+     * 
+     * 返回包装器的子集合。一旦你有了收藏，你就可以
+     * 在内部添加其他组件（模型）。每个组件可以有几个嵌套
+     * 组件内，你可以嵌套他们更多的，因为你的愿望。
      * @return {Components} Collection of components
      * @example
      * // Let's add some component
@@ -343,6 +369,7 @@ module.exports = () => {
 
     /**
      * Add new components to the wrapper's children. It's the same
+     * 向包装器的子组件添加新组件。是一样的
      * as 'domComponents.getComponents().add(...)'
      * @param {Object|Component|Array<Object>} component Component/s to add
      * @param {string} [component.tagName='div'] Tag name
@@ -378,6 +405,11 @@ module.exports = () => {
      * Once the wrapper is rendered, and it's what happens when you init the editor,
      * the all new components will be added automatically and property changes are all
      * updated immediately
+     * 
+     * 呈现和返回包装器元素，其中包含所有组件。
+     * 包装器被呈现后，它就是在初始化编辑器时发生的事情，
+     * 所有新组件将自动添加，属性更改全部完成。
+     * 立即更新
      * @return {HTMLElement}
      */
     render() {
@@ -386,6 +418,7 @@ module.exports = () => {
 
     /**
      * Remove all components
+     * 删除所有组件
      * @return {this}
      */
     clear() {
@@ -397,6 +430,7 @@ module.exports = () => {
 
     /**
      * Set components
+     * 设置组件
      * @param {Object|string} components HTML string or components model
      * @return {this}
      * @private
@@ -407,6 +441,7 @@ module.exports = () => {
 
     /**
      * Add new component type
+     * 添加新组件类型
      * @param {string} type
      * @param {Object} methods
      * @private
@@ -424,6 +459,7 @@ module.exports = () => {
 
     /**
      * Get component type
+     * 得到的组件类型
      * @param {string} type
      * @private
      */
@@ -441,6 +477,7 @@ module.exports = () => {
 
     /**
      * Triggered when the selected component is changed
+     * 当所选组件被更改时触发。
      * @private
      */
     componentChanged() {
@@ -449,6 +486,7 @@ module.exports = () => {
       const previousModel = em.previous('selectedComponent');
 
       // Deselect the previous component
+      // 取消以前的成分
       if (previousModel) {
         previousModel.set({
           status: '',

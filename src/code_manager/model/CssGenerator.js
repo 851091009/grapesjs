@@ -8,6 +8,7 @@ module.exports = Backbone.Model.extend({
 
   /**
    * Get CSS from component
+   * 从组件获取CSS
    * @param {Model} model
    * @return {String}
    */
@@ -41,6 +42,7 @@ module.exports = Backbone.Model.extend({
 
   /**
    * Get CSS from components
+   * 从组件获取CSS
    * @param {Model} model
    * @return {String}
    */
@@ -107,6 +109,7 @@ module.exports = Backbone.Model.extend({
 
   /**
    * Get CSS from the rule model
+   * 从规则模型中获取CSS
    * @param {Model} rule
    * @return {string} CSS string
    */
@@ -121,6 +124,7 @@ module.exports = Backbone.Model.extend({
     var compCls = this.compCls;
 
     // Get string of selectors
+    // 获取选择器字符串
     selectors.each(selector => {
       strSel += '.' + selector.get('name');
       if(compCls.indexOf(selector.get('name')) > -1)
@@ -128,13 +132,16 @@ module.exports = Backbone.Model.extend({
     });
 
     // With 'found' will skip rules which selectors are not found in
+    // 用“查找”将跳过规则，其中找不到选择器。
     // canvas components.
+    // 画布组件。
     if ((strSel && found) || selectorsAdd) {
       strSel += state ? ':' + state : '';
       strSel += selectorsAdd ? (strSel ? ', ' : '') + selectorsAdd : '';
       var strStyle = '';
 
       // Get string of style properties
+      // 获取样式属性字符串
       if(ruleStyle && Object.keys(ruleStyle).length !== 0){
         for(var prop2 in ruleStyle){
           if(ruleStyle.hasOwnProperty(prop2))

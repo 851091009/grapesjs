@@ -11,6 +11,7 @@ module.exports = Backbone.View.extend({
 
   /**
    * Add to collection
+   * 加入收藏
    * @param  {Object} Model
    *
    * @return  void
@@ -30,6 +31,7 @@ module.exports = Backbone.View.extend({
 
   /**
    * Add new object to collection
+   * 向集合中添加新对象
    * @param  {Object}  Model
    * @param  {Object}   Fragment collection
    * @param  {Integer}  Index of append
@@ -75,11 +77,14 @@ module.exports = Backbone.View.extend({
         var method  = 'before';
         // If the added model is the last of collection
         // need to change the logic of append
+        // 如果添加模型也是最后的收集
+        // 需要改变的“逻辑”的append
         if(pc && p.children().length == index){
           index--;
           method  = 'after';
         }
         // In case the added is new in the collection index will be -1
+        // 在案例/加冰的新指标的收集，将1
         if(index < 0) {
           p.append(rendered);
         }else {

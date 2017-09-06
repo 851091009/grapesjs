@@ -17,7 +17,7 @@ module.exports = () => {
     },
 
     /**
-     * Name of the module
+     * 模块名称
      * @type {String}
      * @private
      */
@@ -25,6 +25,7 @@ module.exports = () => {
 
     /**
      * Initialize module. Automatically called with a new instance of the editor
+     * 初始化模块。使用编辑器的新实例自动调用
      * @param {Object} config Configurations
      */
     init(config) {
@@ -56,6 +57,7 @@ module.exports = () => {
 
     /**
      * Return config object
+     * 返回的配置对象
      * @return {Object}
      */
     getConfig() {
@@ -64,6 +66,7 @@ module.exports = () => {
 
     /**
      * Add wrapper
+     * 添加包装
      * @param	{Object}	wrp Wrapper
      *
      * */
@@ -73,6 +76,7 @@ module.exports = () => {
 
     /**
      * Returns canvas element
+     * 返回canvas元素
      * @return {HTMLElement}
      */
     getElement() {
@@ -81,6 +85,7 @@ module.exports = () => {
 
     /**
      * Returns frame element of the canvas
+     * 返回画布的框架元素
      * @return {HTMLElement}
      */
     getFrameEl() {
@@ -89,6 +94,7 @@ module.exports = () => {
 
     /**
      * Returns body element of the frame
+     * 返回框架的主体元素
      * @return {HTMLElement}
      */
     getBody() {
@@ -97,6 +103,7 @@ module.exports = () => {
 
     /**
      * Returns body wrapper element of the frame
+     * 返回框架的包装器元素。
      * @return {HTMLElement}
      */
     getWrapperEl() {
@@ -105,6 +112,7 @@ module.exports = () => {
 
     /**
      * Returns element containing canvas tools
+     * 返回包含画布工具的元素
      * @return {HTMLElement}
      */
     getToolsEl() {
@@ -113,6 +121,7 @@ module.exports = () => {
 
     /**
      * Returns highlighter element
+     * 返回的元素
      * @return {HTMLElement}
      */
     getHighlighter() {
@@ -121,6 +130,7 @@ module.exports = () => {
 
     /**
      * Returns badge element
+     * 归来的徽章的元素
      * @return {HTMLElement}
      */
     getBadgeEl() {
@@ -129,6 +139,7 @@ module.exports = () => {
 
     /**
      * Returns placer element
+     * 返回砂元
      * @return {HTMLElement}
      */
     getPlacerEl() {
@@ -146,6 +157,7 @@ module.exports = () => {
 
     /**
      * Returns toolbar element
+     * 返回工具栏元
      * @return {HTMLElement}
      */
     getToolbarEl() {
@@ -154,6 +166,7 @@ module.exports = () => {
 
     /**
      * Returns resizer element
+     * 返回缩放元素
      * @return {HTMLElement}
      */
     getResizerEl() {
@@ -162,6 +175,7 @@ module.exports = () => {
 
     /**
      * Returns offset viewer element
+     * 返回偏移查看器元素
      * @return {HTMLElement}
      */
     getOffsetViewerEl() {
@@ -170,6 +184,7 @@ module.exports = () => {
 
     /**
      * Returns fixed offset viewer element
+     * 返回固定偏移查看器元素
      * @return {HTMLElement}
      */
     getFixedOffsetViewerEl() {
@@ -178,6 +193,7 @@ module.exports = () => {
 
     /**
      * Render canvas
+     * 渲染画布
      * */
     render() {
       return CanvasView.render().el;
@@ -185,6 +201,7 @@ module.exports = () => {
 
     /**
      * Get frame position
+     * 、把帧的位置
      * @return {Object}
      * @private
      */
@@ -199,6 +216,7 @@ module.exports = () => {
 
     /**
     * Get the offset of the element
+    * 获取元素的偏移量。
     * @param  {HTMLElement} el
     * @return {Object}
     * @private
@@ -213,6 +231,7 @@ module.exports = () => {
 
     /**
      * Set custom badge naming strategy
+     * 设置自定义标记命名策略
      * @param  {Function} f
      * @example
      * canvas.setCustomBadgeLabel(function(model){
@@ -225,6 +244,7 @@ module.exports = () => {
 
     /**
      * Get element position relative to the canvas
+     * 获取相对于画布的元素位置
      * @param {HTMLElement} el
      * @return {Object}
      */
@@ -239,8 +259,16 @@ module.exports = () => {
      * viewable by the user (when the canvas is scrolled the top edge of the element
      * is not viewable by the user anymore so the new top edge is the one of the canvas)
      *
+     * 当你需要附加工具栏之类的东西时，这个方法就很方便了。
+     * 画布中的元素，处理所有的相对位置，
+     * 偏移量等，并返回具有位置的物体。
+     * 由用户可视（当画布滚动元件的顶部边缘
+     * 用户不再可见，所以新的顶部边缘是画布的一个）
+     * 
      * The target should be visible before being passed here as invisible elements
+     * 在通过这里作为不可见元素之前，目标应该是可见的
      * return empty string as width
+     * 将空字符串作为宽度返回
      * @param {HTMLElement} target The target in this case could be the toolbar
      * @param {HTMLElement} element The element on which I'd attach the toolbar
      * @param {Object} options Custom options
@@ -279,6 +307,7 @@ module.exports = () => {
       };
 
       // In this way I can catch data and also change the position strategy
+      // 这样我就可以捕捉数据，也可以改变位置策略。
       if(eventToTrigger && c.em) {
         c.em.trigger(eventToTrigger, result);
       }
@@ -291,6 +320,12 @@ module.exports = () => {
      * calculates also the offset based on the canvas. This is helpful when you
      * need to get X and Y position while moving between the editor area and
      * canvas area, which is in the iframe
+     * 
+     *而不是简单地返回e.clientx和e.clienty这个功能
+     *计算基于画布的偏移量。这对你很有帮助。
+     *需要在编辑器区域之间移动时获得x和y位置。
+     *画布区域，这是在iframe
+     *
      * @param {Event} e
      * @return {Object}
      */
@@ -319,6 +354,7 @@ module.exports = () => {
 
     /**
      * X and Y mouse position relative to the canvas
+     * 相对于画布的x和y鼠标位置
      * @param {Event} e
      * @return {Object}
      */
@@ -339,6 +375,7 @@ module.exports = () => {
 
     /**
      * Start autoscroll
+     * 开始自动滚屏
      */
     startAutoscroll() {
       this.dragging = 1;
@@ -373,6 +410,7 @@ module.exports = () => {
 
     /**
      * Stop autoscroll
+     * 停止自动滚屏
      */
     stopAutoscroll() {
       this.dragging = 0;
@@ -392,6 +430,7 @@ module.exports = () => {
 
     /**
      * Returns wrapper element
+     * 返回包装元素
      * @return {HTMLElement}
      * ????
      */

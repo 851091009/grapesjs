@@ -7,6 +7,7 @@ module.exports = () => {
   return {
     /**
      * Name of the module
+     * 模块名称
      * @type {String}
      * @private
      */

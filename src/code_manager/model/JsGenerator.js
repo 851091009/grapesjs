@@ -11,6 +11,7 @@ module.exports = Backbone.Model.extend({
 
     if (script) {
       // If the component has scripts we need to expose his ID
+      // 如果组件有脚本，我们需要公开他的ID
       var attr = model.get('attributes');
       attr = _.extend({}, attr, {id});
       model.set('attributes', attr);

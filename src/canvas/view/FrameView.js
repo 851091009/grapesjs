@@ -20,6 +20,7 @@ module.exports = Backbone.View.extend({
 
   /**
    * Update width of the frame
+   * 更新框架的宽度
    * @private
    */
   updateWidth(model) {

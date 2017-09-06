@@ -13,17 +13,18 @@
  *
  *
  * Before using methods you should get first the module from the editor instance, in this way:
- *
+ * 在使用方法之前，您应该首先从编辑器实例中获取模块，方法如下：
  * ```js
  * var storageManager = editor.StorageManager;
  * ```
  *
  * @module StorageManager
+ * 本地存储模块
  */
 module.exports = () => {
   var c = {},
-  defaults = require('./config/config'),
-  LocalStorage = require('./model/LocalStorage'),
+  defaults      = require('./config/config'),
+  LocalStorage  = require('./model/LocalStorage'),
   RemoteStorage = require('./model/RemoteStorage');
 
   var storages = {};
@@ -40,9 +41,11 @@ module.exports = () => {
 
     /**
      * Initialize module. Automatically called with a new instance of the editor
-     * @param {Object} config Configurations
-     * @param {string} [config.id='gjs-'] The prefix for the fields, useful to differentiate storing/loading
+     * 初始化模块 使用编辑器的新实例自动调用
+     * @param {Object} config Configurations 配置
+     * @param {string} [config.id='gjs-'] The prefix for the fields, useful to differentiate storing/loading 字段的前缀，用于区分存储/加载
      * with multiple editors on the same page. For example, in local storage, the item of HTML will be saved like 'gjs-html'
+     * 在同一页上有多个编辑器。 例如，在本地存储中，HTML的项目将被保存为“gjs-html”
      * @param {Boolean} [config.autosave=true] Indicates if autosave mode is enabled, works in conjunction with stepsBeforeSave
      * @param {number} [config.stepsBeforeSave=1] If autosave enabled, indicates how many steps/changes are necessary
      * before autosave is triggered
@@ -70,6 +73,7 @@ module.exports = () => {
 
     /**
      * Callback executed after the module is loaded
+     * 加载模块后执行回调
      * @private
      */
     onLoad() {
@@ -78,6 +82,7 @@ module.exports = () => {
 
     /**
      * Checks if autosave is enabled
+     * 检查是否启用自动保存
      * @return {Boolean}
      * */
     isAutosave() {
@@ -86,6 +91,7 @@ module.exports = () => {
 
     /**
      * Set autosave value
+     * 设置自动保存值
      * @param  {Boolean}  v
      * @return {this}
      * */
@@ -96,6 +102,7 @@ module.exports = () => {
 
     /**
      * Returns number of steps required before trigger autosave
+     * 触发自动保存前返回步骤数
      * @return {number}
      * */
     getStepsBeforeSave() {
@@ -104,6 +111,7 @@ module.exports = () => {
 
     /**
      * Set steps required before trigger autosave
+     * 触发自动保存之前设置步骤
      * @param  {number} v
      * @return {this}
      * */
@@ -114,6 +122,7 @@ module.exports = () => {
 
     /**
      * Add new storage
+     * 添加新的存储
      * @param {string} id Storage ID
      * @param  {Object} storage Storage wrapper
      * @param  {Function} storage.load Load method
@@ -142,6 +151,7 @@ module.exports = () => {
 
     /**
      * Returns storage by id
+     * 按ID返回存储
      * @param {string} id Storage ID
      * @return {Object|null}
      * */
@@ -151,6 +161,7 @@ module.exports = () => {
 
     /**
      * Returns all storages
+     * 返回所有存储
      * @return   {Array}
      * */
     getStorages() {
@@ -159,6 +170,7 @@ module.exports = () => {
 
     /**
      * Returns current storage type
+     * 返回当前存储类型
      * @return {string}
      * */
     getCurrent() {
@@ -167,6 +179,7 @@ module.exports = () => {
 
     /**
      * Set current storage type
+     * 设置当前存储类型
      * @param {string} id Storage ID
      * @return {this}
      * */
@@ -177,6 +190,7 @@ module.exports = () => {
 
     /**
      * Store key-value resources in the current storage
+     * 存储当前存储中的键值资源
      * @param  {Object} data Data in key-value format, eg. {item1: value1, item2: value2}
      * @param {Function} clb Callback function
      * @return {Object|null}
@@ -195,6 +209,7 @@ module.exports = () => {
 
     /**
      * Load resource from the current storage by keys
+     * 通过键加载来自当前存储的资源
      * @param  {string|Array<string>} keys Keys to load
      * @param {Function} clb Callback function
      * @return {Object|null} Loaded resources
@@ -218,6 +233,7 @@ module.exports = () => {
       var loaded = st ? st.load(keysF, clb) : {};
 
       // Restore keys name
+      // 恢复密钥名称
       for (var itemKey in loaded){
         var reg = new RegExp('^' + c.id + '');
         var itemKeyR = itemKey.replace(reg, '');
@@ -229,6 +245,7 @@ module.exports = () => {
 
     /**
      * Load default storages
+     * 加载默认存储
      * @return {this}
      * @private
      * */
@@ -240,6 +257,7 @@ module.exports = () => {
 
     /**
      * Get configuration object
+     * 获取配置对象
      * @return {Object}
      * @private
      * */

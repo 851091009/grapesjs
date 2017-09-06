@@ -1,9 +1,9 @@
 import Styleable from 'domain_abstract/model/Styleable';
 
-var Backbone = require('backbone');
+var Backbone   = require('backbone');
 var Components = require('./Components');
-var Selectors = require('selector_manager/model/Selectors');
-var Traits = require('trait_manager/model/Traits');
+var Selectors  = require('selector_manager/model/Selectors');
+var Traits     = require('trait_manager/model/Traits');
 
 const escapeRegExp = (str) => {
   return str.replace(/[|\\{}()[\]^$+*?.]/g, '\\$&');
@@ -13,43 +13,61 @@ module.exports = Backbone.Model.extend(Styleable).extend({
 
   defaults: {
     // HTML tag of the component
+    // 组件的HTML标记
     tagName: 'div',
 
     // Component type, eg. 'text', 'image', 'video', etc.
     type: '',
 
     // True if the component is removable from the canvas
+    // 如果组件可以从画布上移除，则为true。
     removable: true,
 
     // Indicates if it's possible to drag the component inside other
     // Tip: Indicate an array of selectors where it could be dropped inside
+    // 表示是否有可能将组件拖到其他组件中。
+    // 提示：表示选择器的数组，可以放在其中。
+    
     draggable: true,
 
     // Indicates if it's possible to drop other components inside
     // Tip: Indicate an array of selectors which could be dropped inside
+
+    // 表示是否有可能将其他组件删除
+    // 提示：指示一个选择器数组，它可以在内部被删除。
     droppable: true,
 
     // Set false if don't want to see the badge (with the name) over the component
+    // 如果不想在组件上看到标记（名称），则设置false
     badgable: true,
 
     // True if it's possible to style it
     // Tip:  Indicate an array of CSS properties which is possible to style
+
+    // 威胁如果它的风格，它的两个可能的
+    // 提示：的阵列表示的CSS属性，这是可能的两种风格
     stylable: true,
 
     // Highlightable with 'dotted' style if true
+    // “点缀”式的highlightable如果真
     highlightable: true,
 
     // True if it's possible to clone the component
+    // 如果可以克隆组件，则为true。
     copyable: true,
 
     // Indicates if it's possible to resize the component (at the moment implemented only on Image Components)
     // It's also possible to pass an object as options for the Resizer
+    // 表示是否可以调整组件的大小（目前仅在图像组件上实现）
+    // 也可以传递一个对象作为缩放选项
     resizable: false,
 
     // Allow to edit the content of the component (used on Text components)
+    // 允许编辑组件的内容（用于文本组件）
     editable: false,
 
     // Hide the component inside Layers
+    // 将组件隐藏在图层中
     layerable: true,
 
     // This property is used by the HTML exporter as void elements do not
@@ -57,27 +75,34 @@ module.exports = Backbone.Model.extend(Styleable).extend({
     void: false,
 
     // Indicates if the component is in some CSS state like ':hover', ':active', etc.
+    //  指示组件是否处于某些CSS状态中。
     state: '',
 
     // State, eg. 'selected'
     status: '',
 
     // Content of the component (not escaped) which will be appended before children rendering
+    // 在儿童渲染之前附加的组件的内容（未转义）
     content: '',
 
     // Component icon, this string will be inserted before the name, eg. '<i class="fa fa-square-o"></i>'
+    // 组件图标，该字符串将插入名称之前，例如。
     icon: '',
 
     // Component related style
+    // 组件相关的风格
     style: {},
 
     // Key-value object of the component's attributes
+    // 组件属性的键值对象
     attributes: '',
 
     // Array of classes
+    // 数组类
     classes: '',
 
     // Component's javascript
+    // 组件的JavaScript
     script: '',
 
     // Traits
@@ -85,7 +110,9 @@ module.exports = Backbone.Model.extend(Styleable).extend({
 
     /**
       * Set an array of items to show up inside the toolbar (eg. move, clone, delete)
+      * 设置一个在工具栏中显示的项数组（例如移动、克隆、删除）
       * when the component is selected
+      * 当组件被选中时
       * toolbar: [{
       *     attributes: {class: 'fa fa-arrows'},
       *     command: 'tlb-move',
@@ -118,6 +145,7 @@ module.exports = Backbone.Model.extend(Styleable).extend({
     this.initToolbar();
 
     // Normalize few properties from strings to arrays
+    // 将字符串中的少数属性正常化为数组
     var toNormalize = ['stylable'];
     toNormalize.forEach(function(name) {
       var value = this.get(name);
@@ -152,6 +180,7 @@ module.exports = Backbone.Model.extend(Styleable).extend({
 
   /**
    * Script updated
+   * 脚本更新
    */
   scriptUpdated() {
     this.set('scriptUpdated', 1);
@@ -159,6 +188,7 @@ module.exports = Backbone.Model.extend(Styleable).extend({
 
   /**
    * Once traits are updated I have to populates model's attributes
+   * 一旦更新，我必须填充特征模型的属性
    */
   traitsUpdated() {
     let found = 0;
@@ -185,6 +215,7 @@ module.exports = Backbone.Model.extend(Styleable).extend({
 
   /**
    * Init toolbar
+   * 初始化工具栏
    */
    initToolbar() {
     var model = this;
@@ -214,6 +245,7 @@ module.exports = Backbone.Model.extend(Styleable).extend({
 
   /**
    * Load traits
+   * 负荷特性
    * @param  {Array} traits
    * @private
    */
@@ -232,6 +264,7 @@ module.exports = Backbone.Model.extend(Styleable).extend({
 
   /**
    * Normalize input classes from array to array of objects
+   * 从数组到对象数组正常化输入类
    * @param {Array} arr
    * @return {Array}
    * @private
@@ -262,6 +295,7 @@ module.exports = Backbone.Model.extend(Styleable).extend({
 
   /**
    * Override original clone method
+   * 重写原始克隆方法
    * @private
    */
   clone(reset) {
@@ -295,6 +329,7 @@ module.exports = Backbone.Model.extend(Styleable).extend({
 
   /**
    * Get the name of the component
+   * 获取组件的名称
    * @return {string}
    * */
   getName() {
@@ -308,6 +343,7 @@ module.exports = Backbone.Model.extend(Styleable).extend({
 
   /**
    * Get the icon string
+   * 获取图标字符串
    * @return {string}
    */
   getIcon() {
@@ -317,6 +353,7 @@ module.exports = Backbone.Model.extend(Styleable).extend({
 
   /**
    * Return HTML string of the component
+   * 返回组件的HTML字符串
    * @param {Object} opts Options
    * @return {string} HTML string
    * @private
@@ -341,6 +378,7 @@ module.exports = Backbone.Model.extend(Styleable).extend({
     }
 
     // Build the string of classes
+    // of the string类的建立
     var strCls = '';
     m.get('classes').each(m => {
       strCls += ' ' + m.get('name');
@@ -348,6 +386,7 @@ module.exports = Backbone.Model.extend(Styleable).extend({
     strCls = strCls !== '' ? ' class="' + strCls.trim() + '"' : '';
 
     // If style is not empty I need an ID attached to the component
+    // 如果样式不是空的，我需要一个附加到组件的ID。
     if(!_.isEmpty(m.get('style')) && !idFound)
       attrId = ' id="' + m.getId() + '" ';
 
@@ -365,6 +404,7 @@ module.exports = Backbone.Model.extend(Styleable).extend({
 
   /**
    * Returns object of attributes for HTML
+   * 返回HTML属性的对象
    * @return {Object}
    * @private
    */
@@ -376,6 +416,7 @@ module.exports = Backbone.Model.extend(Styleable).extend({
 
   /**
    * Return a shallow copy of the model's attributes for JSON
+   * 返回JSON的模型属性的浅拷贝
    * stringification.
    * @return {Object}
    * @private
@@ -394,6 +435,7 @@ module.exports = Backbone.Model.extend(Styleable).extend({
 
   /**
    * Return model id
+   * 回归模型的ID
    * @return {string}
    */
   getId() {
@@ -416,6 +458,7 @@ module.exports = Backbone.Model.extend(Styleable).extend({
     }
 
     // Need to convert script functions to strings
+    // 需要将脚本函数转换为字符串
     if (typeof scr == 'function') {
       var scrStr = scr.toString().trim();
       scrStr = scrStr.replace(/^function[\s\w]*\(\)\s?\{/, '').replace(/\}$/, '');
@@ -429,6 +472,9 @@ module.exports = Backbone.Model.extend(Styleable).extend({
     scr = scr.replace(reg, (match, v) => {
       // If at least one match is found I have to track this change for a
       // better optimization inside JS generator
+
+      // 如果发现至少有一个匹配，我必须跟踪这个更改
+      // 更好的JS生成器内部优化
       this.scriptUpdated();
       return this.attributes[v];
     })
@@ -442,6 +488,9 @@ module.exports = Backbone.Model.extend(Styleable).extend({
    * Detect if the passed element is a valid component.
    * In case the element is valid an object abstracted
    * from the element will be returned
+   * 检测传入的元素是否是有效的组件。
+   * 如果元素是有效的，对象将被抽象。
+   * 将从元素返回
    * @param {HTMLElement}
    * @return {Object}
    * @private

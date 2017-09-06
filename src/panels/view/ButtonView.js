@@ -65,6 +65,7 @@ module.exports = Backbone.View.extend({
 
   /**
    * Init dragging element
+   * 初始化拖动元素
    * @private
    */
   initDrag() {
@@ -77,6 +78,7 @@ module.exports = Backbone.View.extend({
 
   /**
    * Stop dragging
+   * 停止拖动
    * @private
    */
   stopDrag() {
@@ -86,12 +88,14 @@ module.exports = Backbone.View.extend({
 
   /**
    * During drag method
+   * 拖曳方式
    * @private
    */
   onDrag(e) {},
 
   /**
    * During drag method
+   * 拖曳方式
    * @private
    */
   onDrop(e) {
@@ -100,7 +104,7 @@ module.exports = Backbone.View.extend({
 
   /**
    * Updates class name of the button
-   *
+   * 更新按钮的类名
    * @return   void
    * */
   updateClassName() {
@@ -110,7 +114,7 @@ module.exports = Backbone.View.extend({
 
   /**
    * Updates attributes of the button
-   *
+   * 更新按钮的属性
    * @return   void
    * */
   updateAttributes() {
@@ -119,7 +123,7 @@ module.exports = Backbone.View.extend({
 
   /**
    * Updates visibility of children buttons
-   *
+   * 更新儿童按钮的可见性
    * @return  void
    * */
   updateBtnsVis() {
@@ -134,7 +138,7 @@ module.exports = Backbone.View.extend({
 
   /**
    * Start timer for showing children buttons
-   *
+   * 启动计时器显示儿童按钮
    * @return  void
    * */
   startTimer() {
@@ -144,7 +148,7 @@ module.exports = Backbone.View.extend({
 
   /**
    * Stop timer for showing children buttons
-   *
+   * 停止计时器显示儿童按钮
    * @return  void
    * */
   stopTimer() {
@@ -155,7 +159,7 @@ module.exports = Backbone.View.extend({
 
   /**
    * Show children buttons
-   *
+   * 显示儿童按钮
    * @return   void
    * */
   showButtons() {
@@ -167,7 +171,7 @@ module.exports = Backbone.View.extend({
 
   /**
    * Hide children buttons
-   *
+   * 隐藏儿童按钮
    * @return   void
    * */
   hideButtons(e) {
@@ -179,6 +183,7 @@ module.exports = Backbone.View.extend({
 
   /**
    * Close buttons on ESC key press
+   * 按ESC键关闭按钮
    * @param   {Object}  e  Event
    *
    * @return   void
@@ -191,7 +196,7 @@ module.exports = Backbone.View.extend({
 
   /**
    * Update active status of the button
-   *
+   * 更新按钮的活动状态
    * @return   void
    * */
   updateActive() {
@@ -236,7 +241,7 @@ module.exports = Backbone.View.extend({
 
   /**
    * Update active style status
-   *
+   * 更新活动样式状态
    * @return   void
    * */
   checkActive() {
@@ -248,6 +253,7 @@ module.exports = Backbone.View.extend({
 
   /**
    * Triggered when button is clicked
+   * 单击按钮时触发
    * @param  {Object}  e  Event
    *
    * @return   void
@@ -275,7 +281,7 @@ module.exports = Backbone.View.extend({
 
   /**
    * Updates parent model swapping properties
-   *
+   * 更新父模型交换属性
    * @return  void
    * */
   swapParent() {

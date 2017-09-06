@@ -28,6 +28,7 @@ module.exports = DomainViews.extend({
 
   /**
    * Update view collection
+   * 更新视图集合
    * @private
    */
   updatedCollection() {

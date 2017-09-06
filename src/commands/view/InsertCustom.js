@@ -11,6 +11,7 @@ module.exports = _.extend({}, CreateComponent, {
 
   /**
    * Run method
+   * 运行方法
    * @private
    * */
   run(em, sender, options) {
@@ -28,6 +29,7 @@ module.exports = _.extend({}, CreateComponent, {
 
   /**
    * Start insert event
+   * 开始插入事件
    * @private
    * */
   insertComponent() {
@@ -55,6 +57,7 @@ module.exports = _.extend({}, CreateComponent, {
 
   /**
    * Trigger before insert
+   * 触发前插入
    * @param   {Object}  obj
    * @private
    * */
@@ -62,6 +65,7 @@ module.exports = _.extend({}, CreateComponent, {
 
   /**
    * Trigger after insert
+   * 触发后插入
    * @param  {Object}  model  Model created after insert
    * @private
    * */
@@ -69,6 +73,7 @@ module.exports = _.extend({}, CreateComponent, {
 
   /**
    * Create different object, based on content, to insert inside canvas
+   * 根据内容创建不同的对象，将其插入画布中
    *
    * @return   {Object}
    * @private

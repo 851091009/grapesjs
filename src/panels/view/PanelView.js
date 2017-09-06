@@ -15,6 +15,7 @@ module.exports = Backbone.View.extend({
 
   /**
    * Append content of the panel
+   * 附加面板的内容
    * */
   appendContent() {
     this.$el.append(this.model.get('appendContent'));
@@ -22,6 +23,7 @@ module.exports = Backbone.View.extend({
 
   /**
    * Update content
+   * 更新内容
    * */
   updateContent() {
     this.$el.html(this.model.get('content'));
@@ -38,6 +40,7 @@ module.exports = Backbone.View.extend({
       var tc, cr, bc, cl = 0;
 
       // Choose which sides of the panel are resizable
+      // 选择面板的哪些面可调整大小
       if (resLen == 2) {
         tc = resz[0];
         bc = resz[0];

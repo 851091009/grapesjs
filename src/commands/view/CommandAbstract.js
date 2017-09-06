@@ -4,17 +4,18 @@ module.exports = Backbone.View.extend({
 
 	/**
 	 * Initialize method that can't be removed
+	 * 无法删除的初始化方法
 	 * @param	{Object}	o Options
 	 * @private
 	 * */
 	initialize(o) {
 		this.config				= o || {};
 		this.editorModel 	= this.em = this.config.em || {};
-		this.pfx					= this.config.stylePrefix;
-		this.ppfx					= this.config.pStylePrefix;
+		this.pfx		    = this.config.stylePrefix;
+		this.ppfx			= this.config.pStylePrefix;
 		this.hoverClass		= this.pfx + 'hover';
 		this.badgeClass		= this.pfx + 'badge';
-		this.plhClass			= this.pfx + 'placeholder';
+		this.plhClass		= this.pfx + 'placeholder';
 		this.freezClass		= this.ppfx + 'freezed';
 
 		this.canvas = this.em.get && this.em.get('Canvas');
@@ -35,6 +36,7 @@ module.exports = Backbone.View.extend({
 
 	/**
 	 * On frame scroll callback
+	 * 在帧滚动回调
 	 * @param  {[type]} e [description]
 	 * @return {[type]}   [description]
 	 */
@@ -42,6 +44,7 @@ module.exports = Backbone.View.extend({
 
 	/**
 	 * Returns canval element
+	 * 返回没完没了元
 	 * @return {HTMLElement}
 	 */
 	getCanvas() {
@@ -50,6 +53,7 @@ module.exports = Backbone.View.extend({
 
 	/**
 	 * Get canvas body element
+	 * 获取画布体元素
 	 * @return {HTMLElement}
 	 */
 	getCanvasBody() {
@@ -58,6 +62,7 @@ module.exports = Backbone.View.extend({
 
 	/**
 	 * Get canvas wrapper element
+	 * 获取画布包装元素
 	 * @return {HTMLElement}
 	 */
 	getCanvasWrapper() {
@@ -66,6 +71,7 @@ module.exports = Backbone.View.extend({
 
 	/**
 	 * Get canvas wrapper element
+	 * 获取画布包装元素
 	 * @return {HTMLElement}
 	 */
 	getCanvasTools() {
@@ -74,6 +80,7 @@ module.exports = Backbone.View.extend({
 
 	/**
    * Get the offset of the element
+   * 获取元素的偏移量。
    * @param  {HTMLElement} el
    * @return {Object}
    */
@@ -87,6 +94,7 @@ module.exports = Backbone.View.extend({
 
 	/**
 	 * Callback triggered after initialize
+	 * 初始化后触发的回调
 	 * @param	{Object}	o 	Options
 	 * @private
 	 * */
@@ -94,6 +102,7 @@ module.exports = Backbone.View.extend({
 
 	/**
 	 * Method that run command
+	 * 运行命令的方法
 	 * @param	{Object}	em 		Editor model
 	 * @param	{Object}	sender	Button sender
 	 * @private
@@ -102,6 +111,7 @@ module.exports = Backbone.View.extend({
 
 	/**
 	 * Method that stop command
+	 * 停止命令的方法
 	 * @param	{Object}	em Editor model
 	 * @param	{Object}	sender	Button sender
 	 * @private

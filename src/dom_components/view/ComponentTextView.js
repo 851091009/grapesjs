@@ -21,6 +21,7 @@ module.exports = ComponentView.extend({
 
   /**
    * Enable the component to be editable
+   * 使组件可编辑
    * @param {Event} e
    * @private
    * */
@@ -39,6 +40,7 @@ module.exports = ComponentView.extend({
 
   /**
    * Disable this component to be editable
+   * 禁用此组件为可编辑
    * @param {Event}
    * @private
    * */
@@ -54,6 +56,7 @@ module.exports = ComponentView.extend({
       }
       var el = this.getChildrenContainer();
       // Avoid double content by removing its children components
+      // 通过删除其子组件避免双内容
       model.get('components').reset();
       model.set('content', el.innerHTML);
     }
@@ -67,6 +70,7 @@ module.exports = ComponentView.extend({
 
   /**
    * Isolate disable propagation method
+   * 隔离禁用传播方法
    * @param {Event}
    * @private
    * */
@@ -76,6 +80,7 @@ module.exports = ComponentView.extend({
 
   /**
    * Parse content and re-render it
+   * 解析内容并重新呈现
    * @private
    */
   parseRender() {
@@ -84,6 +89,7 @@ module.exports = ComponentView.extend({
     var opts = {silent: true};
 
     // Avoid re-render on reset with silent option
+    // 避免重新渲染重置与沉默的选择
     comps.reset(null, opts);
     comps.add(el.innerHTML, opts);
     this.model.set('content', '');
@@ -91,6 +97,9 @@ module.exports = ComponentView.extend({
 
     // As the reset was in silent mode I need to notify
     // the navigator about the change
+
+    // 由于重置处于静默模式，我需要通知
+    // 关于变化的导航器
     comps.trigger('resetNavigator');
   },
 

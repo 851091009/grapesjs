@@ -29,6 +29,7 @@ module.exports = Backbone.View.extend({
 
   /**
    * Start adding new device
+   * 开始添加新设备
    * @return {[type]} [description]
    * @private
    */
@@ -36,6 +37,7 @@ module.exports = Backbone.View.extend({
 
   /**
    * Update device of the editor
+   * 编辑器的更新设备
    * @private
    */
   updateDevice() {
@@ -49,6 +51,7 @@ module.exports = Backbone.View.extend({
 
   /**
    * Update select value on device update
+   * 更新设备更新的选择值
    * @private
    */
   updateSelect() {
@@ -63,6 +66,7 @@ module.exports = Backbone.View.extend({
 
   /**
    * Return devices options
+   * 返回设备的选择
    * @return {string} String of options
    * @private
    */

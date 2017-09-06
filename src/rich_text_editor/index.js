@@ -6,17 +6,21 @@
  *
  * This module allows to customize the toolbar of the Rich Text Editor and use commands from the HTML Editing APIs.
  * For more info about HTML Editing APIs check here:
+ * 该模块允许自定义富文本编辑器的工具栏，并使用HTML编辑API中的命令。
+ * 有关HTML编辑API的更多信息，请访问：
  * https://developer.mozilla.org/it/docs/Web/API/Document/execCommand
  *
  * It's highly recommended to keep this toolbar as small as possible, especially from styling commands (eg. 'fontSize')
  * and leave this task to the Style Manager.
- *
+ * 强烈建议保持此工具栏的尽可能小，特别是从样式命令（例如'fontSize'）
+ * 并将此任务留给风格经理。
  * Before using methods you should get first the module from the editor instance, in this way:
- *
+ * 在使用方法之前，您应该首先从编辑器实例中获取模块，方法如下：
  * ```js
  * var rte = editor.RichTextEditor;
  * ```
  * Complete list of commands
+ * 完整的命令列表
  * https://developer.mozilla.org/it/docs/Web/API/Document/execCommand
  * http://www.quirksmode.org/dom/execCommand.html
  * @module RichTextEditor
@@ -36,6 +40,7 @@ module.exports = () => {
 
     /**
      * Name of the module
+     * 模块名称
      * @type {String}
      * @private
      */
@@ -43,6 +48,7 @@ module.exports = () => {
 
     /**
      * Initialize module. Automatically called with a new instance of the editor
+     * 初始化模块 使用编辑器的新实例自动调用
      * @param {Object} config Configurations
      * @private
      */
@@ -69,6 +75,7 @@ module.exports = () => {
 
     /**
      * Add a new command to the toolbar
+     * 向工具栏添加新命令
      * @param {string} command Command name
      * @param {Object} opts Command options
      * @return {Model} Added command
@@ -95,6 +102,7 @@ module.exports = () => {
 
     /**
      * Get the command by its name
+     * 以命名获得命令
      * @param {string} command Command name
      * @return {Model}
      * @example
@@ -106,6 +114,7 @@ module.exports = () => {
 
     /**
      * Returns the collection of commands
+     * 返回命令的集合
      * @return {Collection}
      */
     getAll() {
@@ -114,6 +123,7 @@ module.exports = () => {
 
     /**
      * Triggered when the offset of the editor is changed
+     * 当编辑器的偏移改变时触发
      * @private
      */
     udpatePosition() {
@@ -125,6 +135,7 @@ module.exports = () => {
 
       if (c.adjustToolbar) {
         // Move the toolbar down when the top canvas edge is reached
+        // 到达顶部画布边缘时，向下移动工具栏
         if (pos.top <= pos.canvasTop) {
           pos.top = pos.elementTop + pos.elementHeight;
         }
@@ -137,17 +148,20 @@ module.exports = () => {
 
     /**
      * Bind rich text editor to the element
-     * @param {View} view
-     * @param {Object} rte The instance of already defined RTE
+     * 将富文本编辑器绑定到元素
+     * @param {View} view 
+     * @param {Object} rte The instance of already defined RTE 已经定义的RTE的实例
      * @private
      * */
     attach(view, rte) {
       // lastEl will be used to place the RTE toolbar
+      // lastEl将用于放置RTE工具栏
       this.lastEl = view.el;
       var el = view.getChildrenContainer();
       var customRte = this.customRte;
 
       // If a custom RTE is defined
+      // 如果定义了RTE
       if (customRte) {
         rte = customRte.enable(el, rte);
       } else {
@@ -161,19 +175,22 @@ module.exports = () => {
         c.em.off('change:canvasOffset', this.udpatePosition, this);
         c.em.on('change:canvasOffset', this.udpatePosition, this);
         // Update position on scrolling
+        // 更新滚动位置
         c.em.off('canvasScroll', this.udpatePosition, this);
         c.em.on('canvasScroll', this.udpatePosition, this);
       }
 
-      //Avoid closing edit mode clicking on toolbar
+      // Avoid closing edit mode clicking on toolbar
+      // 避免关闭编辑模式点击工具栏
       toolbar.$el.on('mousedown', this.disableProp);
       return rte;
     },
 
     /**
      * Unbind rich text editor from the element
+     * 从元素中取消绑定富文本编辑器
      * @param {View} view
-     * @param {Object} rte The instance of already defined RTE
+     * @param {Object} rte The instance of already defined RTE 已经定义的RTE的实例
      * @private
      * */
     detach(view, rte) {
@@ -191,8 +208,9 @@ module.exports = () => {
 
     /**
      * Unbind rich text editor from the element
+     * 从元素中取消绑定富文本编辑器
      * @param {View} view
-     * @param {Object} rte The instance of already defined RTE
+     * @param {Object} rte The instance of already defined RTE 已经定义的RTE的实例
      * @private
      * */
     focus(view, rte) {
@@ -208,6 +226,7 @@ module.exports = () => {
 
     /**
      * Show the toolbar
+     * 显示工具栏
      * @private
      * */
     show() {
@@ -217,6 +236,7 @@ module.exports = () => {
 
     /**
      * Hide the toolbar
+     * 隐藏工具栏
      * @private
      * */
     hide() {
@@ -225,6 +245,7 @@ module.exports = () => {
 
     /**
      * Isolate the disable propagation method
+     * 隔离禁用传播方法
      * @private
      * */
     disableProp(e) {
@@ -233,6 +254,7 @@ module.exports = () => {
 
     /**
      * Return toolbar element
+     * 返回工具栏元素
      * @return {HTMLElement}
      * @private
      */
@@ -242,6 +264,7 @@ module.exports = () => {
 
     /**
      * Render toolbar
+     * 渲染工具栏
      * @return {HTMLElement}
      * @private
      */

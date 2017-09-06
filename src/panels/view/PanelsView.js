@@ -1,4 +1,4 @@
-var Backbone = require('backbone');
+var Backbone  = require('backbone');
 var PanelView = require('./PanelView');
 
 module.exports = Backbone.View.extend({
@@ -14,6 +14,7 @@ module.exports = Backbone.View.extend({
 
   /**
    * Add to collection
+   * 加入收藏
    * @param Object Model
    *
    * @return Object
@@ -25,8 +26,9 @@ module.exports = Backbone.View.extend({
 
   /**
    * Add new object to collection
+   * 将新对象添加到集合
    * @param  Object  Model
-   * @param  Object   Fragment collection
+   * @param  Object   Fragment collection 片段收集
    * @param  integer  Index of append
    *
    * @return Object Object created
