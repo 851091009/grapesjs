@@ -605,6 +605,7 @@ module.exports = config => {
       // 做渲染后的东西后，iframe加载否则会
       // be empty during tests
       // 测试期间空
+      // index.html 调用的是这个
       console.log(em.get('modules'));
       // em.get('modules')： 是所有的加载的文件
       // loaded: 当所有DOM解析完以后会触发这个事件
