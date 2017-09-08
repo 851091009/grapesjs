@@ -32,8 +32,8 @@
  * ```
  *
  * @module StyleManager
- * @param {Object} config Configurations
- * @param {Array<Object>} [config.sectors=[]] Array of possible sectors
+ * @param {Object} config Configurations 配置文件
+ * @param {Array<Object>} [config.sectors=[]] Array of possible sectors 可能部门阵列
  * @example
  * ...
  * styleManager: {
@@ -54,8 +54,8 @@
  */
 module.exports = () => {
   var c = {},
-  defaults = require('./config/config'),
-  Sectors = require('./model/Sectors'),
+  defaults    = require('./config/config'),
+  Sectors     = require('./model/Sectors'),
   SectorsView = require('./view/SectorsView');
   var sectors, SectView;
 
@@ -95,7 +95,7 @@ module.exports = () => {
       if(ppfx)
         c.stylePrefix = ppfx + c.stylePrefix;
 
-      sectors = new Sectors(c.sectors);
+      sectors    = new Sectors(c.sectors); // 行业
       SectView   = new SectorsView({
         collection: sectors,
         target: c.em,
@@ -110,10 +110,10 @@ module.exports = () => {
      * that one will be returned
      * 那个会被退回
      * @param {string} id Sector id
-     * @param  {Object} sector  Object representing sector
-     * @param  {string} [sector.name='']  Sector's label
-     * @param  {Boolean} [sector.open=true] Indicates if the sector should be opened
-     * @param  {Array<Object>} [sector.properties=[]] Array of properties
+     * @param  {Object} sector  Object representing sector 对象代表部门
+     * @param  {string} [sector.name='']  Sector's label 行业标签
+     * @param  {Boolean} [sector.open=true] Indicates if the sector should be opened 指示是否应打开扇区
+     * @param  {Array<Object>} [sector.properties=[]] Array of properties 属性数组
      * @return {Sector} Added Sector
      * @example
      * var sector = styleManager.addSector('mySector',{
@@ -155,24 +155,25 @@ module.exports = () => {
 
     /**
      * Add property to the sector identified by id
-     * @param {string} sectorId Sector id
-     * @param {Object} property Property object
-     * @param {string} [property.name=''] Name of the property
-     * @param {string} [property.property=''] CSS property, eg. `min-height`
-     * @param {string} [property.type=''] Type of the property: integer | radio | select | color | file | composite | stack
-     * @param {Array<string>} [property.units=[]] Unit of measure available, eg. ['px','%','em']. Only for integer type
+     * 将属性添加到由id标识的扇区中
+     * @param {string} sectorId Sector id 行业ID
+     * @param {Object} property Property object 属性对象
+     * @param {string} [property.name=''] Name of the property 物业名称
+     * @param {string} [property.property=''] CSS property, eg. `min-height` CSS属性，例如`min-height`
+     * @param {string} [property.type=''] Type of the property: integer | radio | select | color | file | composite | stack 属性的类型：integer | 收音机| 选择| 颜色| 文件| 复合|堆
+     * @param {Array<string>} [property.units=[]] Unit of measure available, eg. ['px','%','em']. Only for integer type 可用单位，例如[ '像素'， '％'，'时间']。 仅适用于整数类型
      * @param {string} [property.unit=''] Default selected unit from `units`. Only for integer type
-     * @param {number} [property.min=null] Min possible value. Only for integer type
-     * @param {number} [property.max=null] Max possible value. Only for integer type
-     * @param {string} [property.defaults=''] Default value
-     * @param {string} [property.info=''] Some description
-     * @param {string} [property.icon=''] Class name. If exists no text will be displayed
-     * @param {Boolean} [property.preview=false] Show layers preview. Only for stack type
-     * @param {string} [property.functionName=''] Indicates if value need to be wrapped in some function, for istance `transform: rotate(90deg)`
-     * @param {Array<Object>} [property.properties=[]] Nested properties for composite and stack type
-     * @param {Array<Object>} [property.layers=[]] Layers for stack properties
-     * @param {Array<Object>} [property.list=[]] List of possible options for radio and select types
-     * @return {Property|null} Added Property or `null` in case sector doesn't exist
+     * @param {number} [property.min=null] Min possible value. Only for integer type 来自`units`的默认选择单位。 仅适用于整数类型
+     * @param {number} [property.max=null] Max possible value. Only for integer type 最大可能值。 仅适用于整数类型
+     * @param {string} [property.defaults=''] Default value 默认值
+     * @param {string} [property.info=''] Some description  一些描述
+     * @param {string} [property.icon=''] Class name. If exists no text will be displayed 班级名称。 如果没有显示文本
+     * @param {Boolean} [property.preview=false] Show layers preview. Only for stack type 显示图层预览。 仅适用于堆栈类型 
+     * @param {string} [property.functionName=''] Indicates if value need to be wrapped in some function, for istance `transform: rotate(90deg)` 指示值是否需要包装在某些函数中，对于距离`transform：rotate（90deg）`
+     * @param {Array<Object>} [property.properties=[]] Nested properties for composite and stack type 复合和堆栈类型的嵌套属性
+     * @param {Array<Object>} [property.layers=[]] Layers for stack properties 堆栈属性层
+     * @param {Array<Object>} [property.list=[]] List of possible options for radio and select types 无线电和选择类型的可能选项列表
+     * @return {Property|null} Added Property or `null` in case sector doesn't exist 添加属性或“null”，如果扇区不存在
      * @example
      * var property = styleManager.addProperty('mySector',{
      *   name: 'Minimum height',
@@ -187,6 +188,7 @@ module.exports = () => {
      *      name: '200',
      *    }],
      * });
+     * property: 属性
      */
     addProperty(sectorId, property) {
       var prop = null;
@@ -202,7 +204,7 @@ module.exports = () => {
      * Get property by its CSS name and sector id
      * 通过CSS名称和扇区id获取属性
      * @param  {string} sectorId Sector id
-     * @param  {string} name CSS property name, eg. 'min-height'
+     * @param  {string} name CSS property name, eg. 'min-height' CSS属性名称，例如“最小高度”
      * @return {Property|null}
      * @example
      * var property = styleManager.getProperty('mySector','min-height');

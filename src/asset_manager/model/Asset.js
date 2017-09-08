@@ -9,6 +9,7 @@ module.exports = require('backbone').Model.extend({
 
   /**
    * Get filename of the asset
+   * 获取资产的文件名
    * @return  {string}
    * @private
    * */
@@ -18,6 +19,7 @@ module.exports = require('backbone').Model.extend({
 
   /**
    * Get extension of the asset
+   * 获取资产的扩展
    * @return  {string}
    * @private
    * */

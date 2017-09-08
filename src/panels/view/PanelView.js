@@ -28,7 +28,7 @@ module.exports = Backbone.View.extend({
   updateContent() {
     this.$el.html(this.model.get('content'));
   },
-
+  // resize: 翻译 调整大小
   initResize() {
     const em = this.config.em;
     const editor = em ? em.get('Editor') : '';

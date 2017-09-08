@@ -4,25 +4,25 @@
  * * [getHtml](#gethtml) - 获取html
  * * [getCss](#getcss)
  * * [getJs](#getjs)
- * * [getComponents](#getcomponents)
- * * [setComponents](#setcomponents)
- * * [addComponents](#addcomponents)
- * * [getStyle](#getstyle)
- * * [setStyle](#setstyle)
- * * [getSelected](#getselected)
- * * [getSelectedToStyle](#getselectedtostyle)
- * * [setDevice](#setdevice)
- * * [getDevice](#getdevice)
- * * [runCommand](#runcommand)
- * * [stopCommand](#stopcommand)
- * * [store](#store)
- * * [load](#load)
- * * [getContainer](#getcontainer)
- * * [refresh](#refresh)
+ * * [getComponents](#getcomponents) 获取组件
+ * * [setComponents](#setcomponents) 设置组件
+ * * [addComponents](#addcomponents) 添加组件
+ * * [getStyle](#getstyle)           获取样式
+ * * [setStyle](#setstyle)           设置样式
+ * * [getSelected](#getselected)     获取选择器 
+ * * [getSelectedToStyle](#getselectedtostyle) 获得选择到风格
+ * * [setDevice](#setdevice) 设置设备
+ * * [getDevice](#getdevice) 获取设备
+ * * [runCommand](#runcommand) 运行命令
+ * * [stopCommand](#stopcommand) 停止命令
+ * * [store](#store) 商店
+ * * [load](#load)   加载
+ * * [getContainer](#getcontainer) 得到容器
+ * * [refresh](#refresh) 刷新
  * * [on](#on)
  * * [off](#off)
- * * [trigger](#trigger)
- * * [render](#render)
+ * * [trigger](#trigger) 触发
+ * * [render](#render)   显示模板
  *
  * Editor class contains the top level API which you'll probably use to custom the editor or extend it with plugins. 
  * 编辑器类包含顶级API，您可能会使用它来定制编辑器或用插件扩展它。
@@ -35,7 +35,7 @@
  * **Available Events** 可用事件
  * * `component:add` - Triggered when a new component is added to the editor, the model is passed as an argument to the callback 当将新组件添加到编辑器时，该模型将作为参数传递给回调。
  * * `component:update` - Triggered when a component is, generally, updated (moved, styled, etc.) 当组件是更新的（移动、样式等）时触发的。
- * * `component:update:{propertyName}` - Listen any property change 监听任何属性改变
+ * * `component:update:{propertyName}` - Listen any property change                       监听任何属性改变
  * * `component:styleUpdate` - Triggered when the style of the component is updated       当组件的样式被更新时触发。
  * * `component:styleUpdate:{propertyName}` - Listen for a specific style property change 监听特定样式属性更改。
  * *  asset 暂时理解为图片管理器
@@ -100,9 +100,10 @@ module.exports = config => {
   c.pStylePrefix = c.stylePrefix;
   // em 是 EditorModel
   var em = new EditorModel(c);
+  // editorView 这个很重要，里面有所有的方法控制器的方法
   var editorView = new EditorView({
       model: em,
-      config: c,
+      config: c, 
   });
 
   return {
@@ -261,7 +262,7 @@ module.exports = config => {
 
     /**
      * Returns JS of all components
-     * 返回所有组件的js
+     * 返回所有组件的 js
      * @return {string} JS string
      */
     getJs() {
@@ -378,7 +379,7 @@ module.exports = config => {
      * @param  {Component|HTMLElement} el Component to select 要选择的组件
      * @return {this}
      * @example
-     * // Select dropped block
+     * // Select dropped block 选择掉块
      * editor.on('block:drag:stop', function(model) {
      *  editor.select(model);
      * });
@@ -390,7 +391,7 @@ module.exports = config => {
 
     /**
      * Set device to the editor. If the device exists it will 将设备设置为编辑器。如果设备存在，它将
-     * change the canvas to the proper width 将画布改为适当的宽度
+     * change the canvas to the proper width   将画布改为适当的宽度
      * @param {string} name Name of the device 设备名称
      * @return {this}
      * @example
@@ -604,9 +605,12 @@ module.exports = config => {
       // 做渲染后的东西后，iframe加载否则会
       // be empty during tests
       // 测试期间空
+      console.log(em.get('modules'));
+      // em.get('modules')： 是所有的加载的文件
+      // loaded: 当所有DOM解析完以后会触发这个事件
       em.on('loaded', () => {
         em.get('modules').forEach((module) => {
-          module.postRender && module.postRender(editorView);
+          module.postRender && module.postRender(editorView); // 执行扩展文件里面的  postRender 方法
         });
       });
 

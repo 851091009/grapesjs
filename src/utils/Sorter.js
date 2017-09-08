@@ -1,3 +1,4 @@
+// 拖拽
 var Backbone = require('backbone');
 
 module.exports = Backbone.View.extend({
@@ -29,7 +30,7 @@ module.exports = Backbone.View.extend({
     this.ignoreViewChildren = o.ignoreViewChildren || 0;
     this.ignoreModels = o.ignoreModels || 0;
     this.plh = o.placer || '';
-    // Frame offset
+    // Frame offset 帧偏移
     this.wmargin = o.wmargin || 0;
     this.offTop = o.offsetTop || 0;
     this.offLeft = o.offsetLeft || 0;
@@ -185,7 +186,7 @@ module.exports = Backbone.View.extend({
 
   /**
    * Closest parent
-   * 最近的父母
+   * 最近的父类
    * @param {Element} el
    * @param {String} selector
    * @return {Element|null}

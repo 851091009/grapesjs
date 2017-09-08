@@ -46,10 +46,11 @@ module.exports = () => {
      * @param {string} [config.id='gjs-'] The prefix for the fields, useful to differentiate storing/loading 字段的前缀，用于区分存储/加载
      * with multiple editors on the same page. For example, in local storage, the item of HTML will be saved like 'gjs-html'
      * 在同一页上有多个编辑器。 例如，在本地存储中，HTML的项目将被保存为“gjs-html”
-     * @param {Boolean} [config.autosave=true] Indicates if autosave mode is enabled, works in conjunction with stepsBeforeSave
-     * @param {number} [config.stepsBeforeSave=1] If autosave enabled, indicates how many steps/changes are necessary
+     * @param {Boolean} [config.autosave=true] Indicates if autosave mode is enabled, works in conjunction with stepsBeforeSave 指示是否启用自动保存模式，与stepsBeforeSave一起使用
+     * @param {number} [config.stepsBeforeSave=1] If autosave enabled, indicates how many steps/changes are necessary 如果启用自动保护，则表示需要执行多少步骤/更改
      * before autosave is triggered
      * @param {string} [config.type='local'] Default storage type. Available: 'local' | 'remote' | ''(do not store)
+     *                                       默认存储类型。可用：
      * @example
      * ...
      * {

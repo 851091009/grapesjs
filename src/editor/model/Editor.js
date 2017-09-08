@@ -14,9 +14,9 @@ var deps = [
     require('asset_manager'),    // 资产管理器
     require('css_composer'),     // CSS 组成
     require('dom_components'),   // DOM组件
-    require('canvas'),
-    require('commands'),        // 命令
-    require('block_manager'),   // 块管理器
+    require('canvas'),           // 画板
+    require('commands'),         // 命令
+    require('block_manager'),    // 块管理器
     require('trait_manager'),
 ];
 
@@ -34,7 +34,7 @@ module.exports = Backbone.Model.extend({
     previousModel: null,     // 以前的模型
     changesCount:  0,        // 改变数
     storables: [],           // 可储存
-    modules: [],
+    modules: [],             // 存储模块
     toLoad: [],
     opened: {},
     device: '', // 方法
@@ -42,7 +42,7 @@ module.exports = Backbone.Model.extend({
   // 构造函数
   // grapesjs config.js 和 editor config.js 合在一起 就是参数 c 
   initialize(c) {
-    console.log(c);
+    // console.log(c);
     this.config = c;
     this.set('Config', c);
     this.set('modules', []);
@@ -53,20 +53,23 @@ module.exports = Backbone.Model.extend({
 
     // Load modules
     // 加载模块
+    // 这里的 this 代表 返回值回调给 当前控制器
     deps.forEach(function(name){
       this.loadModule(name);
+     
     }, this);
 
     // Call modules with onLoad callback
     // 调用onLoad回调模块
+    // 执行模块加载完成后的事件
     this.get('toLoad').forEach(M => {
       M.onLoad();
     });
 
-    this.loadOnStart(); // 加载默认的
+    this.loadOnStart();     // 加载默认的
     this.initUndoManager(); // 初始化键盘 ctrl + z 管理
     // backbone 绑定事件
-    this.on('change:selectedComponent', this.componentSelected, this);
+    this.on('change:selectedComponent', this.componentSelected, this);// this.componentSelected ： 组件选择回调
     this.on('change:changesCount', this.updateBeforeUnload, this);
   },
 
@@ -78,13 +81,13 @@ module.exports = Backbone.Model.extend({
   loadOnStart() {
     const sm = this.get('StorageManager');
 
-    if (sm && sm.getConfig().autoload) {
-      this.load();
+    if (sm && sm.getConfig().autoload) { // autoload： 指示init后的编辑器中是否加载数据
+      this.load(); // 从当前存储中加载数据
     }
   },
 
   /**
-   * Set the alert before unload in case it's requested 卸载前设置警报，以防请求。
+   * Set the alert before unload in case it's requested 在卸载之前设置警报，以备请求
    * and there are unsaved changes 有未保存的更改
    * @private
    */
@@ -94,7 +97,7 @@ module.exports = Backbone.Model.extend({
     if (this.config.noticeOnUnload && changes) {
       window.onbeforeunload = e => 1;
     } else {
-      window.onbeforeunload = null;
+      window.onbeforeunload = null; // window.onbeforeunload ： 在即将离开当前页面(刷新或关闭)时执行
     }
   },
 
@@ -110,10 +113,10 @@ module.exports = Backbone.Model.extend({
   loadModule(moduleName) {
     
     var c = this.config;
-    var M = new moduleName();
+    var M = new moduleName(); // 实力话当前控制器
     var name = M.name.charAt(0).toLowerCase() + M.name.slice(1); // 先把首字母小写 然后拼接字符串
-    console.log(name);
-    var cfg = c[name] || c[M.name] || {};
+    // console.log(name);
+    var cfg = c[name] || c[M.name] || {}; // 如果有默认参数就取morning参数，没有就成一个对象
     cfg.pStylePrefix = c.pStylePrefix || '';
 
     // Check if module is storable
@@ -121,22 +124,25 @@ module.exports = Backbone.Model.extend({
     var sm = this.get('StorageManager'); // StorageManager: 存储管理器的配置
     if(M.storageKey && M.store && M.load && sm){
       cfg.stm = sm;
-      var storables = this.get('storables');
+      var storables = this.get('storables');//storables 是在在默认参数中定义了一个数组
       storables.push(M);
       this.set('storables', storables);
     }
-    cfg.em = this;
-    M.init(Object.create(cfg)); // M : 是当前的方法
+    
+    cfg.em = this; // cfg 是 当前控制器的配置参数
+    
+    M.init(Object.create(cfg)); // M : 是当前的方法 moduleName 。 调用实例化的方法 Object.create() 方法会使用指定的原型对象及其属性去创建一个新的对象。
 
     // Bind the module to the editor model if public
     // 如果公共的话，将模块绑定到编辑器模型。
+    // 通过 set 方法，可以设置成属性。用 get 方法获取 
     if(!M.private)
       this.set(M.name, M);
     // 相当于回调函数
     if(M.onLoad)
       this.get('toLoad').push(M);
 
-    this.get('modules').push(M);
+    this.get('modules').push(M);// 添加到模块里面
     return this;
   },
 
@@ -521,7 +527,7 @@ module.exports = Backbone.Model.extend({
    * @private
    */
   load(clb) {
-    var result = this.getCacheLoad(1, clb);
+    var result = this.getCacheLoad(1, clb);// 获取缓存参数
     this.get('storables').forEach(m => {
       m.load(result);
     });

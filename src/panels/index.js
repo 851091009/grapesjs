@@ -8,26 +8,28 @@
  * * [render](#render)
  *
  * This module manages panels and buttons inside the editor.
+ * 该模块管理编辑器内的面板和按钮。
  * You can init the editor with all panels and buttons necessary via configuration
+ * 您可以通过配置启动所有面板和按钮所需的编辑器
  *
  * ```js
  * var editor = grapesjs.init({
  *   ...
- *  panels: {...} // Check below for the possible properties
+ *  panels: {...} // Check below for the possible properties 检查下面的可能属性
  *   ...
  * });
  * ```
  *
  *
  * Before using methods you should get first the module from the editor instance, in this way:
- *
+ * 在使用方法之前，您应该首先从编辑器实例中获取模块，方法如下：
  * ```js
  * var panelManager = editor.Panels;
  * ```
  *
  * @module Panels
  * @param {Object} config Configurations
- * @param {Array<Object>} [config.defaults=[]] Array of possible panels
+ * @param {Array<Object>} [config.defaults=[]] Array of possible panels 数组可能的面板
  * @example
  * ...
  * panels: {

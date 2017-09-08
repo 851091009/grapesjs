@@ -7,6 +7,7 @@ module.exports = Backbone.View.extend({
     this.opt = o || {};
     this.config = this.opt.config || {};
     this.pfx = this.config.stylePrefix || '';
+    // 让 object 监听 另一个（other）对象上的一个特定事件。不使用other.on(event, callback, object)，而使用这种形式的优点是：listenTo允许 object来跟踪这个特定事件，并且以后可以一次性全部移除它们。callback总是在object上下文环境中被调用。
     this.listenTo(this.collection, 'add', this.addTo );
     this.listenTo(this.collection, 'reset', this.render );
     this.className = this.pfx + 'panels';

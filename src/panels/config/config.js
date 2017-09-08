@@ -1,6 +1,6 @@
-var crc = 'create-comp';
-var mvc = 'move-comp';
-var swv = 'sw-visibility';
+var crc  = 'create-comp';
+var mvc  = 'move-comp';
+var swv  = 'sw-visibility';
 var expt = 'export-template';
 var osm = 'open-sm';
 var otm = 'open-tm';
@@ -13,6 +13,7 @@ module.exports = {
   stylePrefix: 'pn-',
 
   // Default panels fa-sliders for features
+  // 默认面板fa滑块的功能
   defaults: [{
     id: 'commands',
     buttons: [{}],
@@ -70,8 +71,10 @@ module.exports = {
   }],
 
   // Editor model
+  // 编辑模式
   em : null,
 
   // Delay before show children buttons (in milliseconds)
+  // 展示之前的延迟按钮（以毫秒为单位）
   delayBtnsShow  : 300,
 };

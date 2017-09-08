@@ -929,15 +929,16 @@
     var blkStyle = '.blk-row::after{ content: ""; clear: both; display: block;} .blk-row{padding: 10px;}';
     var editor = grapesjs.init(
       {
-        allowScripts: 1,
-        showOffsets: 1,
-        autorender: 0,
-        noticeOnUnload: 0,
+        allowScripts: 1,   // 允许脚本标记导入
+        showOffsets: 1,    // 显示内边距和外边距
+        autorender: 0,     // 如果TRUE在init上呈现编辑器
+        noticeOnUnload: 0, // 之前卸载网页未保存的更改显示警报
         container: '#gjs',
         height: '100%',
-        fromElement: true,
-        clearOnRender: 0,
-
+        fromElement: true, // 如果为true，将从选定容器中获取HTML和CSS。
+        clearOnRender: 0,  // 清除画布时，editor.render()被称为编辑。
+        
+        // 存储管理器
         storageManager: {
           autoload: 1,
           storeComponents: 1,
@@ -945,6 +946,7 @@
         },
 
         // 顶部按钮
+        // 配置命令
         commands: {
           defaults: [{
             id: 'open-github',
@@ -975,7 +977,7 @@
           }],
         }, // 顶部按钮 END
         
-        // 图片控制器
+        // 图片控制器  资产管理器的配置
         assetManager: {
           upload: 'https://test.page',
           params: {
@@ -994,7 +996,7 @@
             { type: 'image', src: './img/bg-gr-v.png', date: '2015-02-01', height: 1, width: 1728 },
           ]
         },
-        // 块方法
+        // 块方法 块管理器的配置
         blockManager: {
           blocks: [{
             id: 'b1',
@@ -1145,7 +1147,7 @@
             },
           }],
         },
-        // 样式控制面板
+        // 样式控制面板 样式管理器的配置
         styleManager: {
           sectors: [{
             name: 'General',
@@ -1349,12 +1351,13 @@
         }, // 样式控制面板 END
 
 
-      });
+      });// grapesjs.init
 
-
+   
     window.editor = editor;
-
-    var pnm = editor.Panels;
+  
+    var pnm = editor.Panels;// 控制面板
+    // 向面板添加按钮
     pnm.addButton('options', [{
       id: 'undo',
       className: 'fa fa-undo icon-undo',
@@ -1387,7 +1390,7 @@
       attributes: { title: 'Empty canvas' }
     }]);
 
-    var bm = editor.BlockManager;
+    var bm = editor.BlockManager; // 添加布局模块
     /*
     bm.add('link-block', {
       label: 'Link Block',
@@ -1405,8 +1408,8 @@
         }
       },
     });*/
-
-    var domc         = editor.DomComponents;
+/*
+    var domc         = editor.DomComponents; // DOM 控制面板
     var defaultType  = domc.getType('default');
     var defaultModel = defaultType.model;
     var defaultView  = defaultType.view;
@@ -1428,10 +1431,10 @@
     // Store and load events
     // 存储和加载事件
     editor.on('storage:load', function (e) {
-      console.log('LOAD ', e);
+      // console.log('LOAD ', e);
     })
     editor.on('storage:store', function (e) {
-      console.log('STORE ', e);
+      // console.log('STORE ', e);
     })
 
     editor.on('styleManager:change:text-shadow', function (view) {

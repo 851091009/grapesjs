@@ -9,7 +9,7 @@
 
   return {
 
-    editors, // 编辑器
+    editors, // 编辑器，可以是多个编辑器可以做多个页面用
 
     plugins, // 插件
 
@@ -21,8 +21,8 @@
      * @param {Object|string} config.components='' HTML string or Component model in JSON format JSON格式的HTML字符串或组件模型
      * @param {Object|string} config.style='' CSS string or CSS model in JSON format CSS CSS JSON格式的字符串或模型
      * @param {Boolean} [config.fromElement=false] If true, will fetch HTML and CSS from selected container 如果为true，将从选定容器中获取HTML和CSS。
-     * @param {Boolean} [config.copyPaste=true] Enable/Disable the possibility to copy(ctrl+c) & paste(ctrl+v) components
-     * @param {Boolean} [config.undoManager=true] Enable/Disable undo manager 启用/禁用撤消管理器
+     * @param {Boolean} [config.copyPaste=true] Enable/Disable the possibility to copy(ctrl+c) & paste(ctrl+v) components 启用/禁用复制（ctrl + c）和粘贴（ctrl + v）组件的可能性
+     * @param {Boolean} [config.undoManager=true] Enable/Disable undo manager  启用/禁用撤消管理器
      * @param {Array} [config.plugins=[]] Array of plugins to execute on start 开始执行的插件数组
      * @return {grapesjs.Editor} GrapesJS editor instance grapesjs编辑实例
      * @example
@@ -33,7 +33,7 @@
      * })
      */
     init(config) {
-      var c = config || {};
+      var c   = config || {};
       var els = c.container; // 定义编辑器的 ID
 
       // Make a missing $ more verbose
@@ -49,7 +49,7 @@
         if (!(name in c))
           c[name] = defaults[name];
       }
-      console.log(defaults);
+      // console.log(defaults);
       if(!els)
         throw new Error("'container' is required");
 
@@ -69,7 +69,7 @@
           console.warn(`Plugin ${pluginId} not found`);
         }
       });
-
+      // autorender: 如果TRUE在init上呈现编辑器,默认是 true
       if(c.autorender)
         editor.render();
 
@@ -80,3 +80,6 @@
   };
 
 })();
+/**
+ * 
+ */

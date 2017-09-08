@@ -272,7 +272,7 @@ module.exports = () => {
     },
 
     postRender(editorView) {
-      c.dropzone && fu.initDropzone(editorView);
+      c.dropzone && fu.initDropzone(editorView); // fu : 上传页面
     },
 
     /**

@@ -3,9 +3,13 @@ var Backbone = require('backbone');
 module.exports = Backbone.View.extend({
   // 初始化参数
   // 先看这个方法
+  // 当创建model实例时，可以传入 属性 (attributes)初始值，这些值会被 set （设置）到 model。 如果定义了 initialize 函数，该函数会在model创建后执行。
+  // 有两个参数
+  // model: em
+  // config: c
   initialize() {
     this.model.view = this;
-    this.pn         = this.model.get('Panels');
+    this.pn         = this.model.get('Panels'); // 这里的model 是 editor model.js
     this.conf       = this.model.config;
     this.className  = this.conf.stylePrefix + 'editor';
     this.model.on('loaded', () => {
@@ -16,11 +20,11 @@ module.exports = Backbone.View.extend({
   },
   // 渲染
   render() {
-    var model  = this.model;
-    var um     = model.get('UndoManager');
-    var dComps = model.get('DomComponents');
-    var config = model.get('Config');
-
+    var model  = this.model;// 这是model 是 ediror 的模型
+    var um     = model.get('UndoManager');   // 撤销 管理器
+    var dComps = model.get('DomComponents'); // Dom组件
+    var config = model.get('Config');        // 配置参数
+    // loadCompsOnRender: 此选项还提供用于加载的自定义组件类型。元素内的帆布
     if(config.loadCompsOnRender) {
       if (config.clearOnRender) {
         dComps.clear();
@@ -33,7 +37,7 @@ module.exports = Backbone.View.extend({
       dComps.onLoad();
     }
 
-    var conf = this.conf;
+    var conf   = this.conf;
     var contEl = $(conf.el || ('body ' + conf.container));
     this.$el.empty(); // jquery 函数
 

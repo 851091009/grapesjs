@@ -7,8 +7,9 @@ module.exports = Backbone.Collection.extend({
 
   /**
    * Deactivate all buttons, except one passed
-   * @param  {Object}  except  Model to ignore
-   * @param  {Boolean}  r     Recursive flag
+   * 取消所有按钮，除了一个通过
+   * @param  {Object}  except  Model to ignore 模型忽略
+   * @param  {Boolean}  r     Recursive flag   递归标志
    *
    * @return  void
    * */
@@ -24,7 +25,8 @@ module.exports = Backbone.Collection.extend({
 
   /**
    * Deactivate all buttons
-   * @param  {String}  ctx Context string
+   * 停用所有按钮
+   * @param  {String}  ctx Context string 上下文字符串
    *
    * @return  void
    * */

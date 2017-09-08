@@ -28,7 +28,7 @@ module.exports = {
   showOffsetsSelected: false,
 
   // Clear the canvas when editor.render() is called
-  // 清除画布时，（）被称为编辑。
+  // 清除画布时，editor.render()被称为编辑。
   clearOnRender: false,
 
   // On creation of a new Component (via object), if the 'style' attribute is not 关于创建一个新组件（通过对象），如果“样式”属性不是

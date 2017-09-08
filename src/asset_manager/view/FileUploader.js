@@ -159,17 +159,17 @@ module.exports = Backbone.View.extend({
       }
     }
   },
-
+  // 初始化
   initDropzone(ev) {
     let addedCls = 0;
-    const c = this.config;
+    const c  = this.config;
     const em = ev.model;
-    const edEl = ev.el;
+    const edEl   = ev.el;
     const editor = em.get('Editor');
     const container = em.get('Config').el;
-    const frameEl = em.get('Canvas').getBody();
-    const ppfx = this.ppfx;
-    const updatedCls = `${ppfx}dropzone-active`;
+    const frameEl   = em.get('Canvas').getBody();
+    const ppfx      = this.ppfx;
+    const updatedCls  = `${ppfx}dropzone-active`;
     const dropzoneCls = `${ppfx}dropzone`;
     const cleanEditorElCls = () => {
       edEl.className = edEl.className.replace(updatedCls, '').trim();
