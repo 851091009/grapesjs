@@ -86,6 +86,7 @@
  */
 
 module.exports = config => {
+  
   var c = config || {}, // 用来存储 配置文件
   defaults    = require('./config/config'),
   EditorModel = require('./model/Editor'),
@@ -95,7 +96,7 @@ module.exports = config => {
     if (!(name in c))
       c[name] = defaults[name];
   }
-
+  
   // style 的前缀
   c.pStylePrefix = c.stylePrefix;
   // em 是 EditorModel
@@ -229,6 +230,7 @@ module.exports = config => {
      * @private
      */
     init() {
+      
       em.init(this); // 调用 editor model 的init 方法
       return this;
     },

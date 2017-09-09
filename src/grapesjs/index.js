@@ -1,12 +1,12 @@
  module.exports = (config => {
   var c = config || {},
   defaults      = require('./config/config'), // 配置文件
-  Editor        = require('editor'), // 编辑器
-  PluginManager = require('plugin_manager'); // 插件控制器
+  Editor        = require('editor'),          // 编辑器
+  PluginManager = require('plugin_manager');  // 插件控制器
 
   var plugins = new PluginManager(); // 实例化插件
   var editors = []; // 定义一个控制器数组，目前来看，是可以定义多个编辑器的
-
+ 
   return {
 
     editors, // 编辑器，可以是多个编辑器可以做多个页面用
@@ -33,6 +33,7 @@
      * })
      */
     init(config) {
+      // config 传递过来的参数
       var c   = config || {};
       var els = c.container; // 定义编辑器的 ID
 
@@ -54,12 +55,13 @@
         throw new Error("'container' is required");
 
       c.el = document.querySelector(els);
+      
       var editor = new Editor(c).init(); // 调用的编辑的的方法 
 
       // Execute plugins
       // 执行插件
       var plugs = plugins.getAll();
-
+      // 执行默认的插件
       c.plugins.forEach((pluginId) => {
         let plugin = plugins.get(pluginId);
 

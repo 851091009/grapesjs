@@ -60,7 +60,8 @@ module.exports = Backbone.View.extend({
   },
 
   render() {
-    var fragment = document.createDocumentFragment();
+    //https://developer.mozilla.org/zh-CN/docs/Web/API/Document/createDocumentFragment
+    var fragment = document.createDocumentFragment(); // 创建一个新的空白的文档片段
     this.$el.empty();
 
     this.collection.each(function(model){

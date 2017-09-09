@@ -5,10 +5,11 @@ module.exports = Backbone.View.extend({
 
   initialize(o) {
     this.config = o.config || {};
-    this.pfx = this.config.stylePrefix || '';
-    this.buttons = this.model.get('buttons');
+    this.pfx    = this.config.stylePrefix || '';
+    this.buttons   = this.model.get('buttons');
     this.className = this.pfx + 'panel';
     this.id = this.pfx + this.model.get('id');
+    // change：当有输入的变化的时候触发此时间
     this.listenTo(this.model, 'change:appendContent', this.appendContent);
     this.listenTo(this.model, 'change:content', this.updateContent);
   },
@@ -77,7 +78,7 @@ module.exports = Backbone.View.extend({
       resizer.focus(this.el);
     }
   },
-
+  // 这里是重点
   render() {
     this.$el.attr('class', this.className);
 

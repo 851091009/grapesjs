@@ -52,7 +52,7 @@ module.exports = Backbone.View.extend({
 
     // Panels
     // 面板
-    this.$el.append(this.pn.render());
+    this.$el.append(this.pn.render());// 控制所有的按钮显示
     this.$el.attr('class', this.className);
     contEl.addClass(conf.stylePrefix + 'editor-cont');
     contEl.empty().append(this.$el);
