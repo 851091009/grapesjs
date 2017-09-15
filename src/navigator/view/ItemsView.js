@@ -6,12 +6,12 @@ module.exports = Backbone.View.extend({
   initialize(o = {}) {
     this.opt = o;
     const config = o.config || {};
-    this.level = o.level;
-    this.config = config;
+    this.level   = o.level;
+    this.config  = config;
     this.preview = o.preview;
-    this.ppfx = config.pStylePrefix || '';
-    this.pfx = config.stylePrefix || '';
-    this.parent = o.parent;
+    this.ppfx    = config.pStylePrefix || '';
+    this.pfx     = config.stylePrefix || '';
+    this.parent  = o.parent;
     this.listenTo(this.collection, 'add', this.addTo);
     this.listenTo(this.collection, 'reset resetNavigator', this.render);
     this.className   = this.pfx + 'items';

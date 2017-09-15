@@ -25,24 +25,24 @@ module.exports = {
       className: 'fa fa-square-o',
       command: swv,
       context: swv,
-      attributes: { title: 'View components' },
+      attributes: { title: 'View components' }, // 查看组件
     },{
       id: prv,
       className: 'fa fa-eye',
       command: prv,
       context: prv,
-      attributes: { title: 'Preview' },
+      attributes: { title: 'Preview' }, // 预览
     },{
       id: ful,
       className: 'fa fa-arrows-alt',
       command: ful,
       context: ful,
-      attributes: { title: 'Fullscreen' },
+      attributes: { title: 'Fullscreen' }, // 全屏
     },{
       id: expt,
       className: 'fa fa-code',
       command: expt,
-      attributes: { title: 'View code' },
+      attributes: { title: 'View code' }, // 查看代码
     }],
   },{
     id: 'views',
@@ -51,22 +51,22 @@ module.exports = {
       className: 'fa fa-paint-brush',
       command: osm,
       active: true,
-      attributes: { title: 'Open Style Manager' },
+      attributes: { title: 'Open Style Manager' }, // 打开样式管理器
     },{
       id: otm,
       className: 'fa fa-cog',
       command: otm,
-      attributes: { title: 'Settings' },
+      attributes: { title: 'Settings' },// 设置
     },{
       id: ola,
       className: 'fa fa-bars',
       command: ola,
-      attributes  : { title: 'Open Layer Manager' },
+      attributes  : { title: 'Open Layer Manager' },// 打开图层管理器
     },{
       id: obl,
       className: 'fa fa-th-large',
       command: obl,
-      attributes  : { title: 'Open Blocks' },
+      attributes  : { title: 'Open Blocks' },// 开放块
     }],
   }],
 

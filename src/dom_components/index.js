@@ -262,6 +262,7 @@ module.exports = () => {
         this.getComponents().reset();
 
         // If the result is an object I consider it the wrapper
+        // 如果结果是一个对象，我认为它是包装器
         if (isObj) {
           this.getWrapper().set(result)
           .initComponents().initClasses().loadTraits();

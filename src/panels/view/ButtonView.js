@@ -3,8 +3,13 @@ var Backbone = require('backbone');
 module.exports = Backbone.View.extend({
 
   tagName: 'span',
-
+  /**
+    * _.bindAll(object, *methodNames) 
+    * 把methodNames参数指定的一些方法绑定到object上，这些方法就会在对象的上下文环境中执行。
+    listenTo: http://www.cnblogs.com/fengyuqing/p/backbone_events_api_usage.html?utm_source=tuicool&utm_medium=referral
+  */
   initialize(o) {
+   
     _.bindAll(this, 'startTimer', 'stopTimer', 'showButtons', 'hideButtons','closeOnKeyPress','onDrop', 'initSorter', 'stopDrag');
     var cls = this.model.get('className');
     this.config = o.config || {};
@@ -33,7 +38,7 @@ module.exports = Backbone.View.extend({
     this.events = {};
 
     if(this.model.get('dragDrop')){
-      this.events.mousedown = 'initDrag';
+      this.events.mousedown = 'initDrag';//mousedown: 当按下鼠标按钮时, 触发事件
       this.em.on('loaded', this.initSorter);
     }else
       this.events.click = 'clicked';
@@ -44,7 +49,7 @@ module.exports = Backbone.View.extend({
     if(this.em.Canvas){
       var canvas = this.em.Canvas;
       this.canvasEl = canvas.getBody();
-      this.sorter = new this.em.Utils.Sorter({
+      this.sorter = new this.em.Utils.Sorter({ // 开始拖拽
         container: this.canvasEl,
         placer: canvas.getPlacerEl(),
         containerSel: '*',
@@ -58,7 +63,7 @@ module.exports = Backbone.View.extend({
         nested: 1,
       });
       var offDim = canvas.getOffset();
-      this.sorter.offTop = offDim.top;
+      this.sorter.offTop  = offDim.top;
       this.sorter.offLeft = offDim.left;
     }
   },
@@ -73,7 +78,7 @@ module.exports = Backbone.View.extend({
     this.sorter.startSort(this.el);
     this.sorter.setDropContent(this.model.get('options').content);
     this.canvasEl.style.cursor = 'grabbing';
-    $(document).on('mouseup', this.stopDrag);
+    $(document).on('mouseup', this.stopDrag);// mouseup: 当松开鼠标按钮触发的事件
   },
 
   /**
@@ -82,6 +87,7 @@ module.exports = Backbone.View.extend({
    * @private
    */
   stopDrag() {
+    // off() 方法通常用于移除通过 on() 方法添加的事件处理程序。
     $(document).off('mouseup', this.stopDrag);
     this.sorter.endMove();
   },
@@ -166,7 +172,7 @@ module.exports = Backbone.View.extend({
     clearTimeout(this.timeout);
     this.model.set('bntsVis', true);
     $(document).on('mousedown',  this.hideButtons);
-    $(document).on('keypress',  this.closeOnKeyPress);
+    $(document).on('keypress',  this.closeOnKeyPress);// 按ESC键关闭按钮
   },
 
   /**
@@ -287,9 +293,9 @@ module.exports = Backbone.View.extend({
   swapParent() {
     this.parentM.collection.deactivateAll(this.model.get('context'));
     this.parentM.set('attributes',   this.model.get('attributes'));
-    this.parentM.set('options',   this.model.get('options'));
-    this.parentM.set('command',   this.model.get('command'));
-    this.parentM.set('className',   this.model.get('className'));
+    this.parentM.set('options',      this.model.get('options'));
+    this.parentM.set('command',      this.model.get('command'));
+    this.parentM.set('className',    this.model.get('className'));
     this.parentM.set('active', true, { silent: true }).trigger('checkActive');
   },
 
@@ -298,7 +304,7 @@ module.exports = Backbone.View.extend({
     this.$el.attr('class', this.className);
 
     if(this.model.get('buttons').length){
-      var btnsView = require('./ButtonsView');                //Avoid Circular Dependencies
+      var btnsView = require('./ButtonsView');                // Avoid Circular  Dependencies 避免循环依赖
       var view = new btnsView({
           collection   : this.model.get('buttons'),
           config    : this.config,

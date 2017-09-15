@@ -48,7 +48,7 @@
  */
 module.exports = () => {
   var c = {},
-  defaults   = require('./config/config'),
+  defaults   = require('./config/config'), // 存放顶部的右侧的按钮
   Panel      = require('./model/Panel'),
   Panels     = require('./model/Panels'),
   PanelView  = require('./view/PanelView'),
@@ -80,9 +80,10 @@ module.exports = () => {
       var ppfx = c.pStylePrefix;
       if(ppfx)
         c.stylePrefix = ppfx + c.stylePrefix;
-
+      // c.defaults： 默认面板上的按钮
       panels = new Panels(c.defaults);
-      PanelsViewObj = new PanelsView({
+      
+      PanelsViewObj = new PanelsView({ // 穿入面板的集合
         collection : panels,
         config : c,
       });
@@ -95,7 +96,7 @@ module.exports = () => {
      * @return {Collection} Collection of panel
      */
     getPanels() {
-      return panels;
+      return panels;//  panels = new Panels(c.defaults);
     },
 
     /**
@@ -132,6 +133,7 @@ module.exports = () => {
      * var myPanel = panelManager.getPanel('myNewPanel');
      */
     getPanel(id) {
+      //where: 返回集合中所有匹配所传递 attributes（属性）的模型数组。 对于简单的filter（过滤）比较有用。
       var res  = panels.where({id});
       return res.length ? res[0] : null;
     },
@@ -203,13 +205,14 @@ module.exports = () => {
     /**
      * Active activable buttons
      * 主动激活的按钮
+     * 在 render 之前执行
      * @private
      */
     active() {
       this.getPanels().each(p => {
           p.get('buttons').each(btn => {
             if(btn.get('active'))
-              btn.trigger('updateActive');
+              btn.trigger('updateActive');// trigger: 触发给定 event或用空格隔开的事件的回调函数。后续传入 trigger 的参数会传递到触发事件的回调函数里。
           });
         });
     },

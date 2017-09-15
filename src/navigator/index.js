@@ -40,7 +40,7 @@ module.exports = () => {
       this.componentChanged();
 
       return this;
-    },
+  },
 
     /**
      * Triggered when the selected component is changed

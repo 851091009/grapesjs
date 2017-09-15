@@ -10,6 +10,7 @@ module.exports = () => {
 
     /**
      * Used inside RTE
+     * 在RTE内部使用
      * @private
      */
     getCanvasView() {
@@ -50,8 +51,8 @@ module.exports = () => {
         this.setWrapper(cm);
 
       this.startAutoscroll = this.startAutoscroll.bind(this);
-      this.stopAutoscroll = this.stopAutoscroll.bind(this);
-      this.autoscroll = this.autoscroll.bind(this);
+      this.stopAutoscroll  = this.stopAutoscroll.bind(this);
+      this.autoscroll      = this.autoscroll.bind(this);
       return this;
     },
 

@@ -67,7 +67,7 @@ module.exports = () => {
       }
 
       defaultStorages.remote  = new RemoteStorage(c);
-      defaultStorages.local = new LocalStorage(c);
+      defaultStorages.local  = new LocalStorage(c);
       c.currentStorage = c.type;
       return this;
     },

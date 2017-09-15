@@ -106,12 +106,12 @@ module.exports = () => {
 
     /**
      * Add new sector to the collection. If the sector with the same id already exists,
-     * add to the New部门收藏。如果已经存在的部门ID with the same，
+     * 添加新的部门到集合。 具有相同ID的扇区已经存在，
      * that one will be returned
-     * 那个会被退回
-     * @param {string} id Sector id
+     * 那个将被归还
+     * @param {string} id Sector id 行业ID
      * @param  {Object} sector  Object representing sector 对象代表部门
-     * @param  {string} [sector.name='']  Sector's label 行业标签
+     * @param  {string} [sector.name='']  Sector's label   行业标签
      * @param  {Boolean} [sector.open=true] Indicates if the sector should be opened 指示是否应打开扇区
      * @param  {Array<Object>} [sector.properties=[]] Array of properties 属性数组
      * @return {Sector} Added Sector

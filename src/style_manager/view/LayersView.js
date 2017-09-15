@@ -29,6 +29,7 @@ module.exports = Backbone.View.extend({
     }) : '';
 
     // For the Sorter
+    // 对于分拣机
     collection.view = this;
     this.$el.data('model', collection);
     this.$el.data('collection', collection);
@@ -36,6 +37,7 @@ module.exports = Backbone.View.extend({
 
   /**
    * Add to collection
+   * 加入收藏
    * @param Object Model
    *
    * @return Object
@@ -47,11 +49,12 @@ module.exports = Backbone.View.extend({
 
   /**
    * Add new object to collection
+   * 将新对象添加到集合
    * @param Object Model
-   * @param Object Fragment collection
-   * @param  {number} index Index of append
+   * @param Object Fragment collection      片段收集
+   * @param  {number} index Index of append 附加索引
    *
-   * @return Object Object created
+   * @return Object Object created 创建对象
    * */
   addToCollection(model, fragmentEl, index) {
     var fragment = fragmentEl || null;
@@ -74,13 +77,14 @@ module.exports = Backbone.View.extend({
     }else{
       if(typeof index != 'undefined'){
         var method  = 'before';
-        // If the added model is the last of collection
-        // need to change the logic of append
+        // If the added model is the last of collection 如果添加的模型是最后的集合
+        // need to change the logic of append           需要改变追加的逻辑
         if(this.$el.children().length == index){
           index--;
           method = 'after';
         }
         // In case the added is new in the collection index will be -1
+        // 如果添加的是新的集合索引将为-1
         if(index < 0){
           this.$el.append(rendered);
         }else
@@ -94,7 +98,7 @@ module.exports = Backbone.View.extend({
 
   /**
    * Deselect all
-   *
+   * 全部取消选择
    * @return void
    * */
   deselectAll() {

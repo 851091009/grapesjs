@@ -17,7 +17,7 @@ var deps = [
     require('canvas'),           // 画板
     require('commands'),         // 命令
     require('block_manager'),    // 块管理器
-    require('trait_manager'),
+    require('trait_manager'),    // 特征管理器
 ];
 
 var Backbone    = require('backbone');
@@ -42,7 +42,7 @@ module.exports = Backbone.Model.extend({
   // 构造函数
   // grapesjs config.js 和 editor config.js 合在一起 就是参数 c 
   initialize(c) {
-    // console.log(c);
+    
     this.config = c;
     this.set('Config', c);
     this.set('modules', []);
@@ -71,6 +71,7 @@ module.exports = Backbone.Model.extend({
     // backbone 绑定事件
     this.on('change:selectedComponent', this.componentSelected, this);// this.componentSelected ： 组件选择回调
     this.on('change:changesCount', this.updateBeforeUnload, this);
+    
   },
 
   /**
@@ -112,8 +113,8 @@ module.exports = Backbone.Model.extend({
    */
   loadModule(moduleName) {
     
-    var c = this.config;
-    var M = new moduleName(); // 实力话当前控制器
+    var c    = this.config;
+    var M    = new moduleName(); // 实力话当前控制器
     var name = M.name.charAt(0).toLowerCase() + M.name.slice(1); // 先把首字母小写 然后拼接字符串
     // console.log(name);
     var cfg = c[name] || c[M.name] || {}; // 如果有默认参数就取morning参数，没有就成一个对象
@@ -302,7 +303,7 @@ module.exports = Backbone.Model.extend({
    * @param  {Mixed}    val  Value
    * @param  {Object}  opt  Options
    * @private
-   * */
+   * */ 
   updateComponents(model, val, opt) {
     var comps  = model.get('components'),
         classes  = model.get('classes'),
@@ -470,8 +471,8 @@ module.exports = Backbone.Model.extend({
   getCss() {
     const config = this.config;
     const wrappesIsBody = config.wrappesIsBody;
-    var cssc = this.get('CssComposer');
-    var wrp = this.get('DomComponents').getComponent();
+    var cssc    = this.get('CssComposer');
+    var wrp     = this.get('DomComponents').getComponent();
     var protCss = config.protectedCss;
 
     return protCss + this.get('CodeManager').getCode(wrp, 'css', {

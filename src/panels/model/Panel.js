@@ -11,6 +11,7 @@ module.exports = Backbone.Model.extend({
   },
 
   initialize(options) {
+    
     this.btn = this.get('buttons') || [];
     this.buttons = new Buttons(this.btn);
     this.set('buttons', this.buttons);

@@ -1,4 +1,5 @@
  module.exports = (config => {
+  
   var c = config || {},
   defaults      = require('./config/config'), // 配置文件
   Editor        = require('editor'),          // 编辑器
@@ -50,7 +51,7 @@
         if (!(name in c))
           c[name] = defaults[name];
       }
-      // console.log(defaults);
+      console.log(c);
       if(!els)
         throw new Error("'container' is required");
 

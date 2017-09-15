@@ -23,7 +23,7 @@ module.exports = Backbone.View.extend({
    * 更新框架的宽度
    * @private
    */
-  updateWidth(model) {
+  updateWidth(model) {  
     var device = this.em.getDeviceModel();
     this.el.style.width = device ? device.get('width') : '';
     this.udpateOffset();

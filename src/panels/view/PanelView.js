@@ -4,8 +4,8 @@ var ButtonsView = require('./ButtonsView');
 module.exports = Backbone.View.extend({
 
   initialize(o) {
-    this.config = o.config || {};
-    this.pfx    = this.config.stylePrefix || '';
+    this.config    = o.config || {};
+    this.pfx       = this.config.stylePrefix || '';
     this.buttons   = this.model.get('buttons');
     this.className = this.pfx + 'panel';
     this.id = this.pfx + this.model.get('id');
@@ -81,7 +81,7 @@ module.exports = Backbone.View.extend({
   // 这里是重点
   render() {
     this.$el.attr('class', this.className);
-
+    // console.log(this.$el);
     if(this.id)
       this.$el.attr('id', this.id);
 

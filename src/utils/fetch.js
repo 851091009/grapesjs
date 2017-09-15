@@ -20,6 +20,7 @@ export default typeof fetch == 'function' ? fetch.bind() : (url, options) => {
     req.onerror = rej;
 
     // Actually, fetch doesn't support onProgress feature
+    // 其实，取不支持进步的特征
     if (req.upload && options.onProgress) {
       req.upload.onprogress = options.onProgress;
     }

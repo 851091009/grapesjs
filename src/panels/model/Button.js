@@ -16,6 +16,7 @@ module.exports = Backbone.Model.extend({
     stopDefaultCommand: false,
   },
 
+
   initialize(options) {
     if(this.get('buttons').length){
       var Buttons  = require('./Buttons');

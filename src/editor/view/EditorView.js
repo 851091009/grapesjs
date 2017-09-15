@@ -7,7 +7,9 @@ module.exports = Backbone.View.extend({
   // 有两个参数
   // model: em
   // config: c
+  // this 是全局的，不管在任何一个位置打印都有全部属性
   initialize() {
+  
     this.model.view = this;
     this.pn         = this.model.get('Panels'); // 这里的model 是 editor model.js
     this.conf       = this.model.config;
@@ -20,7 +22,8 @@ module.exports = Backbone.View.extend({
   },
   // 渲染
   render() {
-    var model  = this.model;// 这是model 是 ediror 的模型
+   
+    var model  = this.model;          // 这是model 是 editor 的模型
     var um     = model.get('UndoManager');   // 撤销 管理器
     var dComps = model.get('DomComponents'); // Dom组件
     var config = model.get('Config');        // 配置参数
@@ -36,10 +39,10 @@ module.exports = Backbone.View.extend({
       // 这将初始化加载的组件。
       dComps.onLoad();
     }
-
+    
     var conf   = this.conf;
     var contEl = $(conf.el || ('body ' + conf.container));
-    this.$el.empty(); // jquery 函数
+    this.$el.empty(); // jquery 函数    div.gjs-editor
 
     if(conf.width)
       contEl.css('width', conf.width);
@@ -47,7 +50,7 @@ module.exports = Backbone.View.extend({
     if(conf.height)
       contEl.css('height', conf.height);
 
-    // Canvas
+    // Canvas 画板
     this.$el.append(model.get('Canvas').render());
 
     // Panels

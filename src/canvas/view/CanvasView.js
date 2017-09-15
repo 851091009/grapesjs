@@ -18,6 +18,7 @@ module.exports = Backbone.View.extend({
 
   /**
    * Update tools position
+   * 更新工具位置
    * @private
    */
   onFrameScroll() {
@@ -30,6 +31,7 @@ module.exports = Backbone.View.extend({
 
   /**
    * Insert scripts into head, it will call renderBody after all scripts loaded or failed
+   * 将脚本插入到头部，它会在所有脚本加载或失败后调用renderBody
    * @private
    */
   renderScripts() {
@@ -103,6 +105,13 @@ module.exports = Backbone.View.extend({
       // For the moment I give the priority to Firefox as it might be
       // CKEditor's issue
 
+      // 从baseCss中删除`html {height：100％;}`，因为它提供跳转
+      // 效果（在ENTER）与RTE像CKEditor（可能有一些bug吗？
+      // 使用`body {height：auto;}`CKEditor中的跳转被删除，但在
+      // Firefox不可能将东西拖到空的画布中，所以带回来
+      // `body {height：100％;}`。
+      // 目前我把Firefox优先考虑在内
+      // CKEditor的问题
 
       let layoutCss = `
         .${ppfx}comp-selected{
@@ -114,6 +123,7 @@ module.exports = Backbone.View.extend({
       `;
 
       // I need all this styles to make the editor work properly
+      // 我需要所有这些样式，使编辑器正常工作
       var frameCss = baseCss +
         '.' + ppfx + 'dashed :not([contenteditable]) > *[data-highlightable]{outline: 1px dashed rgba(170,170,170,0.7); outline-offset: -2px}' +
         layoutCss +
@@ -141,6 +151,8 @@ module.exports = Backbone.View.extend({
 
       // When the iframe is focused the event dispatcher is not the same so
       // I need to delegate all events to the parent document
+      // 当iframe被聚焦时，事件调度器不一样
+      // 我需要将所有事件委托给父文档
       var doc = document;
       var fdoc = this.frame.el.contentDocument;
       fdoc.addEventListener('keydown', e => {
@@ -301,15 +313,15 @@ module.exports = Backbone.View.extend({
       }
     }
     var ppfx = this.ppfx;
-    var toolsEl = $('<div>', { id: ppfx + 'tools' }).get(0);
-    this.hlEl = $('<div>', { class: ppfx + 'highlighter' }).get(0);
-    this.badgeEl = $('<div>', {class: ppfx + 'badge'}).get(0);
-    this.placerEl = $('<div>', {class: ppfx + 'placeholder'}).get(0);
+    var toolsEl      = $('<div>', { id: ppfx + 'tools' }).get(0);
+    this.hlEl        = $('<div>', { class: ppfx + 'highlighter' }).get(0);
+    this.badgeEl     = $('<div>', {class: ppfx + 'badge'}).get(0);
+    this.placerEl    = $('<div>', {class: ppfx + 'placeholder'}).get(0);
     this.placerIntEl = $('<div>', {class: ppfx + 'placeholder-int'}).get(0);
-    this.ghostEl = $('<div>', {class: ppfx + 'ghost'}).get(0);
-    this.toolbarEl = $('<div>', {class: ppfx + 'toolbar'}).get(0);
-    this.resizerEl = $('<div>', {class: ppfx + 'resizer'}).get(0);
-    this.offsetEl = $('<div>', {class: ppfx + 'offset-v'}).get(0);
+    this.ghostEl     = $('<div>', {class: ppfx + 'ghost'}).get(0);
+    this.toolbarEl   = $('<div>', {class: ppfx + 'toolbar'}).get(0);
+    this.resizerEl   = $('<div>', {class: ppfx + 'resizer'}).get(0);
+    this.offsetEl    = $('<div>', {class: ppfx + 'offset-v'}).get(0);
     this.fixedOffsetEl = $('<div>', {class: ppfx + 'offset-fixed-v'}).get(0);
     this.placerEl.appendChild(this.placerIntEl);
     toolsEl.appendChild(this.hlEl);

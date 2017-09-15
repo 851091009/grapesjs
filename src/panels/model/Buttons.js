@@ -32,7 +32,9 @@ module.exports = Backbone.Collection.extend({
    * */
   deactivateAll(ctx) {
     var context = ctx || '';
+
     this.forEach((model, index) => {
+
       if( model.get('context') == context ){
         model.set('active', false);
         if(model.get('buttons').length)

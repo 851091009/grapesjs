@@ -86,11 +86,11 @@
  */
 
 module.exports = config => {
-  
   var c = config || {}, // 用来存储 配置文件
   defaults    = require('./config/config'),
   EditorModel = require('./model/Editor'),
   EditorView  = require('./view/EditorView');
+  
   // 配置默认属性
   for (var name in defaults) {
     if (!(name in c))
@@ -230,7 +230,6 @@ module.exports = config => {
      * @private
      */
     init() {
-      
       em.init(this); // 调用 editor model 的init 方法
       return this;
     },
@@ -353,7 +352,7 @@ module.exports = config => {
     /**
      * Returns selected component, if there is one
      * 返回选定的组件，如果有
-     * @return {Model}
+     * @return {Model}  
      */
     getSelected() {
       return em.getSelected();
@@ -608,15 +607,16 @@ module.exports = config => {
       // be empty during tests
       // 测试期间空
       // index.html 调用的是这个
-      console.log(em.get('modules'));
+      // console.log(em.get('modules'));
       // em.get('modules')： 是所有的加载的文件
       // loaded: 当所有DOM解析完以后会触发这个事件
+      
       em.on('loaded', () => {
         em.get('modules').forEach((module) => {
           module.postRender && module.postRender(editorView); // 执行扩展文件里面的  postRender 方法
         });
       });
-
+      
       editorView.render();
       return editorView.el;
     },
