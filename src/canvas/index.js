@@ -202,7 +202,7 @@ module.exports = () => {
 
     /**
      * Get frame position
-     * 、把帧的位置
+     * 获取画布的位置
      * @return {Object}
      * @private
      */
@@ -414,7 +414,7 @@ module.exports = () => {
      * 停止自动滚屏
      */
     stopAutoscroll() {
-      this.dragging = 0;
+      this.dragging = 0;  
       let toListen = this.getScrollListeners();
       toListen.off('mousemove', this.autoscroll);
       toListen.off('mouseup', this.stopAutoscroll);

@@ -9,12 +9,12 @@ module.exports = Backbone.View.extend({
   // config: c
   // this 是全局的，不管在任何一个位置打印都有全部属性
   initialize() {
-  
+
     this.model.view = this;
     this.pn         = this.model.get('Panels'); // 这里的model 是 editor model.js
     this.conf       = this.model.config;
     this.className  = this.conf.stylePrefix + 'editor';
-    this.model.on('loaded', () => {
+    this.model.on('loaded', () => { // loaded: 只是一个名字，并不存在这个函数，这个结果是 执行 this.model 的 initialize 方法
       this.pn.active();
       this.model.runDefault();
       setTimeout(() => this.model.trigger('load'), 0);

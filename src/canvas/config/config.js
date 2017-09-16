@@ -22,7 +22,7 @@ module.exports = {
    * Append external styles. This styles won't be added to the final HTML/CSS
    * 添加外部样式。此样式不会添加到最终的HTML / CSS中。
    * @example
-   * styles: [
+   * styles: [  
    *  'https://...',
    * ]
   */

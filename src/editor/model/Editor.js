@@ -35,9 +35,9 @@ module.exports = Backbone.Model.extend({
     changesCount:  0,        // 改变数
     storables: [],           // 可储存
     modules: [],             // 存储模块
-    toLoad: [],
+    toLoad: [], // 初始化的栏目
     opened: {},
-    device: '', // 方法
+    device: '', // 默认设备
   },
   // 构造函数
   // grapesjs config.js 和 editor config.js 合在一起 就是参数 c 
@@ -58,7 +58,7 @@ module.exports = Backbone.Model.extend({
       this.loadModule(name);
      
     }, this);
-
+  
     // Call modules with onLoad callback
     // 调用onLoad回调模块
     // 执行模块加载完成后的事件
@@ -80,7 +80,7 @@ module.exports = Backbone.Model.extend({
    * @private
    */
   loadOnStart() {
-    const sm = this.get('StorageManager');
+    const sm = this.get('StorageManager');// StorageManager 文件
 
     if (sm && sm.getConfig().autoload) { // autoload： 指示init后的编辑器中是否加载数据
       this.load(); // 从当前存储中加载数据
@@ -118,11 +118,14 @@ module.exports = Backbone.Model.extend({
     var name = M.name.charAt(0).toLowerCase() + M.name.slice(1); // 先把首字母小写 然后拼接字符串
     // console.log(name);
     var cfg = c[name] || c[M.name] || {}; // 如果有默认参数就取morning参数，没有就成一个对象
+    
     cfg.pStylePrefix = c.pStylePrefix || '';
 
     // Check if module is storable
     // 检查模块存储
     var sm = this.get('StorageManager'); // StorageManager: 存储管理器的配置
+    
+    // 默认存储的？
     if(M.storageKey && M.store && M.load && sm){
       cfg.stm = sm;
       var storables = this.get('storables');//storables 是在在默认参数中定义了一个数组
@@ -131,17 +134,25 @@ module.exports = Backbone.Model.extend({
     }
     
     cfg.em = this; // cfg 是 当前控制器的配置参数
-    
+    //console.log(Object.create(cfg));
     M.init(Object.create(cfg)); // M : 是当前的方法 moduleName 。 调用实例化的方法 Object.create() 方法会使用指定的原型对象及其属性去创建一个新的对象。
 
     // Bind the module to the editor model if public
     // 如果公共的话，将模块绑定到编辑器模型。
-    // 通过 set 方法，可以设置成属性。用 get 方法获取 
+    // 通过 set 方法，可以设置成属性。用 get 方法获取---------------------------------------------------------很重要 
     if(!M.private)
       this.set(M.name, M);
     // 相当于回调函数
     if(M.onLoad)
       this.get('toLoad').push(M);
+    /**
+     * 有 onLoad 的文件：
+     * code_manager
+     * commandds
+     * css_components
+     * dom_composer
+     * storage_manager
+     */
 
     this.get('modules').push(M);// 添加到模块里面
     return this;

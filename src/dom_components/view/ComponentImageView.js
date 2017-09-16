@@ -66,7 +66,7 @@ module.exports = ComponentView.extend({
     if(!this.model.get('src'))
       this.$el.attr('class', (actCls + ' ' + this.classEmpty).trim());
 
-    // Avoid strange behaviours while try to drag
+    // Avoid strange behaviours while try to drag 尝试拖动时避免奇怪的行为
     this.$el.attr('onmousedown', 'return false');
     return this;
   },

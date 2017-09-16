@@ -9,7 +9,7 @@
  * * [addComponents](#addcomponents) 添加组件
  * * [getStyle](#getstyle)           获取样式
  * * [setStyle](#setstyle)           设置样式
- * * [getSelected](#getselected)     获取选择器 
+ * * [getSelected](#getselected)     获取选择器
  * * [getSelectedToStyle](#getselectedtostyle) 获得选择到风格
  * * [setDevice](#setdevice) 设置设备
  * * [getDevice](#getdevice) 获取设备
@@ -24,7 +24,7 @@
  * * [trigger](#trigger) 触发
  * * [render](#render)   显示模板
  *
- * Editor class contains the top level API which you'll probably use to custom the editor or extend it with plugins. 
+ * Editor class contains the top level API which you'll probably use to custom the editor or extend it with plugins.
  * 编辑器类包含顶级API，您可能会使用它来定制编辑器或用插件扩展它。
  * You get the Editor instance on init method
  * 获取init方法的编辑器实例
@@ -45,7 +45,7 @@
  * * `asset:upload:end`   - After the upload is ended      上传结束后
  * * `asset:upload:error` - On any error in upload, passes the error as an argument 上载时的任何错误，都会将该错误作为参数传递。
  * * `asset:upload:response` - On upload response, passes the result as an argument 在上载响应上，将结果作为参数传递。
- * * `styleManager:change` - Triggered on style property change from new selected component, the view of the property is passed as an argument to the callback 
+ * * `styleManager:change` - Triggered on style property change from new selected component, the view of the property is passed as an argument to the callback
  * *  在新选定组件的样式属性更改触发时，属性视图作为回调参数传递给回调。
  * * `styleManager:change:{propertyName}` - As above but for a specific style property                          如上所述，但对于具体的风格属性
  * * `storage:load` - Triggered when something was loaded from the storage, loaded object passed as an argumnet 触发时，有东西从存储加载，加载对象传递一个argumnet
@@ -86,425 +86,425 @@
  */
 
 module.exports = config => {
-  var c = config || {}, // 用来存储 配置文件
-  defaults    = require('./config/config'),
-  EditorModel = require('./model/Editor'),
-  EditorView  = require('./view/EditorView');
-  
-  // 配置默认属性
-  for (var name in defaults) {
-    if (!(name in c))
-      c[name] = defaults[name];
-  }
-  
-  // style 的前缀
-  c.pStylePrefix = c.stylePrefix;
-  // em 是 EditorModel
-  var em = new EditorModel(c);
-  // editorView 这个很重要，里面有所有的方法控制器的方法
-  var editorView = new EditorView({
-      model: em,
-      config: c, 
-  });
+    var c = config || {}, // 用来存储 配置文件
+        defaults = require('./config/config'),
+        EditorModel = require('./model/Editor'),
+        EditorView = require('./view/EditorView');
 
-  return {
+    // 配置默认属性
+    for (var name in defaults) {
+        if (!(name in c))
+            c[name] = defaults[name];
+    }
 
-    /**
-     * @property {EditorModel}
-     * @private
-     * em 是编辑的模型，里面有编辑器的方法
-     */
-    editor: em,
+    // style 的前缀
+    c.pStylePrefix = c.stylePrefix;// stylePrefix = gjs-
+    // em 是 EditorModel
+    var em = new EditorModel(c); // 加载了模块
+    // editorView 这个很重要，里面有所有的方法控制器的方法
+    var editorView = new EditorView({
+        model: em,
+        config: c,
+    });
 
-    /**
-     * @property {DomComponents}
-     * @private
-     */
-    DomComponents: em.get('DomComponents'),
+    return {
 
-    /**
-     * @property {CssComposer}
-     * @private
-     */
-    CssComposer: em.get('CssComposer'),
+        /**
+         * @property {EditorModel}
+         * @private
+         * em 是编辑的模型，里面有编辑器的方法
+         */
+        editor: em,
 
-    /**
-     * @property {StorageManager}
-     * @private
-     */
-    StorageManager: em.get('StorageManager'),
+        /**
+         * @property {DomComponents}
+         * @private
+         */
+        DomComponents: em.get('DomComponents'),
 
-    /**
-     * @property {AssetManager}
-     */
-    AssetManager: em.get('AssetManager'),
+        /**
+         * @property {CssComposer}
+         * @private
+         */
+        CssComposer: em.get('CssComposer'),
 
-    /**
-     * @property {BlockManager}
-     * @private
-     */
-    BlockManager: em.get('BlockManager'),
+        /**
+         * @property {StorageManager}
+         * @private
+         */
+        StorageManager: em.get('StorageManager'),
 
-    /**
-     * @property {TraitManager}
-     * @private
-     */
-    TraitManager: em.get('TraitManager'),
+        /**
+         * @property {AssetManager}
+         */
+        AssetManager: em.get('AssetManager'),
 
-    /**
-     * @property {SelectorManager}
-     * @private
-     */
-    SelectorManager: em.get('SelectorManager'),
+        /**
+         * @property {BlockManager}
+         * @private
+         */
+        BlockManager: em.get('BlockManager'),
 
-    /**
-     * @property {CodeManager}
-     * @private
-     */
-    CodeManager: em.get('CodeManager'),
+        /**
+         * @property {TraitManager}
+         * @private
+         */
+        TraitManager: em.get('TraitManager'),
 
-    /**
-     * @property {Commands}
-     * @private
-     */
-    Commands: em.get('Commands'),
+        /**
+         * @property {SelectorManager}
+         * @private
+         */
+        SelectorManager: em.get('SelectorManager'),
 
-    /**
-     * @property {Modal}
-     * @private
-     */
-    Modal: em.get('Modal'),
+        /**
+         * @property {CodeManager}
+         * @private
+         */
+        CodeManager: em.get('CodeManager'),
 
-    /**
-     * @property {Panels}
-     * @private
-     */
-    Panels: em.get('Panels'),
+        /**
+         * @property {Commands}
+         * @private
+         */
+        Commands: em.get('Commands'),
 
-    /**
-     * @property {StyleManager}
-     * @private
-     */
-    StyleManager: em.get('StyleManager'),
+        /**
+         * @property {Modal}
+         * @private
+         */
+        Modal: em.get('Modal'),
 
-    /**
-     * @property {Canvas}
-     * @private
-     */
-    Canvas: em.get('Canvas'),
+        /**
+         * @property {Panels}
+         * @private
+         */
+        Panels: em.get('Panels'),
 
-    /**
-     * @property {UndoManager}
-     * @private
-     */
-    UndoManager: em.get('UndoManager'),
+        /**
+         * @property {StyleManager}
+         * @private
+         */
+        StyleManager: em.get('StyleManager'),
 
-    /**
-     * @property {DeviceManager}
-     * @private
-     */
-    DeviceManager: em.get('DeviceManager'),
+        /**
+         * @property {Canvas}
+         * @private
+         */
+        Canvas: em.get('Canvas'),
 
-    /**
-     * @property {RichTextEditor}
-     * @private
-     */
-    RichTextEditor: em.get('rte'),
+        /**
+         * @property {UndoManager}
+         * @private
+         */
+        UndoManager: em.get('UndoManager'),
 
-    /**
-     * @property {Utils}
-     * @private
-     */
-    Utils: em.get('Utils'),
+        /**
+         * @property {DeviceManager}
+         * @private
+         */
+        DeviceManager: em.get('DeviceManager'),
 
-    /**
-     * @property {Utils}
-     * @private
-     */
-    Config: em.get('Config'),
+        /**
+         * @property {RichTextEditor}
+         * @private
+         */
+        RichTextEditor: em.get('rte'),
 
-    /**
-     * Initialize editor model
-     * 初始化编辑模型
-     * @return {this}
-     * @private
-     */
-    init() {
-      em.init(this); // 调用 editor model 的init 方法
-      return this;
-    },
+        /**
+         * @property {Utils}
+         * @private
+         */
+        Utils: em.get('Utils'),
 
-    /**
-     * Returns configuration object
-     * 返回配置对象
-     * @return {Object}
-     */
-    getConfig() {
-      return c;
-    },
+        /**
+         * @property {Utils}
+         * @private
+         */
+        Config: em.get('Config'),
 
-    /**
-     * Returns HTML built inside canvas
-     * 返回内置在画布中的HTML
-     * @return {string} HTML string
-     */
-    getHtml() {
-      return em.getHtml();
-    },
+        /**
+         * Initialize editor model
+         * 初始化编辑模型
+         * @return {this}
+         * @private
+         */
+        init() {
+            em.init(this); // 调用 editor model 的init 方法
+            return this;
+        },
 
-    /**
-     * Returns CSS built inside canvas
-     * 返回CSS内置在画布
-     * @return {string} CSS string
-     */
-    getCss() {
-      return em.getCss();
-    },
+        /**
+         * Returns configuration object
+         * 返回配置对象
+         * @return {Object}
+         */
+        getConfig() {
+            return c;
+        },
 
-    /**
-     * Returns JS of all components
-     * 返回所有组件的 js
-     * @return {string} JS string
-     */
-    getJs() {
-      return em.getJs();
-    },
+        /**
+         * Returns HTML built inside canvas
+         * 返回内置在画布中的HTML
+         * @return {string} HTML string
+         */
+        getHtml() {
+            return em.getHtml();
+        },
 
-    /**
-     * Returns components in JSON format object
-     * 返回JSON格式对象中的组件
-     * @return {Object}
-     */
-    getComponents() {
-      return em.get('DomComponents').getComponents();
-    },
+        /**
+         * Returns CSS built inside canvas
+         * 返回CSS内置在画布
+         * @return {string} CSS string
+         */
+        getCss() {
+            return em.getCss();
+        },
 
-    /**
-     * Set components inside editor's canvas. This method overrides actual components
-     * 在编辑器的画布中设置组件。此方法覆盖实际组件。
-     * @param {Array<Object>|Object|string} components HTML string or components model HTML字符串或组件模型
-     * @return {this}
-     * @example
-     * editor.setComponents('<div class="cls">New component</div>');
-     * // or
-     * editor.setComponents({
+        /**
+         * Returns JS of all components
+         * 返回所有组件的 js
+         * @return {string} JS string
+         */
+        getJs() {
+            return em.getJs();
+        },
+
+        /**
+         * Returns components in JSON format object
+         * 返回JSON格式对象中的组件
+         * @return {Object}
+         */
+        getComponents() {
+            return em.get('DomComponents').getComponents();
+        },
+
+        /**
+         * Set components inside editor's canvas. This method overrides actual components
+         * 在编辑器的画布中设置组件。此方法覆盖实际组件。
+         * @param {Array<Object>|Object|string} components HTML string or components model HTML字符串或组件模型
+         * @return {this}
+         * @example
+         * editor.setComponents('<div class="cls">New component</div>');
+         * // or
+         * editor.setComponents({
      *  type: 'text',
      *   classes:['cls'],
      *   content: 'New component'
      * });
-     */
-    setComponents(components) {
-      em.setComponents(components);
-      return this;
-    },
+         */
+        setComponents(components) {
+            em.setComponents(components);
+            return this;
+        },
 
-    /**
-     * Add components
-     * 添加组件
-     * @param {Array<Object>|Object|string} components HTML string or components model HTML字符串或组件模型
-     * @param {Object} opts Options
-     * @param {Boolean} [opts.avoidUpdateStyle=false] If the HTML string contains styles, 如果HTML字符串包含样式，
-     * by default, they will be created and, if already exist, updated. When this option
-     * is true, styles already created will not be updated.
-     * 默认情况下，它们将被创建，如果已经存在，则会被更新。 当这个选项
-     * 是真的，已经创建的样式将不会被更新。
-     * @return {Model|Array<Model>}
-     * @example
-     * editor.addComponents('<div class="cls">New component</div>');
-     * // or
-     * editor.addComponents({
+        /**
+         * Add components
+         * 添加组件
+         * @param {Array<Object>|Object|string} components HTML string or components model HTML字符串或组件模型
+         * @param {Object} opts Options
+         * @param {Boolean} [opts.avoidUpdateStyle=false] If the HTML string contains styles, 如果HTML字符串包含样式，
+         * by default, they will be created and, if already exist, updated. When this option
+         * is true, styles already created will not be updated.
+         * 默认情况下，它们将被创建，如果已经存在，则会被更新。 当这个选项
+              * 是真的，已经创建的样式将不会被更新。
+         * @return {Model|Array<Model>}
+         * @example
+         * editor.addComponents('<div class="cls">New component</div>');
+         * // or
+         * editor.addComponents({
      *  type: 'text',
      *   classes:['cls'],
      *   content: 'New component'
      * });
-     */
-    addComponents(components, opts) {
-      return this.getComponents().add(components, opts);
-    },
+         */
+        addComponents(components, opts) {
+            return this.getComponents().add(components, opts);
+        },
 
-    /**
-     * Returns style in JSON format object
-     * 以JSON格式对象返回样式
-     * @return {Object}
-     */
-    getStyle() {
-      return em.get('CssComposer').getAll();
-    },
+        /**
+         * Returns style in JSON format object
+         * 以JSON格式对象返回样式
+         * @return {Object}
+         */
+        getStyle() {
+            return em.get('CssComposer').getAll();
+        },
 
-    /**
-     * Set style inside editor's canvas. This method overrides actual style
-     * 在编辑器的画布中设置样式。此方法重写实际样式。
-     * @param {Array<Object>|Object|string} style CSS string or style model CSS字符串或样式模型
-     * @return {this}
-     * @example
-     * editor.setStyle('.cls{color: red}');
-     * //or
-     * editor.setStyle({
+        /**
+         * Set style inside editor's canvas. This method overrides actual style
+         * 在编辑器的画布中设置样式。此方法重写实际样式。
+         * @param {Array<Object>|Object|string} style CSS string or style model CSS字符串或样式模型
+         * @return {this}
+         * @example
+         * editor.setStyle('.cls{color: red}');
+         * //or
+         * editor.setStyle({
      *   selectors: ['cls']
      *   style: { color: 'red' }
      * });
-     */
-    setStyle(style) {
-      em.setStyle(style);
-      return this;
-    },
+         */
+        setStyle(style) {
+            em.setStyle(style);
+            return this;
+        },
 
-    /**
-     * Returns selected component, if there is one
-     * 返回选定的组件，如果有
-     * @return {Model}  
-     */
-    getSelected() {
-      return em.getSelected();
-    },
+        /**
+         * Returns selected component, if there is one
+         * 返回选定的组件，如果有
+         * @return {Model}
+         */
+        getSelected() {
+            return em.getSelected();
+        },
 
-    /**
-     * Get a stylable entity from the selected component.                      从选定的元件可设置样式的实体。
-     * If you select a component without classes the entity is the Component   如果您选择一个没有类的组件，那么实体就是组件
-     * itself and all changes will go inside its 'style' attribute. Otherwise, 本身和所有的变化将进入它的“样式”属性。否则，
-     * if the selected component has one or more classes, the function will    如果所选组件有一个或多个类，则函数将
-     * return the corresponding CSS Rule 返回相应的CSS规则
-     * @return {Model}
-     */
-    getSelectedToStyle() {
-      let selected = em.getSelected();
+        /**
+         * Get a stylable entity from the selected component.                      从选定的元件可设置样式的实体。
+         * If you select a component without classes the entity is the Component   如果您选择一个没有类的组件，那么实体就是组件
+         * itself and all changes will go inside its 'style' attribute. Otherwise, 本身和所有的变化将进入它的“样式”属性。否则，
+         * if the selected component has one or more classes, the function will    如果所选组件有一个或多个类，则函数将
+         * return the corresponding CSS Rule 返回相应的CSS规则
+         * @return {Model}
+         */
+        getSelectedToStyle() {
+            let selected = em.getSelected();
 
-      if (selected) {
-        return this.StyleManager.getModelToStyle(selected);
-      }
-    },
+            if (selected) {
+                return this.StyleManager.getModelToStyle(selected);
+            }
+        },
 
-    /**
-     * Select a component
-     * 选择一个组件
-     * @param  {Component|HTMLElement} el Component to select 要选择的组件
-     * @return {this}
-     * @example
-     * // Select dropped block 选择掉块
-     * editor.on('block:drag:stop', function(model) {
+        /**
+         * Select a component
+         * 选择一个组件
+         * @param  {Component|HTMLElement} el Component to select 要选择的组件
+         * @return {this}
+         * @example
+         * // Select dropped block 选择掉块
+         * editor.on('block:drag:stop', function(model) {
      *  editor.select(model);
      * });
-     */
-    select(el) {
-      em.setSelected(el);
-      return this;
-    },
+         */
+        select(el) {
+            em.setSelected(el);
+            return this;
+        },
 
-    /**
-     * Set device to the editor. If the device exists it will 将设备设置为编辑器。如果设备存在，它将
-     * change the canvas to the proper width   将画布改为适当的宽度
-     * @param {string} name Name of the device 设备名称
-     * @return {this}
-     * @example
-     * editor.setDevice('Tablet');
-     */
-    setDevice(name) {
-      em.set('device', name);
-      return this;
-    },
+        /**
+         * Set device to the editor. If the device exists it will 将设备设置为编辑器。如果设备存在，它将
+         * change the canvas to the proper width   将画布改为适当的宽度
+         * @param {string} name Name of the device 设备名称
+         * @return {this}
+         * @example
+         * editor.setDevice('Tablet');
+         */
+        setDevice(name) {
+            em.set('device', name);
+            return this;
+        },
 
-    /**
-     * Return the actual active device
-     * 返回实际活动设备
-     * @return {string} Device name 设备名称
-     * @example
-     * var device = editor.getDevice();
-     * console.log(device);
-     * // 'Tablet'
-     */
-    getDevice() {
-      return em.get('device');
-    },
+        /**
+         * Return the actual active device
+         * 返回实际活动设备
+         * @return {string} Device name 设备名称
+         * @example
+         * var device = editor.getDevice();
+         * console.log(device);
+         * // 'Tablet'
+         */
+        getDevice() {
+            return em.get('device');
+        },
 
-    /**
-     * Execute command
-     * 执行命令
-     * @param {string} id Command ID  命令ID
-     * @param {Object} options Custom options 自定义选项
-     * @return {*} The return is defined by the command 返回由命令定义
-     * @example
-     * editor.runCommand('myCommand', {someValue: 1});
-     */
-    runCommand(id, options) {
-      var result;
-      var command = em.get('Commands').get(id);
+        /**
+         * Execute command
+         * 执行命令
+         * @param {string} id Command ID  命令ID
+         * @param {Object} options Custom options 自定义选项
+         * @return {*} The return is defined by the command 返回由命令定义
+         * @example
+         * editor.runCommand('myCommand', {someValue: 1});
+         */
+        runCommand(id, options) {
+            var result;
+            var command = em.get('Commands').get(id);
 
-      if(command){
-        result = command.run(this, this, options);
-        this.trigger('run:' + id);
-      }
-      return result;
-    },
+            if (command) {
+                result = command.run(this, this, options);
+                this.trigger('run:' + id);
+            }
+            return result;
+        },
 
-    /**
-     * Stop the command if stop method was provided
-     * 如果提供停止方法，停止命令
-     * @param {string} id Command ID 命令ID
-     * @param {Object} options Custom options  自定义选项
-     * @return {*} The return is defined by the command 返回由命令定义
-     * @example
-     * editor.stopCommand('myCommand', {someValue: 1});
-     */
-    stopCommand(id, options) {
-      var result;
-      var command = em.get('Commands').get(id);
+        /**
+         * Stop the command if stop method was provided
+         * 如果提供停止方法，停止命令
+         * @param {string} id Command ID 命令ID
+         * @param {Object} options Custom options  自定义选项
+         * @return {*} The return is defined by the command 返回由命令定义
+         * @example
+         * editor.stopCommand('myCommand', {someValue: 1});
+         */
+        stopCommand(id, options) {
+            var result;
+            var command = em.get('Commands').get(id);
 
-      if(command){
-        result = command.stop(this, this, options);
-        this.trigger('stop:' + id);
-      }
-      return result;
-    },
+            if (command) {
+                result = command.stop(this, this, options);
+                this.trigger('stop:' + id);
+            }
+            return result;
+        },
 
-    /**
-     * Store data to the current storage
-     * 将数据存储到当前存储
-     * @param {Function} clb Callback function 回调函数
-     * @return {Object} Stored data 存储数据
-     */
-    store(clb) {
-      return em.store(clb);
-    },
+        /**
+         * Store data to the current storage
+         * 将数据存储到当前存储
+         * @param {Function} clb Callback function 回调函数
+         * @return {Object} Stored data 存储数据
+         */
+        store(clb) {
+            return em.store(clb);
+        },
 
-    /**
-     * Load data from the current storage
-     * 从当前存储中加载数据
-     * @param {Function} clb Callback function
-     * @return {Object} Stored data
-     */
-    load(clb) {
-      return em.load(clb);
-    },
+        /**
+         * Load data from the current storage
+         * 从当前存储中加载数据
+         * @param {Function} clb Callback function
+         * @return {Object} Stored data
+         */
+        load(clb) {
+            return em.load(clb);
+        },
 
-    /**
-     * Returns container element. The one which was indicated as 'container'
-     * 返回容器元素。那个被指明为“容器”的
-     * on init method
-     * @return {HTMLElement}
-     */
-    getContainer() {
-      return c.el;
-    },
+        /**
+         * Returns container element. The one which was indicated as 'container'
+         * 返回容器元素。那个被指明为“容器”的
+         * on init method
+         * @return {HTMLElement}
+         */
+        getContainer() {
+            return c.el;
+        },
 
-    /**
-     * Update editor dimensions and refresh data useful for positioning of tools 更新编辑器的维度和刷新数据，用于工具的定位
-     *
-     * This method could be useful when you update, for example, some position  当您更新某个位置时，此方法可能非常有用。
-     * of the editor element (eg. canvas, panels, etc.) with CSS, where without 编辑器元素（如画布、面板等）与CSS，在没有
-     * refresh you'll get misleading position of tools (eg. rich text editor,   刷新您将得到工具的误导位置（例如富文本编辑器），
-     * component highlighter, etc.) 组件荧光笔等）
-     *
-     * @private
-     */
-    refresh() {
-      em.refreshCanvas();
-    },
+        /**
+         * Update editor dimensions and refresh data useful for positioning of tools 更新编辑器的维度和刷新数据，用于工具的定位
+         *
+         * This method could be useful when you update, for example, some position  当您更新某个位置时，此方法可能非常有用。
+         * of the editor element (eg. canvas, panels, etc.) with CSS, where without 编辑器元素（如画布、面板等）与CSS，在没有
+         * refresh you'll get misleading position of tools (eg. rich text editor,   刷新您将得到工具的误导位置（例如富文本编辑器），
+         * component highlighter, etc.) 组件荧光笔等）
+         *
+         * @private
+         */
+        refresh() {
+            em.refreshCanvas();
+        },
 
-    /**
-     * Replace the built-in Rich Text Editor with a custom one. 用自定义的编辑器替换内置的富文本编辑器。
-     * @param {Object} obj Custom RTE Interface
-     * @example
-     * editor.setCustomRte({
+        /**
+         * Replace the built-in Rich Text Editor with a custom one. 用自定义的编辑器替换内置的富文本编辑器。
+         * @param {Object} obj Custom RTE Interface
+         * @example
+         * editor.setCustomRte({
      *   // Function for enabling custom RTE
      *   // el is the HTMLElement of the double clicked Text Component
      *   // rte is the same instance you have returned the first time you call
@@ -539,88 +539,88 @@ module.exports = config => {
      *   rte.focus(); // this depends on the Custom RTE API
      *  }
      * });
-     */
-    setCustomRte(obj) {
-      this.RichTextEditor.customRte = obj;
-    },
+         */
+        setCustomRte(obj) {
+            this.RichTextEditor.customRte = obj;
+        },
 
-    /**
-     * Attach event
-     * 附加事件
-     * @param  {string} event Event name
-     * @param  {Function} callback Callback function
-     * @return {this}
-     */
-    on(event, callback) {
-      return em.on(event, callback);
-    },
+        /**
+         * Attach event
+         * 附加事件
+         * @param  {string} event Event name
+         * @param  {Function} callback Callback function
+         * @return {this}
+         */
+        on(event, callback) {
+            return em.on(event, callback);
+        },
 
-    /**
-     * Detach event
-     * 分离事件
-     * @param  {string} event Event name
-     * @param  {Function} callback Callback function
-     * @return {this}
-     */
-    off(event, callback) {
-      return em.off(event, callback);
-    },
+        /**
+         * Detach event
+         * 分离事件
+         * @param  {string} event Event name
+         * @param  {Function} callback Callback function
+         * @return {this}
+         */
+        off(event, callback) {
+            return em.off(event, callback);
+        },
 
-    /**
-     * Trigger event
-     * 触发事件.
-     * @param  {string} event Event to trigger 事件触发
-     * @return {this}
-     */
-    trigger(event) {
-      return em.trigger(event);
-    },
+        /**
+         * Trigger event
+         * 触发事件.
+         * @param  {string} event Event to trigger 事件触发
+         * @return {this}
+         */
+        trigger(event) {
+            return em.trigger(event);
+        },
 
-    /**
-     * Returns editor element
-     * 返回编辑元素
-     * @return {HTMLElement}
-     * @private
-     */
-    getEl() {
-      return editorView.el;
-    },
+        /**
+         * Returns editor element
+         * 返回编辑元素
+         * @return {HTMLElement}
+         * @private
+         */
+        getEl() {
+            return editorView.el;
+        },
 
-    /**
-     * Returns editor model
-     * 返回编辑模式
-     * @return {Model}
-     * @private
-     */
-    getModel() {
-      return em;
-    },
+        /**
+         * Returns editor model
+         * 返回编辑模式
+         * @return {Model}
+         * @private
+         */
+        getModel() {
+            return em;
+        },
 
-    /**
-     * Render editor
-     * 渲染编辑器
-     * @return {HTMLElement}
-     */
-    render() {
-      // Do post render stuff after the iframe is loaded otherwise it'll
-      // 做渲染后的东西后，iframe加载否则会
-      // be empty during tests
-      // 测试期间空
-      // index.html 调用的是这个
-      // console.log(em.get('modules'));
-      // em.get('modules')： 是所有的加载的文件
-      // loaded: 当所有DOM解析完以后会触发这个事件
-      
-      em.on('loaded', () => {
-        em.get('modules').forEach((module) => {
-          module.postRender && module.postRender(editorView); // 执行扩展文件里面的  postRender 方法
-        });
-      });
-      
-      editorView.render();
-      return editorView.el;
-    },
+        /**
+         * Render editor
+         * 渲染编辑器
+         * @return {HTMLElement}
+         */
+        render() {
+            // Do post render stuff after the iframe is loaded otherwise it'll
+            // 做渲染后的东西后，iframe加载否则会
+            // be empty during tests
+            // 测试期间空
+            // index.html 调用的是这个
+            // console.log(em.get('modules'));
+            // em.get('modules')： 是所有的加载的文件
+            // loaded: 当所有DOM解析完以后会触发这个事件
 
-  };
+            em.on('loaded', () => {
+                em.get('modules').forEach((module) => {
+                    module.postRender && module.postRender(editorView); // 执行扩展文件里面的  postRender 方法
+                });
+            });
+
+            editorView.render();
+            return editorView.el;
+        },
+
+    };
 
 };

@@ -71,7 +71,7 @@ module.exports = () => {
       defGenerators.html = new gHtml();
       defGenerators.css  = new gCss();
       defGenerators.json = new gJson();
-      defGenerators.js = new gJs();
+      defGenerators.js   = new gJs();
 
       defViewers.CodeMirror = new eCM();
       return this;
@@ -211,6 +211,7 @@ module.exports = () => {
      * @private
      * */
     loadDefaultGenerators() {
+      console.log(defGenerators);
       for (var id in defGenerators)
         this.addGenerator(id, defGenerators[id]);
 
@@ -224,6 +225,7 @@ module.exports = () => {
      * @private
      * */
     loadDefaultViewers() {
+      
       for (var id in defViewers)
         this.addViewer(id, defViewers[id]);
 

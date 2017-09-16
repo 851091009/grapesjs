@@ -46,9 +46,9 @@ module.exports = Backbone.View.extend({
           if (scripts.length > 0) {
             var script = document.createElement('script');
             script.type = 'text/javascript';
-            script.src = scripts.shift();
+            script.src = scripts.shift();// shift() 方法用于把数组的第一个元素从其中删除，并返回第一个元素的值。
             script.onerror = script.onload = appendScript.bind(null, scripts);
-            frame.el.contentDocument.head.appendChild(script);
+            frame.el.contentDocument.head.appendChild(script);// 添加到 页面中去
           } else {
             that.renderBody();
           }
@@ -74,7 +74,7 @@ module.exports = Backbone.View.extend({
       var confCanvas = this.config;
       var protCss = conf.protectedCss;
       var externalStyles = '';
-
+      // 循环加在CSS
       confCanvas.styles.forEach((style) => {
         externalStyles += `<link rel="stylesheet" href="${style}"/>`;
       });
@@ -146,7 +146,7 @@ module.exports = Backbone.View.extend({
       body.append(wrap.render()).append(cssc.render());
       body.append(this.getJsContainer());
       em.trigger('loaded');
-      this.frame.el.contentWindow.onscroll = this.onFrameScroll;
+      this.frame.el.contentWindow.onscroll = this.onFrameScroll;// 跟新位置
       this.frame.udpateOffset();
 
       // When the iframe is focused the event dispatcher is not the same so
@@ -171,7 +171,7 @@ module.exports = Backbone.View.extend({
    * @return {Object}
    */
   offset(el) {
-    var rect = el.getBoundingClientRect();
+    var rect = el.getBoundingClientRect();// getBoundingClientRect: 返回元素的大小及其相对于视口的位置。
     var docBody = el.ownerDocument.body;
     return {
       top: rect.top + docBody.scrollTop,
@@ -226,7 +226,7 @@ module.exports = Backbone.View.extend({
     var opt = opts || {};
     var frmOff = this.getFrameOffset();
     var cvsOff = this.getCanvasOffset();
-    var eo = this.offset(el);
+    var eo = this.offset(el);// 获取当前选中的位置
 
     var frmTop = opt.avoidFrameOffset ? 0 : frmOff.top;
     var frmLeft = opt.avoidFrameOffset ? 0 : frmOff.left;
@@ -309,7 +309,7 @@ module.exports = Backbone.View.extend({
       if (this.config.scripts.length === 0) {
         frame.el.onload = this.renderBody;
       } else {
-        this.renderScripts(); // will call renderBody later
+        this.renderScripts(); // will call renderBody later 稍后会调用renderBody
       }
     }
     var ppfx = this.ppfx;

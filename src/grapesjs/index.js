@@ -55,7 +55,7 @@
       if(!els)
         throw new Error("'container' is required");
 
-      c.el = document.querySelector(els);
+      c.el = document.querySelector(els); // 容器的 Dom 
       
       var editor = new Editor(c).init(); // 调用的编辑的的方法 
 
