@@ -23,7 +23,7 @@ module.exports = () => {
   var c = {},
   defaults = require('./config/config'),
   gHtml    = require('./model/HtmlGenerator'),
-  gCss     = require('./model/CssGenerator'),
+  gCss     = require('./model/CssGenerator'), // css 发生器
   gJson    = require('./model/JsonGenerator'),
   gJs      = require('./model/JsGenerator'),
   eCM      = require('./model/CodeMirrorEditor'),
@@ -211,7 +211,6 @@ module.exports = () => {
      * @private
      * */
     loadDefaultGenerators() {
-      console.log(defGenerators);
       for (var id in defGenerators)
         this.addGenerator(id, defGenerators[id]);
 

@@ -1,8 +1,8 @@
 module.exports = () => {
 
-  const Sorter  = require('./Sorter');
+  const Sorter  = require('./Sorter'); // 拖拽事件
   const Resizer = require('./Resizer');
-  const Dragger = require('./Dragger');
+  const Dragger = require('./Dragger');// 拖拽
 
   return {
     /**

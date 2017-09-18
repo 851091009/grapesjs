@@ -108,8 +108,7 @@ module.exports = Backbone.Model.extend({
    * @param {String} moduleName Module name
    * @return {this}
    * @private
-   * 
-
+   *
    */
   loadModule(moduleName) {
     

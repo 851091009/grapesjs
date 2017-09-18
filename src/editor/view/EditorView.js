@@ -15,7 +15,7 @@ module.exports = Backbone.View.extend({
     this.conf       = this.model.config;
     this.className  = this.conf.stylePrefix + 'editor';
     this.model.on('loaded', () => { // loaded: 只是一个名字，并不存在这个函数，这个结果是 执行 this.model 的 initialize 方法
-      this.pn.active();
+      this.pn.active(); // 主动激活的按钮
       this.model.runDefault();
       setTimeout(() => this.model.trigger('load'), 0);
     });

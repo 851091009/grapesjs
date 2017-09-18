@@ -51,7 +51,7 @@
         if (!(name in c))
           c[name] = defaults[name];
       }
-      console.log(c);
+
       if(!els)
         throw new Error("'container' is required");
 

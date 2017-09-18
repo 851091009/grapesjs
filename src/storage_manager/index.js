@@ -24,8 +24,8 @@
 module.exports = () => {
   var c = {},
   defaults      = require('./config/config'),
-  LocalStorage  = require('./model/LocalStorage'),
-  RemoteStorage = require('./model/RemoteStorage');
+  LocalStorage  = require('./model/LocalStorage'),  // 本地存储
+  RemoteStorage = require('./model/RemoteStorage'); // 远程存储
 
   var storages = {};
   var defaultStorages = {};

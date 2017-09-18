@@ -14,12 +14,12 @@
  * * [getTypes](#gettypes)
  *
  * Before using this methods you should get first the module from the editor instance, in this way:
- *
+ * 在使用此方法之前，您应该首先从编辑器实例中获取模块，以这种方式：
  * ```js
  * var assetManager = editor.AssetManager;
  * ```
  *
- * @module AssetManager
+ * @module AssetManager 资产经理
  * @param {Object} config Configurations
  * @param {Array<Object>} [config.assets=[]] Default assets
  * @param {String} [config.uploadText='Drop files here or click to upload'] Upload text
@@ -36,6 +36,7 @@
  *  ],
  *  upload: 'http://dropbox/path', // Set to false to disable it
  *  uploadText: 'Drop files here or click to upload',
+ *  uploadtext：删除文件或单击“上传”，
  * }
  */
 

@@ -1,3 +1,7 @@
+/*
+* 调整大小
+* */
+
 var defaults = {
   // Function which returns custom X and Y coordinates of the mouse
   //返回鼠标的自定义X和Y坐标的函数
