@@ -21,7 +21,7 @@ module.exports = Backbone.View.extend({
     this.btnsVisCls = this.pfx + 'visible';
     this.parentM = o.parentM || null;
     this.className = this.pfx + 'btn' + (cls ? ' ' + cls : '');
-    this.listenTo(this.model, 'change:active updateActive', this.updateActive);
+    this.listenTo(this.model, 'change:active updateActive', this.updateActive); // 工具栏切换函数
     this.listenTo(this.model, 'checkActive', this.checkActive);
     this.listenTo(this.model, 'change:bntsVis', this.updateBtnsVis);
     this.listenTo(this.model, 'change:attributes', this.updateAttributes);
@@ -41,8 +41,8 @@ module.exports = Backbone.View.extend({
       this.events.mousedown = 'initDrag';//mousedown: 当按下鼠标按钮时, 触发事件
       this.em.on('loaded', this.initSorter);
     }else
-      this.events.click = 'clicked';
-    this.delegateEvents();
+      this.events.click = 'clicked'; // 工具栏点击切换
+    this.delegateEvents();// http://www.css88.com/doc/backbone/#View-delegateEvents
   },
 
   initSorter() {
@@ -202,7 +202,7 @@ module.exports = Backbone.View.extend({
 
   /**
    * Update active status of the button
-   * 更新按钮的活动状态
+   * 更新按钮的活动状态，工具栏切换
    * @return   void
    * */
   updateActive() {
@@ -217,14 +217,14 @@ module.exports = Backbone.View.extend({
     } else if (typeof commandName === 'function') {
       command = {run: commandName};
     }
-
+   
     if(this.model.get('active')){
 
-      this.model.collection.deactivateAll(this.model.get('context'));
+      this.model.collection.deactivateAll(this.model.get('context')); // 这个是控制 隐藏其他栏目
       this.model.set('active', true, { silent: true }).trigger('checkActive');
-
+      
       if(this.parentM)
-        this.parentM.set('active', true, { silent: true }).trigger('checkActive');
+         this.parentM.set('active', true, { silent: true }).trigger('checkActive'); // 这个是控制显示对应的栏目
 
       if(command && command.run){
         command.run(editor, this.model, this.model.get('options'));
@@ -233,10 +233,10 @@ module.exports = Backbone.View.extend({
     }else{
       this.$el.removeClass(this.activeCls);
 
-      this.model.collection.deactivateAll(this.model.get('context'));
-
+      this.model.collection.deactivateAll(this.model.get('context'));// 这个是控制 隐藏其他栏目
+      
       if(this.parentM)
-        this.parentM.set('active', false, { silent: true }).trigger('checkActive');
+        this.parentM.set('active', false, { silent: true }).trigger('checkActive'); // 这个是控制显示对应的栏目
 
       if(command && command.stop){
         command.stop(editor, this.model, this.model.get('options'));
@@ -267,22 +267,25 @@ module.exports = Backbone.View.extend({
   clicked(e) {
     if(this.model.get('bntsVis') )
       return;
-
+    
     if(this.parentM)
       this.swapParent();
     var active = this.model.get('active');
-    this.model.set('active', !active);
+    this.model.set('active', !active); // 这一句控制着切换 ^_^
 
     // If the stop is requested
-    var command = this.em.get('Commands').get('select-comp');
-
+     var command = this.em.get('Commands').get('select-comp');
+    // console.log(active);
+    
     if(active){
       if(this.model.get('runDefaultCommand'))
         this.em.runDefault();
     }else{
+      
       if(this.model.get('stopDefaultCommand'))
         this.em.stopDefault();
     }
+    
   },
 
   /**

@@ -1,9 +1,9 @@
-var DomainViews = require('domain_abstract/view/DomainViews');
-var TraitView = require('./TraitView');
+var DomainViews     = require('domain_abstract/view/DomainViews');
+var TraitView       = require('./TraitView');
 var TraitSelectView = require('./TraitSelectView');
 var TraitCheckboxView = require('./TraitCheckboxView');
-var TraitNumberView = require('./TraitNumberView');
-var TraitColorView = require('./TraitColorView');
+var TraitNumberView   = require('./TraitNumberView');
+var TraitColorView    = require('./TraitColorView');
 
 module.exports = DomainViews.extend({
 

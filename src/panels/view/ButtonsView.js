@@ -59,7 +59,7 @@ module.exports = Backbone.View.extend({
     this.collection.each(function(model){
       this.addToCollection(model, fragment);
     }, this);
-
+    // console.log( _.result(this, 'className'));
     this.$el.append(fragment);
     this.$el.attr('class', _.result(this, 'className'));
     return this;

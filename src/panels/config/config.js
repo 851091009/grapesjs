@@ -66,7 +66,7 @@ module.exports = {
       id: obl,
       className: 'fa fa-th-large',
       command: obl,
-      attributes  : { title: 'Open Blocks' },// 开放块
+      attributes  : { title: 'Open Blocks' },// 打开块
     }],
   }],
 

@@ -49,6 +49,10 @@ module.exports = Backbone.View.extend({
     // triggerd on 'this.doc' and so clicking outside, the sorter, tries to move
     // things (throws false positives). As this method just need to drop away
     // the block helper I use the trick of 'moved = 0' to void those errors.
+    // 在画布中放置块后，mouseup事件还没有
+    // triggerd on'this.doc'，所以点击外面，分拣机，试图移动
+    // 事情（抛出假阳性）。 因为这种方法只需要掉下来
+    // 块助手我使用'moved = 0'的技巧来消除这些错误。
     sorter.moved = 0;
     sorter.endMove();
   },

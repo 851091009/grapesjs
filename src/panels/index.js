@@ -82,7 +82,7 @@ module.exports = () => {
         c.stylePrefix = ppfx + c.stylePrefix;
       // c.defaults： 默认面板上的按钮
       panels = new Panels(c.defaults);
-      
+
       PanelsViewObj = new PanelsView({ // 穿入面板的集合
         collection : panels,
         config : c,
@@ -209,10 +209,12 @@ module.exports = () => {
      * @private
      */
     active() {
+      // views-container 这个是组件的 div
       this.getPanels().each(p => {
           p.get('buttons').each(btn => {
-            if(btn.get('active'))
+            if(btn.get('active')) // init 是构造函数，最先执行
               btn.trigger('updateActive');// trigger: 触发给定 event或用空格隔开的事件的回调函数。后续传入 trigger 的参数会传递到触发事件的回调函数里。
+              // updateActive 在 ButtonView.js 里面，这个调用没有理解，我觉得 this 的作用比较大，文件中已经引入，需要做一个测试，按照这个流程把文件引入一遍试试
           });
         });
     },

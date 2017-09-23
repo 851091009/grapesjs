@@ -86,6 +86,7 @@ module.exports = Backbone.View.extend({
       this.$el.attr('id', this.id);
 
     if (this.buttons.length) {
+      // ButtonsView: 这里显示的是 中间右侧的按钮
       var buttons  = new ButtonsView({
         collection: this.buttons,
         config: this.config,

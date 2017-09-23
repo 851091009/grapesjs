@@ -66,9 +66,9 @@ module.exports = () => {
           c[name] = defaults[name];
       }
 
-      defaultStorages.remote  = new RemoteStorage(c);
-      defaultStorages.local  = new LocalStorage(c);
-      c.currentStorage = c.type;
+      defaultStorages.remote  = new RemoteStorage(c); // 远程存储
+      defaultStorages.local   = new LocalStorage(c);   // 本地存储
+      c.currentStorage = c.type; // type是存储的方式，本地还是远程
       return this;
     },
 

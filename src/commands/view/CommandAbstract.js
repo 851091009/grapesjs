@@ -9,7 +9,8 @@ module.exports = Backbone.View.extend({
 	 * @private
 	 * */
 	initialize(o) {
-		this.config				= o || {};
+		
+		this.config			= o || {};
 		this.editorModel 	= this.em = this.config.em || {};
 		this.pfx		    = this.config.stylePrefix;
 		this.ppfx			= this.config.pStylePrefix;
@@ -24,11 +25,11 @@ module.exports = Backbone.View.extend({
 			this.setElement(this.getCanvas());
 
 		if(this.canvas){
-			this.$canvas = this.$el;
-			this.$wrapper = $(this.getCanvasWrapper());
-			this.frameEl = this.canvas.getFrameEl();
+			this.$canvas    = this.$el;
+			this.$wrapper   = $(this.getCanvasWrapper());
+			this.frameEl    = this.canvas.getFrameEl();
 			this.canvasTool = this.getCanvasTools();
-			this.bodyEl = this.getCanvasBody();
+			this.bodyEl     = this.getCanvasBody();
 		}
 
 		this.init(this.config);
@@ -44,7 +45,7 @@ module.exports = Backbone.View.extend({
 
 	/**
 	 * Returns canval element
-	 * 返回没完没了元
+	 * 返回画板文本
 	 * @return {HTMLElement}
 	 */
 	getCanvas() {

@@ -8,7 +8,7 @@
  * * [getContent](#getcontent)
  *
  * Before using the methods you should get first the module from the editor instance, in this way:
- *
+ * 在使用方法之前，您应该首先从编辑器实例中获取模块，方法如下：
  * ```js
  * var modal = editor.Modal;
  * ```

@@ -7,7 +7,7 @@ module.exports = () => {
 
   return {
 
-    compTypes: '',
+    compTypes: '', // 文件类型
 
     /**
      * Name of the module

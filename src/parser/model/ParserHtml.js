@@ -62,16 +62,16 @@ module.exports = config => {
      */
     parseNode(el) {
       var result = [];
-      var nodes = el.childNodes;
+      var nodes = el.childNodes; // 获取子节点
 
       for (var i = 0, len = nodes.length; i < len; i++) {
         var node = nodes[i];
         var model = {};
         var attrs = node.attributes || [];
         var attrsLen = attrs.length;
-        var prevI = result.length - 1;
-        var prevSib = result[prevI];
-        var ct = this.compTypes;
+        var prevI    = result.length - 1;
+        var prevSib  = result[prevI];
+        var ct       = this.compTypes;
 
         if(ct){
           var obj = '';
@@ -94,7 +94,7 @@ module.exports = config => {
 
         if(!model.tagName)
           model.tagName = node.tagName ? node.tagName.toLowerCase() : '';
-
+        // 属性长度
         if(attrsLen)
           model.attributes = {};
 

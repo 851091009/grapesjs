@@ -5,7 +5,7 @@
  * * [has](#has)
  *
  * You can init the editor with all necessary commands via configuration
- *
+ * 您可以通过配置启动带有所有必要命令的编辑器
  * ```js
  * var editor = grapesjs.init({
  * 	...
@@ -15,14 +15,14 @@
  * ```
  *
  * Before using methods you should get first the module from the editor instance, in this way:
- *
+ * 在使用方法之前，您应该首先从编辑器实例中获取模块，方法如下：
  * ```js
  * var commands = editor.Commands;
  * ```
  *
  * @module Commands
  * @param {Object} config Configurations
- * @param {Array<Object>} [config.defaults=[]] Array of possible commands
+ * @param {Array<Object>} [config.defaults=[]] Array of possible commands 数组可能的命令
  * @example
  * ...
  * commands: {
@@ -41,15 +41,16 @@
 
 module.exports = () => {
   var c = {},
-  commands = {},
+  commands = {}, // 命令对象
   defaultCommands = {},
-  defaults = require('./config/config'),
+  defaults    = require('./config/config'),
   AbsCommands = require('./view/CommandAbstract');
 
   // Need it here as it would be used below
+  // 需要这里，因为它将在下面使用
   var add = function(id, obj){
-    delete obj.initialize;
-    commands[id] = AbsCommands.extend(obj);
+    delete obj.initialize; // detete 用来删除属性的节点
+    commands[id] = AbsCommands.extend(obj); // 先把这里的 extend 理解成继承
     return this;
   };
 
@@ -57,6 +58,7 @@ module.exports = () => {
 
     /**
      * Name of the module
+     * 模块名称
      * @type {String}
      * @private
      */
@@ -64,6 +66,7 @@ module.exports = () => {
 
     /**
      * Initialize module. Automatically called with a new instance of the editor
+     * 初始化模块 使用编辑器的新实例自动调用
      * @param {Object} config Configurations
      * @private
      */
@@ -79,7 +82,9 @@ module.exports = () => {
         c.stylePrefix = ppfx + c.stylePrefix;
 
       // Load commands passed via configuration
-      for( var k in c.defaults) {
+      // 通过配置传递加载命令
+      
+      for( var k in c.defaults) { // 配置文件中的 defaults
         var obj = c.defaults[k];
         if(obj.id)
           this.add(obj.id, obj);
@@ -110,7 +115,7 @@ module.exports = () => {
           var sel = ed.getSelected();
 
           if(!sel || !sel.get('removable')) {
-            console.warn('The element is not removable');
+            console.warn('The element is not removable'); // 该元素不可移动。
             return;
           }
 
@@ -143,7 +148,7 @@ module.exports = () => {
           var dragger;
 
           if(!sel || !sel.get('draggable')) {
-            console.warn('The element is not draggable');
+            console.warn('The element is not draggable'); // 元素不可拖动
             return;
           }
 
@@ -174,6 +179,7 @@ module.exports = () => {
 
           if (em.get('designerMode')) {
             // TODO move grabbing func in editor/canvas from the Sorter
+            // TODO在分拣机的编辑/画布中移动抓取功能
             dragger = editor.runCommand('drag', {
               el: sel.view.el,
               options: {
